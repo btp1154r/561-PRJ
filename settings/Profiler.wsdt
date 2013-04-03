@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Workspace>
+  <ConfigDictionary>
+    
+  <CurrentConfigs><Project>ProfilerDemo/Debug</Project></CurrentConfigs></ConfigDictionary>
+  <Desktop>
+    <Static>
+      <Workspace>
+        <ColumnWidths>
+          
+          
+          
+          
+        <Column0>372</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+      </Workspace>
+      <Build>
+        
+        
+        
+        
+      <PreferedWindows><Position>3</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows><Window><Factory>Find-in-Files</Factory></Window></Windows></PreferedWindows><ColumnWidth0>20</ColumnWidth0><ColumnWidth1>663</ColumnWidth1><ColumnWidth2>177</ColumnWidth2><ColumnWidth3>44</ColumnWidth3></Build>
+      <TerminalIO/>
+    <Find-in-Files><PreferedWindows><Position>3</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows><Window><Factory>Build</Factory></Window></Windows></PreferedWindows><ColumnWidth0>344</ColumnWidth0><ColumnWidth1>49</ColumnWidth1><ColumnWidth2>590</ColumnWidth2></Find-in-Files></Static>
+    <Windows>
+      
+      
+    <Wnd1>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-15896-13970</Identity>
+            <TabName>Workspace</TabName>
+            <Factory>Workspace</Factory>
+            <Session>
+              
+            <NodeDict><ExpandedNode>ProfilerDemo</ExpandedNode><ExpandedNode>ProfilerDemo/Glyph</ExpandedNode><ExpandedNode>ProfilerDemo/Glyph/Drivers</ExpandedNode><ExpandedNode>ProfilerDemo/Output</ExpandedNode><ExpandedNode>ProfilerDemo/RTC</ExpandedNode><ExpandedNode>ProfilerDemo/user_src</ExpandedNode></NodeDict></Session>
+          </Tab>
+        </Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd1><Wnd3><Tabs><Tab><Identity>TabID-3656-8739</Identity><TabName>Build</TabName><Factory>Build</Factory><Session/></Tab><Tab><Identity>TabID-19131-10496</Identity><TabName>Find in Files</TabName><Factory>Find-in-Files</Factory><Session/></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd3></Windows>
+    <Editor>
+      
+      
+      
+      
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\applilet3_src\r_cg_it_user.c</Filename><XPos>0</XPos><YPos>18</YPos><SelStart>3476</SelStart><SelEnd>3491</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\applilet3_src\r_cg_port.c</Filename><XPos>0</XPos><YPos>18</YPos><SelStart>1814</SelStart><SelEnd>1814</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\RTC\rtc_sched.c</Filename><XPos>0</XPos><YPos>116</YPos><SelStart>4400</SelStart><SelEnd>4400</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\applilet3_src\r_cg_timer_user.c</Filename><XPos>0</XPos><YPos>54</YPos><SelStart>3730</SelStart><SelEnd>3730</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\user_src\CMAN_coords.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>455</SelStart><SelEnd>455</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\user_include\lcd.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\user_include\ior5f100le.h</Filename><XPos>0</XPos><YPos>267</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\user_include\Geometry.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>474</SelStart><SelEnd>474</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\user_include\tasks.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>125</SelStart><SelEnd>125</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\applilet3_src\r_main.c</Filename><XPos>0</XPos><YPos>58</YPos><SelStart>3943</SelStart><SelEnd>3943</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\user_src\RDKRL78_spi.c</Filename><XPos>0</XPos><YPos>24</YPos><SelStart>896</SelStart><SelEnd>896</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\applilet3_src\r_cg_serial.c</Filename><XPos>0</XPos><YPos>39</YPos><SelStart>5002</SelStart><SelEnd>5002</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\user_src\profile.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>672</SelStart><SelEnd>672</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Glyph\Drivers\ST7579_LCD.c</Filename><XPos>0</XPos><YPos>111</YPos><SelStart>1496</SelStart><SelEnd>1496</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\user_src\region.c</Filename><XPos>0</XPos><YPos>102</YPos><SelStart>4791</SelStart><SelEnd>4791</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Debug\List\ProfilerDemo.map</Filename><XPos>0</XPos><YPos>4868</YPos><SelStart>247686</SelStart><SelEnd>247687</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\user_src\lcd.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>905</SelStart><SelEnd>905</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\user_src\Geometry.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>100</SelStart><SelEnd>100</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\user_src\tasks.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>172</SelStart><SelEnd>172</SelEnd></Tab><ActiveTab>18</ActiveTab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Positions>
+      
+      
+      
+      
+      
+    <Top><Row0><Sizes><Toolbar-012d0d48><key>iaridepm.enu1</key></Toolbar-012d0d48></Sizes></Row0></Top><Left><Row0><Sizes><Wnd1><Rect><Top>-2</Top><Left>-2</Left><Bottom>594</Bottom><Right>446</Right><x>-2</x><y>-2</y><xscreen>7666</xscreen><yscreen>409</yscreen><sizeHorzCX>4791250</sizeHorzCX><sizeHorzCY>500000</sizeHorzCY><sizeVertCX>280000</sizeVertCX><sizeVertCY>728606</sizeVertCY></Rect></Wnd1></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>179</Bottom><Right>1602</Right><x>-2</x><y>-2</y><xscreen>1604</xscreen><yscreen>181</yscreen><sizeHorzCX>1002500</sizeHorzCX><sizeHorzCY>221271</sizeHorzCY><sizeVertCX>431250</sizeVertCX><sizeVertCY>112469</sizeVertCY></Rect></Wnd3></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+  </Desktop>
+</Workspace>
+
+
