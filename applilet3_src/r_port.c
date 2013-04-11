@@ -15,7 +15,7 @@
 * APIlib:	Applilet3 for RL78/G13 V1.01.00 [31 May 2011]
 * Device:	R5F100LE
 * Compiler:	IAR Systems iccrl78
-* Creation date:	10-04-2013
+* Creation date:	11-04-2013
 *******************************************************************************
 */
 
@@ -54,8 +54,8 @@
 */
 void R_PORT_Create(void)
 {
-	P1 = _01_Pn0_OUTPUT_1 | _00_Pn5_OUTPUT_0;
-	P3 = _01_Pn0_OUTPUT_1;
+	P1 = _00_Pn0_OUTPUT_0 | _00_Pn5_OUTPUT_0;
+	P3 = _00_Pn0_OUTPUT_0;
 	P4 = _00_Pn2_OUTPUT_0;
 	P5 = _00_Pn2_OUTPUT_0 | _00_Pn3_OUTPUT_0 | _00_Pn4_OUTPUT_0 | _00_Pn5_OUTPUT_0;
 	P6 = _00_Pn2_OUTPUT_0 | _00_Pn3_OUTPUT_0;

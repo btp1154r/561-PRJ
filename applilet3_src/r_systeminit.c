@@ -15,7 +15,7 @@
 * APIlib:	Applilet3 for RL78/G13 V1.01.00 [31 May 2011]
 * Device:	R5F100LE
 * Compiler:	IAR Systems iccrl78
-* Creation date:	10-04-2013
+* Creation date:	11-04-2013
 *******************************************************************************
 */
 
@@ -27,7 +27,6 @@
 #include "r_cg_macrodriver.h"
 #include "r_cg_cgc.h"
 #include "r_cg_port.h"
-#include "r_cg_intc.h"
 #include "r_cg_serial.h"
 #include "r_cg_timer.h"
 #include "r_cg_it.h"
@@ -69,7 +68,6 @@ void R_Systeminit(void)
 	R_SAU0_Create();
 	R_TAU0_Create();
 	R_IT_Create();
-	R_INTC_Create();
 	CRC0CTL = 0x00U;
 	IAWCTL = 0x00U;
 }

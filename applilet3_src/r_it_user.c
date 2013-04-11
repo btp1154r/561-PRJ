@@ -10,8 +10,8 @@
 *
 * This device driver was created by Applilet3 for RL78/G13
 * 16-Bit Single-Chip Microcontrollers
-* Filename:	r_port_user.c
-* Abstract:	This file implements device driver for PORT module.
+* Filename:	r_it_user.c
+* Abstract:	This file implements device driver for IT module.
 * APIlib:	Applilet3 for RL78/G13 V1.01.00 [31 May 2011]
 * Device:	R5F100LE
 * Compiler:	IAR Systems iccrl78
@@ -25,7 +25,7 @@
 *******************************************************************************
 */
 #include "r_cg_macrodriver.h"
-#include "r_cg_port.h"
+#include "r_cg_it.h"
 /* Start user code for include. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
 #include "r_cg_userdefine.h"
@@ -38,6 +38,26 @@
 /* Start user code for global. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
 
+/*
+**-----------------------------------------------------------------------------
+**
+**  Abstract:
+**	This function is INTIT interrupt service routine.
+**
+**  Parameters:
+**	None
+**
+**  Returns:
+**	None
+**
+**-----------------------------------------------------------------------------
+*/
+#pragma vector = INTIT_vect
+__interrupt void R_IT_Interrupt(void)
+{
+	/* Start user code. Do not edit comment generated here */
+	/* End user code. Do not edit comment generated here */
+}
 
 /* Start user code for adding. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */

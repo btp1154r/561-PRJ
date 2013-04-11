@@ -15,7 +15,7 @@
 * APIlib:	Applilet3 for RL78/G13 V1.01.00 [31 May 2011]
 * Device:	R5F100LE
 * Compiler:	IAR Systems iccrl78
-* Creation date:	10-04-2013
+* Creation date:	11-04-2013
 *******************************************************************************
 */
 
@@ -380,6 +380,9 @@ void R_CSI10_Create(void);
 void R_CSI10_Start(void);
 void R_CSI10_Stop(void);
 MD_STATUS R_CSI10_Send_Receive(uint8_t *txbuf, uint16_t txnum, uint8_t *rxbuf);
+void R_CSI10_Callback_Error(uint8_t err_type);
+void R_CSI10_Callback_ReceiveEnd(void);
+void R_CSI10_Callback_SendEnd(void);
 
 /* Start user code for function. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */

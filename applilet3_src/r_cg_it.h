@@ -15,7 +15,7 @@
 * APIlib:	Applilet3 for RL78/G13 V1.01.00 [31 May 2011]
 * Device:	R5F100LE
 * Compiler:	IAR Systems iccrl78
-* Creation date:	10-04-2013
+* Creation date:	11-04-2013
 *******************************************************************************
 */
 
@@ -47,6 +47,7 @@
 void R_IT_Create(void);
 void R_IT_Start(void);
 void R_IT_Stop(void);
+__interrupt void R_IT_Interrupt(void);
 
 /* Start user code for function. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
