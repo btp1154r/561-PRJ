@@ -29,7 +29,7 @@ void IO_Reset();
 void SPI_Init()
 {
     IO_Reset();
-    
+    R_SAU0_Create();
     R_CSI10_Create();
     R_CSI10_Start();
 }
@@ -90,5 +90,19 @@ void SPI_SendReceive(uint8_t aDevice, uint8_t *aTXData, uint32_t aTXLength, uint
     while(G_SPI_SendingData || G_SPI_ReceivingData);
     
 		SPI_CS_End(aDevice);
+}
+
+void SPI_Receive(uint8_t aDevice, uint8_t *aData, uint32_t aLength)
+{
+    uint8_t noTXData = 0xFF;
+    G_SPI_SendingData = 0;
+    G_SPI_ReceivingData = 1;
+	
+    SPI_CS_Start(aDevice);
+
+    R_CSI10_Send_Receive(&noTXData, aLength, aData );
+    while(G_SPI_ReceivingData);
+    
+    SPI_CS_End(aDevice);
 }
 

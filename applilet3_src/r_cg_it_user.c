@@ -64,4 +64,16 @@ __interrupt static void r_it_interrupt(void)
 }
 
 /* Start user code for adding. Do not edit comment generated here */
+/* dummy/random waitloop. Time is not guaranteed */
+void delay_ms(int aTimeMS)
+{   
+   long i,j;
+   for (i=0;i<aTimeMS;i++)
+   {
+     for (j=0;j<100;j++)
+     {
+       NOP();
+     }
+   }
+}
 /* End user code. Do not edit comment generated here */

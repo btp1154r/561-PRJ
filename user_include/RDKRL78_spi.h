@@ -10,5 +10,6 @@
 void SPI_Init();
 void SPI_Send(uint8_t aDevice, uint8_t *aData, uint32_t aLength);
 void SPI_SendReceive(uint8_t aDevice, uint8_t *aTXData, uint32_t aTXLength, uint8_t *aRXData);
+void SPI_Receive(uint8_t aDevice, uint8_t *aData, uint32_t aLength);
 
 #endif // _RSPI_H

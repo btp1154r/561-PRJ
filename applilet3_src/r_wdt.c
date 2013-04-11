@@ -10,8 +10,8 @@
 *
 * This device driver was created by Applilet3 for RL78/G13
 * 16-Bit Single-Chip Microcontrollers
-* Filename:	r_cg_it.h
-* Abstract:	This file implements device driver for IT module.
+* Filename:	r_wdt.c
+* Abstract:	This file implements device driver for WDT module.
 * APIlib:	Applilet3 for RL78/G13 V1.01.00 [31 May 2011]
 * Device:	R5F100LE
 * Compiler:	IAR Systems iccrl78
@@ -19,35 +19,24 @@
 *******************************************************************************
 */
 
-#ifndef _MDIT_
-#define _MDIT_
 /*
 *******************************************************************************
-**  Register bit define
+** Include files
 *******************************************************************************
 */
-/* 
-	Interval timer control register (ITMC)
-*/
-/* Interval timer operation enable/disable specification (RINTE) */
-#define	_0000_IT_OPERATION_DISABLE	0x0000U	/* disable interval timer operation */
-#define	_8000_IT_OPERATION_ENABLE	0x8000U	/* enable interval timer operation */
-/*
-*******************************************************************************
-**  Macro define
-*******************************************************************************
-*/
-/* Interval timer compare value (ITMCMP11 - 0) */
-#define _0020_ITMCMP_VALUE		0x0020U
-/*
-*******************************************************************************
-**  Function define
-*******************************************************************************
-*/
-void R_IT_Create(void);
-void R_IT_Start(void);
-void R_IT_Stop(void);
-
-/* Start user code for function. Do not edit comment generated here */
+#include "r_cg_macrodriver.h"
+/* Start user code for include. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
-#endif
+#include "r_cg_userdefine.h"
+
+/*
+*******************************************************************************
+**  Global define
+*******************************************************************************
+*/
+/* Start user code for global. Do not edit comment generated here */
+/* End user code. Do not edit comment generated here */
+
+
+/* Start user code for adding. Do not edit comment generated here */
+/* End user code. Do not edit comment generated here */

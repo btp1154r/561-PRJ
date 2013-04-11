@@ -10,8 +10,8 @@
 *
 * This device driver was created by Applilet3 for RL78/G13
 * 16-Bit Single-Chip Microcontrollers
-* Filename:	r_main.c
-* Abstract:	This file implements main function.
+* Filename:	r_cgc.c
+* Abstract:	This file implements device driver for CGC module.
 * APIlib:	Applilet3 for RL78/G13 V1.01.00 [31 May 2011]
 * Device:	R5F100LE
 * Compiler:	IAR Systems iccrl78
@@ -26,22 +26,7 @@
 */
 #include "r_cg_macrodriver.h"
 #include "r_cg_cgc.h"
-#include "r_cg_port.h"
-#include "r_cg_intc.h"
-#include "r_cg_serial.h"
-#include "r_cg_timer.h"
-#include "r_cg_it.h"
 /* Start user code for include. Do not edit comment generated here */
-#include "lcd.h"
-#include "rtc_sched.h"
-#include "tasks.h"
-#include "profile.h"
-#include "region.h"
-
-#include<integer.h>
-#include "ff.h"
-
-
 /* End user code. Do not edit comment generated here */
 #include "r_cg_userdefine.h"
 
@@ -50,20 +35,6 @@
 **  Global define
 *******************************************************************************
 */
-/* Set option bytes */
-#pragma location = "OPTBYTE"
-__root const uint8_t opbyte0 = 0xEFU;
-#pragma location = "OPTBYTE"
-__root const uint8_t opbyte1 = 0xFFU;
-#pragma location = "OPTBYTE"
-__root const uint8_t opbyte2 = 0xE8U;
-#pragma location = "OPTBYTE"
-__root const uint8_t opbyte3 = 0x04U;
-
-/* Set security ID */
-#pragma location = "SECUID"
-__root const uint8_t secuid[10] = 
-	{0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U};
 /* Start user code for global. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
 
@@ -71,7 +42,7 @@ __root const uint8_t secuid[10] =
 **-----------------------------------------------------------------------------
 **
 **  Abstract:
-**	This function implements main function.
+**	This function initializes the clock generator.
 **
 **  Parameters:
 **	None
@@ -81,32 +52,27 @@ __root const uint8_t secuid[10] =
 **
 **-----------------------------------------------------------------------------
 */
-void  main(void)
+void R_CGC_Create(void)
 {
-	/* Start user code. Do not edit comment generated here */
+	uint16_t i;
 
-  INIT_LEDS;
-	
-  R_IT_Start(); 						/* Start interval timer (for RTC_Scheduler) */
-  R_CSI10_Start();          /* LCD SPI initialization */
- // LCDInit();              	/* LCD controller initialization*/
-  
-  SPI_Init();
-	
- //LCDPrintf(1,0,"hello");
-  Init_RTC_Scheduler();
-
-  Add_Task(Task1, RTC_FREQ_TO_TICKS(11), 2);  /* Flash LED at 5.5 Hz */
-  Add_Task(Task4, RTC_FREQ_TO_TICKS(1), 3);   /* Calculate distances */
-  Add_Task(Task3, RTC_FREQ_TO_TICKS(1), 4);   /* Update LCD at 1 Hz task frequency */
-  Add_Task(FileReadTask, RTC_FREQ_TO_TICKS(10), 1);
-//  Add_Task(Task3, RTC_FREQ_TO_TICKS(100), 3);   /* Update LCD at 100 Hz task frequency */
-
-	Init_Profiling();	
-  Disable_Profiling();
-  Run_RTC_Scheduler();
-
-  /* End user code. Do not edit comment generated here */
+	/* Set fMX */
+	CMC = _00_CGC_HISYS_PORT | _10_CGC_SUB_OSC | _00_CGC_SYSOSC_DEFAULT | _00_CGC_SUBMODE_LOW;
+	MSTOP = 1U;
+	/* Set fMAIN */
+	MCM0 = 0U;
+	/* Set fSUB */
+	XTSTOP = 0U;
+	/* Software wait 5us or more */
+	for( i=0U; i<=CGC_SUBWAITTIME; i++ )
+	{
+		NOP();
+	}
+	OSMC = _00_CGC_SUBINHALT_ON | _00_CGC_RTC_CLK_FSUB;
+	/* Set fCLK */
+	CSS = 0U;
+	/* Set fIH */
+	HIOSTOP = 0U;
 }
 
 /* Start user code for adding. Do not edit comment generated here */

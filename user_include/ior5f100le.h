@@ -15,17 +15,17 @@
 #define __IOR5F100LE_H__
 
 #if !defined(__ARL78__) && !defined(__ICCRL78__)
-  #error "IOR5F100LE.H file for use with RL78 Assembler or Compiler only"
+  #error "ior5f100ll.H file for use with RL78 Assembler or Compiler only"
 #endif
 
 #if defined(__ARL78__)
   #if __CORE__ != __RL78_1__
-    #error "IOR5F100LE.H file for use with ARL78 option --core rl78_1 only"
+    #error "ior5f100ll.H file for use with ARL78 option --core rl78_1 only"
   #endif
 #endif
 #if defined(__ICCRL78__)
   #if __CORE__ != __RL78_1__
-    #error "IOR5F100LE.H file for use with ICCRL78 option --core rl78_1 only"
+    #error "ior5f100ll.H file for use with ICCRL78 option --core rl78_1 only"
   #endif
 #endif
 

@@ -108,7 +108,7 @@
         </option>
         <option>
           <name>GenNearHeapSize</name>
-          <state>256</state>
+          <state>512</state>
         </option>
         <option>
           <name>GenFarHeapSize</name>
@@ -212,7 +212,7 @@
         <option>
           <name>IccOptStrategy</name>
           <version>0</version>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>IccOptLevelSlave</name>
@@ -711,7 +711,7 @@
         </option>
         <option>
           <name>ModuleSummary</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>xcProgramEntryLabel</name>
@@ -1717,7 +1717,31 @@
   <group>
     <name>applilet_src</name>
     <file>
+      <name>$PROJ_DIR$\applilet3_src\diskio.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\applilet3_src\ff.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\applilet3_src\ff.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\applilet3_src\ffconf.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\applilet3_src\integer.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\applilet3_src\iodefine.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\applilet3_src\mmc_spi.c</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\applilet3_src\r_cg_cgc.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\applilet3_src\r_cg_cgc.h</name>
     </file>
     <file>
       <name>$PROJ_DIR$\applilet3_src\r_cg_cgc_user.c</name>
@@ -1726,16 +1750,28 @@
       <name>$PROJ_DIR$\applilet3_src\r_cg_intc.c</name>
     </file>
     <file>
+      <name>$PROJ_DIR$\applilet3_src\r_cg_intc.h</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\applilet3_src\r_cg_intc_user.c</name>
     </file>
     <file>
       <name>$PROJ_DIR$\applilet3_src\r_cg_it.c</name>
     </file>
     <file>
+      <name>$PROJ_DIR$\applilet3_src\r_cg_it.h</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\applilet3_src\r_cg_it_user.c</name>
     </file>
     <file>
+      <name>$PROJ_DIR$\applilet3_src\r_cg_macrodriver.h</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\applilet3_src\r_cg_port.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\applilet3_src\r_cg_port.h</name>
     </file>
     <file>
       <name>$PROJ_DIR$\applilet3_src\r_cg_port_user.c</name>
@@ -1744,10 +1780,16 @@
       <name>$PROJ_DIR$\applilet3_src\r_cg_serial.c</name>
     </file>
     <file>
+      <name>$PROJ_DIR$\applilet3_src\r_cg_serial.h</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\applilet3_src\r_cg_serial_user.c</name>
     </file>
     <file>
       <name>$PROJ_DIR$\applilet3_src\r_cg_timer.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\applilet3_src\r_cg_timer.h</name>
     </file>
     <file>
       <name>$PROJ_DIR$\applilet3_src\r_cg_timer_user.c</name>
@@ -1993,10 +2035,16 @@
       </configuration>
     </file>
     <file>
+      <name>$PROJ_DIR$\applilet3_src\r_cg_userdefine.h</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\applilet3_src\r_main.c</name>
     </file>
     <file>
       <name>$PROJ_DIR$\applilet3_src\r_systeminit.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\applilet3_src\typedefine.h</name>
     </file>
   </group>
   <group>
@@ -2055,6 +2103,36 @@
   </group>
   <group>
     <name>user_include</name>
+    <file>
+      <name>$PROJ_DIR$\user_include\config.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\user_include\Geometry.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\user_include\ior5f100le.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\user_include\ior5f100LE_ext.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\user_include\lcd.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\user_include\profile.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\user_include\proto.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\user_include\RDKRL78_spi.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\user_include\Region.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\user_include\tasks.h</name>
+    </file>
   </group>
   <group>
     <name>user_src</name>
