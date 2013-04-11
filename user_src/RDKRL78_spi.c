@@ -68,7 +68,7 @@ void SPI_Send(uint8_t aDevice, uint8_t *aData, uint32_t aLength)
 		for (d=100; d>0; d--) // delay
 			;
 
-    R_CSI10_Send_Receive(aData, aLength, &noRXData);
+    R_CSI10_Send_Receive(aData, aLength, &noRXData,0);
     while(G_SPI_SendingData);
     
     SPI_CS_End(aDevice);
@@ -86,7 +86,7 @@ void SPI_SendReceive(uint8_t aDevice, uint8_t *aTXData, uint32_t aTXLength, uint
 		for (d=100; d>0; d--) // delay
 			;
     
-    R_CSI10_Send_Receive(aTXData, aTXLength, aRXData);
+    R_CSI10_Send_Receive(aTXData, aTXLength, aRXData,aTXLength);
     while(G_SPI_SendingData || G_SPI_ReceivingData);
     
 		SPI_CS_End(aDevice);
@@ -100,7 +100,7 @@ void SPI_Receive(uint8_t aDevice, uint8_t *aData, uint32_t aLength)
 	
     SPI_CS_Start(aDevice);
 
-    R_CSI10_Send_Receive(&noTXData, aLength, aData );
+    R_CSI10_Send_Receive(&noTXData,1 , aData,aLength );
     while(G_SPI_ReceivingData);
     
     SPI_CS_End(aDevice);

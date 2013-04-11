@@ -28,7 +28,7 @@
 * Device(s)    : R5F100LE
 * Tool-Chain   : IAR Systems iccrl78
 * Description  : This file implements device driver for PORT module.
-* Creation Date: 9/22/2012
+* Creation Date: 11-04-2013
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
@@ -39,7 +39,7 @@ Includes
 /* Start user code for include. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
 #include "r_cg_userdefine.h"
-  
+
 /***********************************************************************************************************************
 Global variables and functions
 ***********************************************************************************************************************/
@@ -54,19 +54,19 @@ Global variables and functions
 ***********************************************************************************************************************/
 void R_PORT_Create(void)
 {
-    P1 = _00_Pn0_OUTPUT_0 | _00_Pn5_OUTPUT_0;
+    P1 = _01_Pn0_OUTPUT_1 | _00_Pn5_OUTPUT_0;
+    P3 = _01_Pn0_OUTPUT_1;
     P4 = _00_Pn2_OUTPUT_0;
     P5 = _00_Pn2_OUTPUT_0 | _00_Pn3_OUTPUT_0 | _00_Pn4_OUTPUT_0 | _00_Pn5_OUTPUT_0;
     P6 = _00_Pn2_OUTPUT_0 | _00_Pn3_OUTPUT_0;
     PM1 = _00_PMn0_MODE_OUTPUT | _02_PMn1_NOT_USE | _04_PMn2_NOT_USE | _08_PMn3_NOT_USE | _10_PMn4_NOT_USE |
           _00_PMn5_MODE_OUTPUT | _40_PMn6_NOT_USE | _80_PMn7_NOT_USE;
+    PM3 = _00_PMn0_MODE_OUTPUT | _02_PMn1_NOT_USE | _FC_PM3_DEFAULT;
     PM4 = _01_PMn0_NOT_USE | _02_PMn1_NOT_USE | _00_PMn2_MODE_OUTPUT | _08_PMn3_NOT_USE | _F0_PM4_DEFAULT;
     PM5 = _01_PMn0_NOT_USE | _02_PMn1_NOT_USE | _00_PMn2_MODE_OUTPUT | _00_PMn3_MODE_OUTPUT | _00_PMn4_MODE_OUTPUT |
           _00_PMn5_MODE_OUTPUT | _C0_PM5_DEFAULT;
     PM6 = _01_PMn0_NOT_USE | _02_PMn1_NOT_USE | _00_PMn2_MODE_OUTPUT | _00_PMn3_MODE_OUTPUT | _F0_PM6_DEFAULT;
-    
-    
- }
+}
 
 /* Start user code for adding. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */

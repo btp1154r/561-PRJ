@@ -40,6 +40,7 @@
         <SAU0 />
       </Effect>
     </fINTTM02>
+    <fCLKSource Name="fCLKSource" Text="fIH" />
     <VDD_MIN Name="VDD_MIN" Value="4" Comment="4.0V" Trigger="VDD">
       <Effect>
         <PCLBUZ0 />
@@ -125,7 +126,6 @@
     <ROMEndAddress Chip="R5F1006E,R5F1007E,R5F1008E,R5F100AE,R5F100BE,R5F100CE,R5F100EE,R5F100FE,R5F100GE,R5F100JE,R5F100LE" Name="ROMEndAddress" Fixed="" Text="0000FFFF" />
     <MirrorROM Name="MirrorROM" Fixed="" Text="53.75" />
     <ADPC_AD Name="ADPC_AD" Value="-1" />
-    <fCLKSource Name="fCLKSource" Text="fIH" />
     <CodePath Name="CodePath" Text=".\" />
     <ReportType Name="ReportType" Text="Html" />
     <GenerateType Name="GenerateType" Text="Merge" />
@@ -189,9 +189,9 @@
         <Port5 Chip="RL78G13_24pin,RL78G13_25pin,RL78G13_30pin,RL78G13_32pin,RL78G13_36pin,RL78G13_40pin,RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin" Pullup="true">
           <P50 Chip="RL78G13_24pin,RL78G13_25pin,RL78G13_30pin,RL78G13_32pin,RL78G13_36pin,RL78G13_40pin,RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin" Nch="true" Name="P50/INTP1/SI11/SDA11" AltFunc="" Point="I/O" />
           <P51 Chip="RL78G13_30pin,RL78G13_32pin,RL78G13_36pin,RL78G13_40pin,RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin" Name="P51/INTP2/SO11" AltFunc="" Point="I/O" />
-          <P52 Chip="R5F100LC,R5F100LD,R5F100LE,R5F100LF,R5F100LG,R5F100LH" Name="P52" AltFunc="P52" Point="I/O" />
-          <P53 Chip="R5F100LC,R5F100LD,R5F100LE,R5F100LF,R5F100LG,R5F100LH" Name="P53" AltFunc="P53" Point="I/O" />
-          <P54 Chip="R5F100LC,R5F100LD,R5F100LE,R5F100LF,R5F100LG,R5F100LH" Name="P54" AltFunc="P54" Point="I/O" />
+          <P52 Chip="RL78G13_64pin" Name="P52" AltFunc="P52" Point="I/O" />
+          <P53 Chip="RL78G13_64pin" Name="P53" AltFunc="P53" Point="I/O" />
+          <P54 Chip="RL78G13_64pin" Name="P54" AltFunc="P54" Point="I/O" />
           <P55 Chip="R5F100LC,R5F100LD,R5F100LE,R5F100LF,R5F100LG,R5F100LH" Name="P55" AltFunc="P55" Point="I/O" />
         </Port5>
         <Port6 Chip="RL78G13_24pin,RL78G13_25pin,RL78G13_30pin,RL78G13_32pin,RL78G13_36pin,RL78G13_40pin,RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin">
@@ -255,8 +255,8 @@
         </KEY>
       </INTC>
       <ADC>
-        <ANI0 Port="P20" Unconfilct="AVREFP" Point="I" />
-        <ANI1 Port="P21" Unconfilct="AVREFM" Point="I" />
+        <ANI0 Port="P20" Point="I" />
+        <ANI1 Port="P21" Point="I" />
         <ANI2 Port="P22" Point="I" />
         <ANI3 Chip="RL78G13_30pin,RL78G13_32pin,RL78G13_36pin,RL78G13_40pin,RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin" Port="P23" Point="I" />
         <ANI4 Chip="RL78G13_36pin,RL78G13_40pin,RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin" Port="P24" Point="I" />
@@ -267,8 +267,16 @@
         <ANI17 Chip="RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin" Port="P02" Point="I" />
         <ANI18 Port="P147" Point="I" />
         <ANI19 Chip="RL78G13_30pin,RL78G13_32pin,RL78G13_36pin,RL78G13_40pin,RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin" Port="P120" Point="I" />
-        <AVREFP Port="P20" Unconfilct="ANI0" Point="I" />
-        <AVREFM Port="P21" Unconfilct="ANI1" Point="I" />
+        <AVREFP Port="P20" Point="I" />
+        <AVREFM Port="P21" Point="I" />
+        <ANALOG_0 Port="P20" RealName="ANI0/AVREFP" Point="I" />
+        <ANALOG_1 Port="P21" RealName="ANI1/AVREFM" Point="I" />
+        <ANALOG_2 Port="P22" RealName="ANI2" Point="I" />
+        <ANALOG_3 Chip="RL78G13_30pin,RL78G13_32pin,RL78G13_36pin,RL78G13_40pin,RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin" Port="P23" RealName="ANI3" Point="I" />
+        <ANALOG_4 Chip="RL78G13_36pin,RL78G13_40pin,RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin" RealName="ANI4" Port="P24" Point="I" />
+        <ANALOG_5 Chip="RL78G13_36pin,RL78G13_40pin,RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin" RealName="ANI5" Port="P25" Point="I" />
+        <ANALOG_6 Chip="RL78G13_40pin,RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin" RealName="ANI6" Port="P26" Point="I" />
+        <ANALOG_7 Chip="RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin" RealName="ANI7" Port="P27" Point="I" />
       </ADC>
       <Serial>
         <SAU0>
@@ -312,7 +320,7 @@
             <SCL10 Port="P04" Point="O" CheckNch="true" />
             <SDA10 Port="P03" Point="O" CheckNch="true" />
           </IIC10>
-          <IIC11 Chip="RL78G13_30pin,RL78G13_32pin,RL78G13_36pin,RL78G13_40pin,RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin">
+          <IIC11 Chip="RL78G13_24pin,RL78G13_25pin,RL78G13_30pin,RL78G13_32pin,RL78G13_36pin,RL78G13_40pin,RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin">
             <SCL11 Port="P30" Point="O" CheckNch="true" />
             <SDA11 Port="P50" Point="O" CheckNch="true" />
           </IIC11>
@@ -405,135 +413,135 @@
     <INT>
       <INTC>
         <INTP>
-          <INTP0 InUse="0" ISR="R_INTC0_Interrupt" />
-          <INTP1 Chip="RL78G13_24pin,RL78G13_25pin,RL78G13_30pin,RL78G13_32pin,RL78G13_36pin,RL78G13_40pin,RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin," InUse="0" ISR="R_INTC1_Interrupt" />
-          <INTP2 Chip="RL78G13_30pin,RL78G13_32pin,RL78G13_36pin,RL78G13_40pin,RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin," InUse="0" ISR="R_INTC2_Interrupt" />
-          <INTP3 InUse="0" ISR="R_INTC3_Interrupt" />
-          <INTP4 Chip="RL78G13_24pin,RL78G13_25pin,RL78G13_30pin,RL78G13_32pin,RL78G13_36pin,RL78G13_40pin,RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin," InUse="0" ISR="R_INTC4_Interrupt" />
-          <INTP5 InUse="0" ISR="R_INTC5_Interrupt" />
-          <INTP6 Chip="RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin," InUse="0" ISR="R_INTC6_Interrupt" />
-          <INTP7 Chip="RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin," InUse="0" ISR="R_INTC7_Interrupt" />
-          <INTP8 Chip="RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin," InUse="0" ISR="R_INTC8_Interrupt" />
-          <INTP9 Chip="RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin," InUse="0" ISR="R_INTC9_Interrupt" />
-          <INTP10 Chip="RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin," InUse="0" ISR="R_INTC10_Interrupt" />
-          <INTP11 Chip="RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin," InUse="0" ISR="R_INTC11_Interrupt" />
+          <INTP0 InUse="0" ISR="r_intc0_interrupt" />
+          <INTP1 Chip="RL78G13_24pin,RL78G13_25pin,RL78G13_30pin,RL78G13_32pin,RL78G13_36pin,RL78G13_40pin,RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin," InUse="0" ISR="r_intc1_interrupt" />
+          <INTP2 Chip="RL78G13_30pin,RL78G13_32pin,RL78G13_36pin,RL78G13_40pin,RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin," InUse="0" ISR="r_intc2_interrupt" />
+          <INTP3 InUse="0" ISR="r_intc3_interrupt" />
+          <INTP4 Chip="RL78G13_24pin,RL78G13_25pin,RL78G13_30pin,RL78G13_32pin,RL78G13_36pin,RL78G13_40pin,RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin," InUse="0" ISR="r_intc4_interrupt" />
+          <INTP5 InUse="0" ISR="r_intc5_interrupt" />
+          <INTP6 Chip="RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin," InUse="0" ISR="r_intc6_interrupt" />
+          <INTP7 Chip="RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin," InUse="0" ISR="r_intc7_interrupt" />
+          <INTP8 Chip="RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin," InUse="0" ISR="r_intc8_interrupt" />
+          <INTP9 Chip="RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin," InUse="0" ISR="r_intc9_interrupt" />
+          <INTP10 Chip="RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin," InUse="0" ISR="r_intc10_interrupt" />
+          <INTP11 Chip="RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin," InUse="0" ISR="r_intc11_interrupt" />
         </INTP>
         <KEY Chip="RL78G13_40pin,RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin,">
-          <INTKR InUse="0" ISR="R_KEY_Interrupt" />
+          <INTKR InUse="0" ISR="r_key_interrupt" />
         </KEY>
       </INTC>
       <Serial>
         <SAU0>
-          <INTCSI00 InUse="0" ISR="R_CSI00_Interrupt" />
-          <INTCSI01 InUse="0" ISR="R_CSI01_Interrupt" />
-          <INTCSI10 InUse="1" ISR="R_CSI10_Interrupt" />
-          <INTCSI11 InUse="0" ISR="R_CSI11_Interrupt" />
-          <INTST0 InUse="0" ISR="R_UART0_Interrupt_Send" />
-          <INTST1 InUse="0" ISR="R_UART1_Interrupt_Send" />
-          <INTSRE0 InUse="0" ISR="R_UART0_Interrupt_Error" />
-          <INTSRE1 InUse="0" ISR="R_UART1_Interrupt_Error" />
-          <INTSR0 InUse="0" ISR="R_UART0_Interrupt_Receive" />
-          <INTSR1 InUse="0" ISR="R_UART1_Interrupt_Receive" />
-          <INTIIC00 InUse="0" ISR="R_IIC00_Interrupt" />
-          <INTIIC01 InUse="0" ISR="R_IIC01_Interrupt" />
-          <INTIIC10 InUse="0" ISR="R_IIC10_Interrupt" />
-          <INTIIC11 InUse="0" ISR="R_IIC11_Interrupt" />
+          <INTCSI00 InUse="0" ISR="r_csi00_interrupt" />
+          <INTCSI01 InUse="0" ISR="r_csi01_interrupt" />
+          <INTCSI10 InUse="1" ISR="r_csi10_interrupt" />
+          <INTCSI11 InUse="0" ISR="r_csi11_interrupt" />
+          <INTST0 InUse="0" ISR="r_uart0_interrupt_send" />
+          <INTST1 InUse="0" ISR="r_uart1_interrupt_send" />
+          <INTSRE0 InUse="0" ISR="r_uart0_interrupt_error" />
+          <INTSRE1 InUse="0" ISR="r_uart1_interrupt_error" />
+          <INTSR0 InUse="0" ISR="r_uart0_interrupt_receive" />
+          <INTSR1 InUse="0" ISR="r_uart1_interrupt_receive" />
+          <INTIIC00 InUse="0" ISR="r_iic00_interrupt" />
+          <INTIIC01 InUse="0" ISR="r_iic01_interrupt" />
+          <INTIIC10 InUse="0" ISR="r_iic10_interrupt" />
+          <INTIIC11 InUse="0" ISR="r_iic11_interrupt" />
         </SAU0>
         <SAU1>
-          <INTCSI20 InUse="0" ISR="R_CSI20_Interrupt" />
-          <INTCSI21 InUse="0" ISR="R_CSI21_Interrupt" />
-          <INTCSI30 InUse="0" ISR="R_CSI30_Interrupt" />
-          <INTCSI31 InUse="0" ISR="R_CSI31_Interrupt" />
-          <INTST2 InUse="0" ISR="R_UART2_Interrupt_Send" />
-          <INTST3 InUse="0" ISR="R_UART3_Interrupt_Send" />
-          <INTSRE2 InUse="0" ISR="R_UART2_Interrupt_Error" />
-          <INTSRE3 InUse="0" ISR="R_UART3_Interrupt_Error" />
-          <INTSR2 InUse="0" ISR="R_UART2_Interrupt_Receive" />
-          <INTSR3 InUse="0" ISR="R_UART3_Interrupt_Receive" />
-          <INTIIC20 InUse="0" ISR="R_IIC20_Interrupt" />
-          <INTIIC21 InUse="0" ISR="R_IIC21_Interrupt" />
-          <INTIIC30 InUse="0" ISR="R_IIC30_Interrupt" />
-          <INTIIC31 InUse="0" ISR="R_IIC31_Interrupt" />
+          <INTCSI20 InUse="0" ISR="r_csi20_interrupt" />
+          <INTCSI21 InUse="0" ISR="r_csi21_interrupt" />
+          <INTCSI30 InUse="0" ISR="r_csi30_interrupt" />
+          <INTCSI31 InUse="0" ISR="r_csi31_interrupt" />
+          <INTST2 InUse="0" ISR="r_uart2_interrupt_send" />
+          <INTST3 InUse="0" ISR="r_uart3_interrupt_send" />
+          <INTSRE2 InUse="0" ISR="r_uart2_interrupt_error" />
+          <INTSRE3 InUse="0" ISR="r_uart3_interrupt_error" />
+          <INTSR2 InUse="0" ISR="r_uart2_interrupt_receive" />
+          <INTSR3 InUse="0" ISR="r_uart3_interrupt_receive" />
+          <INTIIC20 InUse="0" ISR="r_iic20_interrupt" />
+          <INTIIC21 InUse="0" ISR="r_iic21_interrupt" />
+          <INTIIC30 InUse="0" ISR="r_iic30_interrupt" />
+          <INTIIC31 InUse="0" ISR="r_iic31_interrupt" />
         </SAU1>
         <IICA0>
-          <INTIICA0 Chip="RL78G13_24pin,RL78G13_25pin,RL78G13_30pin,RL78G13_32pin,RL78G13_36pin,RL78G13_40pin,RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin" InUse="0" ISR="R_IICA0_Interrupt" />
+          <INTIICA0 Chip="RL78G13_24pin,RL78G13_25pin,RL78G13_30pin,RL78G13_32pin,RL78G13_36pin,RL78G13_40pin,RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin" InUse="0" ISR="r_iica0_interrupt" />
         </IICA0>
         <IICA1>
         </IICA1>
       </Serial>
       <ADC>
-        <INTAD InUse="0" ISR="R_ADC_Interrupt" IsDMATrigger="true" />
+        <INTAD InUse="0" ISR="r_adc_interrupt" IsDMATrigger="true" />
       </ADC>
       <TAU>
         <TAU0>
           <Channel0>
-            <INTTM00 InUse="1" ISR="R_TAU0_Channel0_Interrupt" />
+            <INTTM00 InUse="1" ISR="r_tau0_channel0_interrupt" />
           </Channel0>
           <Channel1>
-            <INTTM01 InUse="0" ISR="R_TAU0_Channel1_Interrupt" />
-            <INTTM01H InUse="0" ISR="R_TAU0_Channel1_Higher8bits_Interrupt" />
+            <INTTM01 InUse="0" ISR="r_tau0_channel1_interrupt" />
+            <INTTM01H InUse="0" ISR="r_tau0_channel1_higher8bits_interrupt" />
           </Channel1>
           <Channel2>
-            <INTTM02 InUse="0" ISR="R_TAU0_Channel2_Interrupt" />
+            <INTTM02 InUse="0" ISR="r_tau0_channel2_interrupt" />
           </Channel2>
           <Channel3>
-            <INTTM03 InUse="0" ISR="R_TAU0_Channel3_Interrupt" />
-            <INTTM03H InUse="0" ISR="R_TAU0_Channel3_Higher8bits_Interrupt" />
+            <INTTM03 InUse="0" ISR="r_tau0_channel3_interrupt" />
+            <INTTM03H InUse="0" ISR="r_tau0_channel3_higher8bits_interrupt" />
           </Channel3>
           <Channel4>
-            <INTTM04 InUse="0" ISR="R_TAU0_Channel4_Interrupt" />
+            <INTTM04 InUse="0" ISR="r_tau0_channel4_interrupt" />
           </Channel4>
           <Channel5>
-            <INTTM05 InUse="0" ISR="R_TAU0_Channel5_Interrupt" />
+            <INTTM05 InUse="0" ISR="r_tau0_channel5_interrupt" />
           </Channel5>
           <Channel6>
-            <INTTM06 InUse="0" ISR="R_TAU0_Channel6_Interrupt" />
+            <INTTM06 InUse="0" ISR="r_tau0_channel6_interrupt" />
           </Channel6>
           <Channel7>
-            <INTTM07 InUse="0" ISR="R_TAU0_Channel7_Interrupt" />
+            <INTTM07 InUse="0" ISR="r_tau0_channel7_interrupt" />
           </Channel7>
         </TAU0>
         <TAU1>
           <Channel0>
-            <INTTM10 InUse="0" ISR="R_TAU1_Channel0_Interrupt" />
+            <INTTM10 InUse="0" ISR="r_tau1_channel0_interrupt" />
           </Channel0>
           <Channel1>
-            <INTTM11 InUse="0" ISR="R_TAU1_Channel1_Interrupt" />
-            <INTTM11H InUse="0" ISR="R_TAU1_Channel1_Higher8bits_Interrupt" />
+            <INTTM11 InUse="0" ISR="r_tau1_channel1_interrupt" />
+            <INTTM11H InUse="0" ISR="r_tau1_channel1_higher8bits_interrupt" />
           </Channel1>
           <Channel2>
-            <INTTM12 InUse="0" ISR="R_TAU1_Channel2_Interrupt" />
+            <INTTM12 InUse="0" ISR="r_tau1_channel2_interrupt" />
           </Channel2>
           <Channel3>
-            <INTTM13 InUse="0" ISR="R_TAU1_Channel3_Interrupt" />
-            <INTTM13H InUse="0" ISR="R_TAU1_Channel3_Higher8bits_Interrupt" />
+            <INTTM13 InUse="0" ISR="r_tau1_channel3_interrupt" />
+            <INTTM13H InUse="0" ISR="r_tau1_channel3_higher8bits_interrupt" />
           </Channel3>
           <Channel4>
-            <INTTM14 InUse="0" ISR="R_TAU1_Channel4_Interrupt" />
+            <INTTM14 InUse="0" ISR="r_tau1_channel4_interrupt" />
           </Channel4>
           <Channel5>
-            <INTTM15 InUse="0" ISR="R_TAU1_Channel5_Interrupt" />
+            <INTTM15 InUse="0" ISR="r_tau1_channel5_interrupt" />
           </Channel5>
           <Channel6>
-            <INTTM16 InUse="0" ISR="R_TAU1_Channel6_Interrupt" />
+            <INTTM16 InUse="0" ISR="r_tau1_channel6_interrupt" />
           </Channel6>
           <Channel7>
-            <INTTM17 InUse="0" ISR="R_TAU1_Channel7_Interrupt" />
+            <INTTM17 InUse="0" ISR="r_tau1_channel7_interrupt" />
           </Channel7>
         </TAU1>
       </TAU>
       <RTC Chip="RL78G13_20pin,RL78G13_24pin,RL78G13_25pin,RL78G13_30pin,RL78G13_32pin,RL78G13_36pin,RL78G13_38pin,RL78G13_40pin,RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin">
-        <INTRTC InUse="0" ISR="R_RTC_Interrupt" />
+        <INTRTC InUse="0" ISR="r_rtc_interrupt" />
       </RTC>
       <IT>
-        <INTIT InUse="1" ISR="R_IT_Interrupt" />
+        <INTIT InUse="1" ISR="r_it_interrupt" />
       </IT>
       <DMAC>
         <DMA0>
-          <INTDMA0 InUse="0" ISR="R_DMAC0_Interrupt" />
+          <INTDMA0 InUse="0" ISR="r_dmac0_interrupt" />
         </DMA0>
         <DMA1>
-          <INTDMA1 InUse="0" ISR="R_DMAC1_Interrupt" />
+          <INTDMA1 InUse="0" ISR="r_dmac1_interrupt" />
         </DMA1>
         <DMA2>
         </DMA2>
@@ -541,10 +549,10 @@
         </DMA3>
       </DMAC>
       <WDT>
-        <INTWDTI InUse="0" ISR="R_WDT_Interrupt" />
+        <INTWDTI InUse="0" ISR="r_wdt_interrupt" />
       </WDT>
       <LVD>
-        <INTLVI InUse="0" ISR="R_LVD_Interrupt" IsDMATrigger="true" />
+        <INTLVI InUse="0" ISR="r_lvd_interrupt" IsDMATrigger="true" />
       </LVD>
     </INT>
     <FUNC>
@@ -568,32 +576,32 @@
         <r_mdt.txt UserName="r_option_ca.txt" LibName="mdt.txt" Visible="false" IsLibrary="false" Compiler="CARL78" ForAP="true" InUse="1" />
       </Common>
       <CGC>
-        <r_cgc.c UserName="r_cgc.c" LibName=".c" InUse="1">
-          <Type R_CGC_Create="void R_CGC_Create(void)" R_CGC_Set_ClockMode="MD_STATUS R_CGC_Set_ClockMode(enum ClockMode mode)" R_CGC_Set_CRCOn="void R_CGC_Set_CRCOn(void)" />
+        <r_cg_cgc.c UserName="r_cg_cgc.c" LibName=".c" InUse="1">
+          <Type R_CGC_Create="void R_CGC_Create(void)" R_CGC_Set_ClockMode="MD_STATUS R_CGC_Set_ClockMode(clock_mode_t mode)" R_CGC_Set_CRCOn="void R_CGC_Set_CRCOn(void)" />
           <R_CGC_Create UserName="R_CGC_Create" LibName="R_CGC_Create" InUse="1" Init="1" />
           <R_CGC_Set_ClockMode UserName="R_CGC_Set_ClockMode" LibName="R_CGC_Set_ClockMode" InUse="0" />
           <R_CGC_Set_CRCOn UserName="R_CGC_Set_CRCOn" LibName="R_CGC_Set_CRCOn" InUse="0" />
-        </r_cgc.c>
-        <r_cgc_user.c UserName="r_cgc_user.c" LibName="_user.c" InUse="1">
+        </r_cg_cgc.c>
+        <r_cg_cgc_user.c UserName="r_cg_cgc_user.c" LibName="_user.c" InUse="1">
           <Type R_CGC_Get_ResetSource="void R_CGC_Get_ResetSource(void)" R_CGC_Create_UserInit="void R_CGC_Create_UserInit(void)" />
           <R_CGC_Create_UserInit UserName="R_CGC_Create_UserInit" LibName="R_CGC_Create_UserInit" InUse="0" />
           <R_CGC_Get_ResetSource UserName="R_CGC_Get_ResetSource" LibName="R_CGC_Get_ResetSource" Init="0" InUse="1" />
-        </r_cgc_user.c>
+        </r_cg_cgc_user.c>
         <r_cg_cgc.h UserName="r_cg_cgc.h" LibName=".h" InUse="1" />
       </CGC>
       <PORT>
-        <r_port.c UserName="r_port.c" LibName=".c" InUse="1">
+        <r_cg_port.c UserName="r_cg_port.c" LibName=".c" InUse="1">
           <Type R_PORT_Create="void R_PORT_Create(void)" />
           <R_PORT_Create UserName="R_PORT_Create" LibName="R_PORT_Create" InUse="1" Init="0" />
-        </r_port.c>
-        <r_port_user.c UserName="r_port_user.c" LibName="_user.c" InUse="1">
+        </r_cg_port.c>
+        <r_cg_port_user.c UserName="r_cg_port_user.c" LibName="_user.c" InUse="1">
           <Type R_PORT_Create_UserInit="void R_PORT_Create_UserInit(void)" />
           <R_PORT_Create_UserInit UserName="R_PORT_Create_UserInit" LibName="R_PORT_Create_UserInit" InUse="0" />
-        </r_port_user.c>
+        </r_cg_port_user.c>
         <r_cg_port.h UserName="r_cg_port.h" LibName=".h" InUse="1" />
       </PORT>
       <INTC>
-        <r_intc.c UserName="r_intc.c" LibName=".c" InUse="0">
+        <r_cg_intc.c UserName="r_cg_intc.c" LibName=".c" InUse="0">
           <Type R_INTC_Create="void R_INTC_Create(void)" R_INTCn_Start="void R_INTCn_Start(void)" R_INTCn_Stop="void R_INTCn_Stop(void)" R_KEY_Create="void R_KEY_Create(void)" R_KEY_Start="void R_KEY_Start(void)" R_KEY_Stop="void R_KEY_Stop(void)" />
           <INTP>
             <R_INTC_Create UserName="R_INTC_Create" LibName="R_INTC_Create" InUse="0" Init="2" />
@@ -651,34 +659,34 @@
             <R_KEY_Start UserName="R_KEY_Start" LibName="R_KEY_Start" InUse="0" />
             <R_KEY_Stop UserName="R_KEY_Stop" LibName="R_KEY_Stop" InUse="0" />
           </KEY>
-        </r_intc.c>
-        <r_intc_user.c UserName="r_intc_user.c" LibName="_user.c" InUse="0">
-          <Type R_INTC_Create_UserInit="void R_INTC_Create_UserInit(void)" R_INTC0_Interrupt="__interrupt void R_INTC0_Interrupt(void)" R_INTC1_Interrupt="__interrupt void R_INTC1_Interrupt(void)" R_INTC2_Interrupt="__interrupt void R_INTC2_Interrupt(void)" R_INTC3_Interrupt="__interrupt void R_INTC3_Interrupt(void)" R_INTC4_Interrupt="__interrupt void R_INTC4_Interrupt(void)" R_INTC5_Interrupt="__interrupt void R_INTC5_Interrupt(void)" R_INTC6_Interrupt="__interrupt void R_INTC6_Interrupt(void)" R_INTC7_Interrupt="__interrupt void R_INTC7_Interrupt(void)" R_INTC8_Interrupt="__interrupt void R_INTC8_Interrupt(void)" R_INTC9_Interrupt="__interrupt void R_INTC9_Interrupt(void)" R_INTC10_Interrupt="__interrupt void R_INTC10_Interrupt(void)" R_INTC11_Interrupt="__interrupt void R_INTC11_Interrupt(void)" R_KEY_Create_UserInit="void R_KEY_Create_UserInit(void)" R_KEY_Interrupt="__interrupt void R_KEY_Interrupt(void)" />
+        </r_cg_intc.c>
+        <r_cg_intc_user.c UserName="r_cg_intc_user.c" LibName="_user.c" InUse="0">
+          <Type R_INTC_Create_UserInit="void R_INTC_Create_UserInit(void)" R_INTC0_Interrupt="__interrupt static void r_intc0_interrupt(void)" R_INTC1_Interrupt="__interrupt static void r_intc1_interrupt(void)" R_INTC2_Interrupt="__interrupt static void r_intc2_interrupt(void)" R_INTC3_Interrupt="__interrupt static void r_intc3_interrupt(void)" R_INTC4_Interrupt="__interrupt static void r_intc4_interrupt(void)" R_INTC5_Interrupt="__interrupt static void r_intc5_interrupt(void)" R_INTC6_Interrupt="__interrupt static void r_intc6_interrupt(void)" R_INTC7_Interrupt="__interrupt static void r_intc7_interrupt(void)" R_INTC8_Interrupt="__interrupt static void r_intc8_interrupt(void)" R_INTC9_Interrupt="__interrupt static void r_intc9_interrupt(void)" R_INTC10_Interrupt="__interrupt static void r_intc10_interrupt(void)" R_INTC11_Interrupt="__interrupt static void r_intc11_interrupt(void)" R_KEY_Create_UserInit="void R_KEY_Create_UserInit(void)" R_KEY_Interrupt="__interrupt static void r_key_interrupt(void)" />
           <INTP>
             <R_INTC_Create_UserInit UserName="R_INTC_Create_UserInit" LibName="R_INTC_Create_UserInit" InUse="0" />
-            <R_INTC0_Interrupt UserName="R_INTC0_Interrupt" LibName="R_INTC0_Interrupt" INTHandle="" InUse="0" />
-            <R_INTC1_Interrupt Chip="RL78G13_24pin,RL78G13_25pin,RL78G13_30pin,RL78G13_32pin,RL78G13_36pin,RL78G13_40pin,RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin," UserName="R_INTC1_Interrupt" LibName="R_INTC1_Interrupt" INTHandle="" InUse="0" />
-            <R_INTC2_Interrupt Chip="RL78G13_30pin,RL78G13_32pin,RL78G13_36pin,RL78G13_40pin,RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin," UserName="R_INTC2_Interrupt" LibName="R_INTC2_Interrupt" INTHandle="" InUse="0" />
-            <R_INTC3_Interrupt UserName="R_INTC3_Interrupt" LibName="R_INTC3_Interrupt" INTHandle="" InUse="0" />
-            <R_INTC4_Interrupt Chip="RL78G13_24pin,RL78G13_25pin,RL78G13_30pin,RL78G13_32pin,RL78G13_36pin,RL78G13_40pin,RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin," UserName="R_INTC4_Interrupt" LibName="R_INTC4_Interrupt" INTHandle="" InUse="0" />
-            <R_INTC5_Interrupt UserName="R_INTC5_Interrupt" LibName="R_INTC5_Interrupt" INTHandle="" InUse="0" />
-            <R_INTC6_Interrupt Chip="RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin," UserName="R_INTC6_Interrupt" LibName="R_INTC6_Interrupt" INTHandle="" InUse="0" />
-            <R_INTC7_Interrupt Chip="RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin," UserName="R_INTC7_Interrupt" LibName="R_INTC7_Interrupt" INTHandle="" InUse="0" />
-            <R_INTC8_Interrupt Chip="RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin," UserName="R_INTC8_Interrupt" LibName="R_INTC8_Interrupt" INTHandle="" InUse="0" />
-            <R_INTC9_Interrupt Chip="RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin," UserName="R_INTC9_Interrupt" LibName="R_INTC9_Interrupt" INTHandle="" InUse="0" />
-            <R_INTC10_Interrupt Chip="RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin," UserName="R_INTC10_Interrupt" LibName="R_INTC10_Interrupt" INTHandle="" InUse="0" />
-            <R_INTC11_Interrupt Chip="RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin," UserName="R_INTC11_Interrupt" LibName="R_INTC11_Interrupt" INTHandle="" InUse="0" />
+            <r_intc0_interrupt UserName="r_intc0_interrupt" LibName="R_INTC0_Interrupt" INTHandle="" InUse="0" />
+            <r_intc1_interrupt Chip="RL78G13_24pin,RL78G13_25pin,RL78G13_30pin,RL78G13_32pin,RL78G13_36pin,RL78G13_40pin,RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin," UserName="r_intc1_interrupt" LibName="R_INTC1_Interrupt" INTHandle="" InUse="0" />
+            <r_intc2_interrupt Chip="RL78G13_30pin,RL78G13_32pin,RL78G13_36pin,RL78G13_40pin,RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin," UserName="r_intc2_interrupt" LibName="R_INTC2_Interrupt" INTHandle="" InUse="0" />
+            <r_intc3_interrupt UserName="r_intc3_interrupt" LibName="R_INTC3_Interrupt" INTHandle="" InUse="0" />
+            <r_intc4_interrupt Chip="RL78G13_24pin,RL78G13_25pin,RL78G13_30pin,RL78G13_32pin,RL78G13_36pin,RL78G13_40pin,RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin," UserName="r_intc4_interrupt" LibName="R_INTC4_Interrupt" INTHandle="" InUse="0" />
+            <r_intc5_interrupt UserName="r_intc5_interrupt" LibName="R_INTC5_Interrupt" INTHandle="" InUse="0" />
+            <r_intc6_interrupt Chip="RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin," UserName="r_intc6_interrupt" LibName="R_INTC6_Interrupt" INTHandle="" InUse="0" />
+            <r_intc7_interrupt Chip="RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin," UserName="r_intc7_interrupt" LibName="R_INTC7_Interrupt" INTHandle="" InUse="0" />
+            <r_intc8_interrupt Chip="RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin," UserName="r_intc8_interrupt" LibName="R_INTC8_Interrupt" INTHandle="" InUse="0" />
+            <r_intc9_interrupt Chip="RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin," UserName="r_intc9_interrupt" LibName="R_INTC9_Interrupt" INTHandle="" InUse="0" />
+            <r_intc10_interrupt Chip="RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin," UserName="r_intc10_interrupt" LibName="R_INTC10_Interrupt" INTHandle="" InUse="0" />
+            <r_intc11_interrupt Chip="RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin," UserName="r_intc11_interrupt" LibName="R_INTC11_Interrupt" INTHandle="" InUse="0" />
           </INTP>
           <KEY Chip="RL78G13_40pin,RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin,">
             <R_KEY_Create_UserInit UserName="R_KEY_Create_UserInit" LibName="R_KEY_Create_UserInit" InUse="0" />
-            <R_KEY_Interrupt UserName="R_KEY_Interrupt" LibName="R_KEY_Interrupt" INTHandle="" InUse="0" />
+            <r_key_interrupt UserName="r_key_interrupt" LibName="R_KEY_Interrupt" INTHandle="" InUse="" />
           </KEY>
-        </r_intc_user.c>
+        </r_cg_intc_user.c>
         <r_cg_intc.h UserName="r_cg_intc.h" LibName=".h" InUse="0" />
       </INTC>
       <Serial>
-        <r_serial.c UserName="r_serial.c" LibName=".c" InUse="1">
-          <Type R_SAUn_Create="void R_SAUn_Create(void)" R_SAUn_Set_PowerOff="void R_SAUn_Set_PowerOff(void)" R_SAUn_Set_SnoozeOn="void R_SAUn_Set_SnoozeOn(void)" R_SAUn_Set_SnoozeOff="void R_SAUn_Set_SnoozeOff(void)" R_UARTn_Create="void R_UARTn_Create(void)" R_UARTn_Send="MD_STATUS R_UARTn_Send(uint8_t *txbuf, uint16_t txnum)" R_UARTn_Receive="MD_STATUS R_UARTn_Receive(uint8_t *rxbuf, uint16_t rxnum)" R_UARTn_Start="void R_UARTn_Start(void)" R_UARTn_Stop="void R_UARTn_Stop(void)" R_CSIn_Create="void R_CSIn_Create(void)" R_CSIn_Send="MD_STATUS R_CSIn_Send(uint8_t *txbuf, uint16_t txnum)" R_CSIn_Receive="MD_STATUS R_CSIn_Receive(uint8_t *rxbuf, uint16_t rxnum) " R_CSIn_Send_Receive="MD_STATUS R_CSIn_Send_Receive(uint8_t *txbuf, uint16_t txnum, uint8_t *rxbuf) " R_CSIn_Start="void R_CSIn_Start(void)" R_CSIn_Stop="void R_CSIn_Stop(void)" R_IICn_Create="void R_IICn_Create(void)" R_IICn_Master_Send="void R_IICn_Master_Send(uint8_t adr, uint8_t *txbuf, uint16_t txnum)" R_IICn_Master_Receive="void R_IICn_Master_Receive(uint8_t adr, uint8_t *rxbuf, uint16_t rxnum) " R_IICn_Stop="void R_IICn_Stop(void)" R_IICn_StartCondition="void R_IICn_StartCondition(void)" R_IICn_StopCondition="void R_IICn_StopCondition(void)" R_IICAn_Create="void R_IICAn_Create(void)" R_IICAn_Master_Send="MD_STATUS R_IICAn_Master_Send(uint8_t adr, uint8_t *txbuf, uint16_t txnum, uint8_t wait)" R_IICAn_Master_Receive="MD_STATUS R_IICAn_Master_Receive(uint8_t adr, uint8_t *rxbuf, uint16_t rxnum, uint8_t wait)" R_IICAn_Slave_Send="void R_IICAn_Slave_Send(uint8_t *txbuf, uint16_t txnum)" R_IICAn_Slave_Receive="void R_IICAn_Slave_Receive(uint8_t *rxbuf, uint16_t rxnum)" R_IICAn_Stop="void R_IICAn_Stop(void)" R_IICAn_StopCondition="void R_IICAn_StopCondition(void)" R_IICAn_Set_PowerOff="void R_IICAn_Set_PowerOff(void)" />
+        <r_cg_serial.c UserName="r_cg_serial.c" LibName=".c" InUse="1">
+          <Type R_SAUn_Create="void R_SAUn_Create(void)" R_SAUn_Set_PowerOff="void R_SAUn_Set_PowerOff(void)" R_SAUn_Set_SnoozeOn="void R_SAUn_Set_SnoozeOn(void)" R_SAUn_Set_SnoozeOff="void R_SAUn_Set_SnoozeOff(void)" R_UARTn_Create="void R_UARTn_Create(void)" R_UARTn_Send="MD_STATUS R_UARTn_Send(uint8_t * const tx_buf, uint16_t tx_num)" R_UARTn_Receive="MD_STATUS R_UARTn_Receive(uint8_t * const rx_buf, uint16_t rx_num)" R_UARTn_Start="void R_UARTn_Start(void)" R_UARTn_Stop="void R_UARTn_Stop(void)" R_CSIn_Create="void R_CSIn_Create(void)" R_CSIn_Send="MD_STATUS R_CSIn_Send(uint8_t * const tx_buf, uint16_t tx_num)" R_CSIn_Receive="MD_STATUS R_CSIn_Receive(uint8_t * const rx_buf, uint16_t rx_num) " R_CSIn_Send_Receive="MD_STATUS R_CSIn_Send_Receive(uint8_t * const tx_buf, uint16_t tx_num, uint8_t * const rx_buf) " R_CSIn_Start="void R_CSIn_Start(void)" R_CSIn_Stop="void R_CSIn_Stop(void)" R_IICn_Create="void R_IICn_Create(void)" R_IICn_Master_Send="void R_IICn_Master_Send(uint8_t adr, uint8_t * const tx_buf, uint16_t tx_num)" R_IICn_Master_Receive="void R_IICn_Master_Receive(uint8_t adr, uint8_t * const rx_buf, uint16_t rx_num) " R_IICn_Stop="void R_IICn_Stop(void)" R_IICn_StartCondition="void R_IICn_StartCondition(void)" R_IICn_StopCondition="void R_IICn_StopCondition(void)" R_IICAn_Create="void R_IICAn_Create(void)" R_IICAn_Master_Send="MD_STATUS R_IICAn_Master_Send(uint8_t adr, uint8_t * const tx_buf, uint16_t tx_num, uint8_t wait)" R_IICAn_Master_Receive="MD_STATUS R_IICAn_Master_Receive(uint8_t adr, uint8_t * const rx_buf, uint16_t rx_num, uint8_t wait)" R_IICAn_Slave_Send="void R_IICAn_Slave_Send(uint8_t * const tx_buf, uint16_t tx_num)" R_IICAn_Slave_Receive="void R_IICAn_Slave_Receive(uint8_t * const rx_buf, uint16_t rx_num)" R_IICAn_Stop="void R_IICAn_Stop(void)" R_IICAn_StopCondition="void R_IICAn_StopCondition(void)" R_IICAn_Set_PowerOff="void R_IICAn_Set_PowerOff(void)" />
           <SAU0 InUse="">
             <R_SAU0_Create UserName="R_SAU0_Create" LibName="R_SAUn_Create" InUse="1" Init="1" />
             <R_SAU0_Set_PowerOff UserName="R_SAU0_Set_PowerOff" LibName="R_SAUn_Set_PowerOff" InUse="0" />
@@ -816,131 +824,131 @@
             <R_IICA0_StopCondition UserName="R_IICA0_StopCondition" LibName="R_IICAn_StopCondition" InUse="0" />
             <R_IICA0_Set_PowerOff UserName="R_IICA0_Set_PowerOff" LibName="R_IICAn_Set_PowerOff" InUse="0" />
           </IICA0>
-        </r_serial.c>
-        <r_serial_user.c UserName="r_serial_user.c" LibName="_user.c" InUse="1">
-          <Type R_SAUn_Create_UserInit="void R_SAUn_Create_UserInit(void)" R_UARTn_Interrupt_Receive="__interrupt void R_UARTn_Interrupt_Receive(void)" R_UARTn_Interrupt_Error="__interrupt void R_UARTn_Interrupt_Error(void)" R_UARTn_Interrupt_Send="__interrupt void R_UARTn_Interrupt_Send(void)" R_UARTn_Callback_SendEnd="void R_UARTn_Callback_SendEnd(void)" R_UARTn_Callback_ReceiveEnd="void R_UARTn_Callback_ReceiveEnd(void)" R_UARTn_Callback_Error="void R_UARTn_Callback_Error(uint16_t err_type)" R_UARTn_Callback_SoftwareOverRun="void R_UARTn_Callback_SoftwareOverRun(uint16_t err_type)" R_CSIn_Interrupt="__interrupt void R_CSIn_Interrupt(void)" R_CSIn_Callback_ReceiveEnd="void R_CSIn_Callback_ReceiveEnd(void)" R_CSIn_Callback_Error="void R_CSIn_Callback_Error(uint16_t err_type)" R_CSIn_Callback_SendEnd="void R_CSIn_Callback_SendEnd(void)" R_IICn_Interrupt="__interrupt void R_IICn_Interrupt(void)" R_IICn_Callback_Master_ReceiveEnd="void R_IICn_Callback_Master_ReceiveEnd(void)" R_IICn_Callback_Master_SendEnd="void R_IICn_Callback_Master_SendEnd(void)" R_IICn_Callback_Master_Error="void R_IICn_Callback_Master_Error(MD_STATUS flag)" R_IICAn_Create_UserInit="void R_IICAn_Create_UserInit(void)" MD_INTIICAn="void R_IICAn_Interrupt(void)" R_IICAn_Callback_Master_SendEnd="void R_IICAn_Callback_Master_SendEnd(void)" R_IICAn_Callback_Master_ReceiveEnd="void R_IICAn_Callback_Master_ReceiveEnd(void)" R_IICAn_Callback_Slave_SendEnd="void R_IICAn_Callback_Slave_SendEnd(void)" R_IICAn_Callback_Slave_ReceiveEnd="void R_IICAn_Callback_Slave_ReceiveEnd(void)" R_IICAn_Callback_Master_Error="void R_IICAn_Callback_Master_Error(MD_STATUS flag)" R_IICAn_Callback_Slave_Error="void R_IICAn_Callback_Slave_Error(MD_STATUS flag)" R_IICAn_Callback_GetStopCondition="void R_IICAn_Callback_GetStopCondition(void)" />
+        </r_cg_serial.c>
+        <r_cg_serial_user.c UserName="r_cg_serial_user.c" LibName="_user.c" InUse="1">
+          <Type R_SAUn_Create_UserInit="void R_SAUn_Create_UserInit(void)" R_UARTn_Interrupt_Receive="__interrupt static void R_UARTn_Interrupt_Receive(void)" R_UARTn_Interrupt_Error="__interrupt static void R_UARTn_Interrupt_Error(void)" R_UARTn_Interrupt_Send="__interrupt static void R_UARTn_Interrupt_Send(void)" R_UARTn_Callback_SendEnd="static void R_UARTn_Callback_SendEnd(void)" R_UARTn_Callback_ReceiveEnd="static void R_UARTn_Callback_ReceiveEnd(void)" R_UARTn_Callback_Error="static void R_UARTn_Callback_Error(uint16_t err_type)" R_UARTn_Callback_SoftwareOverRun="static void R_UARTn_Callback_SoftwareOverRun(uint16_t err_type)" R_CSIn_Interrupt="__interrupt static void R_CSIn_Interrupt(void)" R_CSIn_Callback_ReceiveEnd="static void R_CSIn_Callback_ReceiveEnd(void)" R_CSIn_Callback_Error="static void R_CSIn_Callback_Error(uint16_t err_type)" R_CSIn_Callback_SendEnd="static void R_CSIn_Callback_SendEnd(void)" R_IICn_Interrupt="__interrupt static void R_IICn_Interrupt(void)" R_IICn_Callback_Master_ReceiveEnd="static void R_IICn_Callback_Master_ReceiveEnd(void)" R_IICn_Callback_Master_SendEnd="static void R_IICn_Callback_Master_SendEnd(void)" R_IICn_Callback_Master_Error="static void R_IICn_Callback_Master_Error(MD_STATUS flag)" R_IICAn_Create_UserInit="void R_IICAn_Create_UserInit(void)" r_iican_interrupt="__interrupt static void r_iican_interrupt(void)" r_iican_callback_master_sendend="static void r_iican_callback_master_sendend(void)" r_iican_callback_master_receiveend="static void r_iican_callback_master_receiveend(void)" r_iican_callback_slave_sendend="static void r_iican_callback_slave_sendend(void)" r_iican_callback_slave_receiveend="static void r_iican_callback_slave_receiveend(void)" r_iican_callback_master_error="static void r_iican_callback_master_error(MD_STATUS flag)" r_iican_callback_slave_error="static void r_iican_callback_slave_error(MD_STATUS flag)" r_iican_callback_getstopcondition="static void r_iican_callback_getstopcondition(void)" />
           <SAU0 InUse="">
             <R_SAU0_Create_UserInit UserName="R_SAU0_Create_UserInit" LibName="R_SAUn_Create_UserInit" InUse="0" />
             <UART0 InUse="">
-              <R_UART0_Interrupt_Receive UserName="R_UART0_Interrupt_Receive" INTHandle="" LibName="R_UARTn_Interrupt_Receive" InUse="0" />
-              <R_UART0_Interrupt_Error UserName="R_UART0_Interrupt_Error" INTHandle="" LibName="R_UARTn_Interrupt_Error" InUse="0" />
-              <R_UART0_Interrupt_Send UserName="R_UART0_Interrupt_Send" INTHandle="" LibName="R_UARTn_Interrupt_Send" InUse="0" />
-              <R_UART0_Callback_ReceiveEnd UserName="R_UART0_Callback_ReceiveEnd" LibName="R_UARTn_Callback_ReceiveEnd" InUse="0" />
-              <R_UART0_Callback_SendEnd UserName="R_UART0_Callback_SendEnd" LibName="R_UARTn_Callback_SendEnd" InUse="0" />
-              <R_UART0_Callback_Error UserName="R_UART0_Callback_Error" LibName="R_UARTn_Callback_Error" InUse="0" />
-              <R_UART0_Callback_SoftwareOverRun UserName="R_UART0_Callback_SoftwareOverRun" LibName="R_UARTn_Callback_SoftwareOverRun" InUse="0" />
+              <r_uart0_interrupt_receive UserName="r_uart0_interrupt_receive" INTHandle="" LibName="R_UARTn_Interrupt_Receive" InUse="0" />
+              <r_uart0_interrupt_error UserName="r_uart0_interrupt_error" INTHandle="" LibName="R_UARTn_Interrupt_Error" InUse="0" />
+              <r_uart0_interrupt_send UserName="r_uart0_interrupt_send" INTHandle="" LibName="R_UARTn_Interrupt_Send" InUse="0" />
+              <r_uart0_callback_receiveend UserName="r_uart0_callback_receiveend" LibName="R_UARTn_Callback_ReceiveEnd" InUse="0" />
+              <r_uart0_callback_sendend UserName="r_uart0_callback_sendend" LibName="R_UARTn_Callback_SendEnd" InUse="0" />
+              <r_uart0_callback_error UserName="r_uart0_callback_error" LibName="R_UARTn_Callback_Error" InUse="0" />
+              <r_uart0_callback_softwareoverrun UserName="r_uart0_callback_softwareoverrun" LibName="R_UARTn_Callback_SoftwareOverRun" InUse="0" />
             </UART0>
             <UART1 InUse="">
-              <R_UART1_Interrupt_Receive UserName="R_UART1_Interrupt_Receive" INTHandle="" LibName="R_UARTn_Interrupt_Receive" InUse="0" />
-              <R_UART1_Interrupt_Error UserName="R_UART1_Interrupt_Error" INTHandle="" LibName="R_UARTn_Interrupt_Error" InUse="0" />
-              <R_UART1_Interrupt_Send UserName="R_UART1_Interrupt_Send" INTHandle="" LibName="R_UARTn_Interrupt_Send" InUse="0" />
-              <R_UART1_Callback_ReceiveEnd UserName="R_UART1_Callback_ReceiveEnd" LibName="R_UARTn_Callback_ReceiveEnd" InUse="0" />
-              <R_UART1_Callback_SendEnd UserName="R_UART1_Callback_SendEnd" LibName="R_UARTn_Callback_SendEnd" InUse="0" />
-              <R_UART1_Callback_Error UserName="R_UART1_Callback_Error" LibName="R_UARTn_Callback_Error" InUse="0" />
-              <R_UART1_Callback_SoftwareOverRun UserName="R_UART1_Callback_SoftwareOverRun" LibName="R_UARTn_Callback_SoftwareOverRun" InUse="0" />
+              <r_uart1_interrupt_receive UserName="r_uart1_interrupt_receive" INTHandle="" LibName="R_UARTn_Interrupt_Receive" InUse="0" />
+              <r_uart1_interrupt_error UserName="r_uart1_interrupt_error" INTHandle="" LibName="R_UARTn_Interrupt_Error" InUse="0" />
+              <r_uart1_interrupt_send UserName="r_uart1_interrupt_send" INTHandle="" LibName="R_UARTn_Interrupt_Send" InUse="0" />
+              <r_uart1_callback_receiveend UserName="r_uart1_callback_receiveend" LibName="R_UARTn_Callback_ReceiveEnd" InUse="0" />
+              <r_uart1_callback_sendend UserName="r_uart1_callback_sendend" LibName="R_UARTn_Callback_SendEnd" InUse="0" />
+              <r_uart1_callback_error UserName="r_uart1_callback_error" LibName="R_UARTn_Callback_Error" InUse="0" />
+              <r_uart1_callback_softwareoverrun UserName="r_uart1_callback_softwareoverrun" LibName="R_UARTn_Callback_SoftwareOverRun" InUse="0" />
             </UART1>
             <CSI00 Chip="RL78G13_20pin,RL78G13_24pin,RL78G13_25pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin" InUse="">
-              <R_CSI00_Interrupt UserName="R_CSI00_Interrupt" INTHandle="" LibName="R_CSIn_Interrupt" InUse="0" />
-              <R_CSI00_Callback_ReceiveEnd UserName="R_CSI00_Callback_ReceiveEnd" LibName="R_CSIn_Callback_ReceiveEnd" InUse="0" />
-              <R_CSI00_Callback_Error UserName="R_CSI00_Callback_Error" LibName="R_CSIn_Callback_Error" InUse="0" />
-              <R_CSI00_Callback_SendEnd UserName="R_CSI00_Callback_SendEnd" LibName="R_CSIn_Callback_SendEnd" InUse="0" />
+              <r_csi00_interrupt UserName="r_csi00_interrupt" INTHandle="" LibName="R_CSIn_Interrupt" InUse="0" />
+              <r_csi00_callback_receiveend UserName="r_csi00_callback_receiveend" LibName="R_CSIn_Callback_ReceiveEnd" InUse="0" />
+              <r_csi00_callback_error UserName="r_csi00_callback_error" LibName="R_CSIn_Callback_Error" InUse="0" />
+              <r_csi00_callback_sendend UserName="r_csi00_callback_sendend" LibName="R_CSIn_Callback_SendEnd" InUse="0" />
             </CSI00>
             <CSI01 Chip="RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin" InUse="">
-              <R_CSI01_Interrupt UserName="R_CSI01_Interrupt" INTHandle="" LibName="R_CSIn_Interrupt" InUse="0" />
-              <R_CSI01_Callback_ReceiveEnd UserName="R_CSI01_Callback_ReceiveEnd" LibName="R_CSIn_Callback_ReceiveEnd" InUse="0" />
-              <R_CSI01_Callback_Error UserName="R_CSI01_Callback_Error" LibName="R_CSIn_Callback_Error" InUse="0" />
-              <R_CSI01_Callback_SendEnd UserName="R_CSI01_Callback_SendEnd" LibName="R_CSIn_Callback_SendEnd" InUse="0" />
+              <r_csi01_interrupt UserName="r_csi01_interrupt" INTHandle="" LibName="R_CSIn_Interrupt" InUse="0" />
+              <r_csi01_callback_receiveend UserName="r_csi01_callback_receiveend" LibName="R_CSIn_Callback_ReceiveEnd" InUse="0" />
+              <r_csi01_callback_error UserName="r_csi01_callback_error" LibName="R_CSIn_Callback_Error" InUse="0" />
+              <r_csi01_callback_sendend UserName="r_csi01_callback_sendend" LibName="R_CSIn_Callback_SendEnd" InUse="0" />
             </CSI01>
             <CSI10 Chip="RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin" InUse="">
-              <R_CSI10_Interrupt UserName="R_CSI10_Interrupt" INTHandle="" LibName="R_CSIn_Interrupt" InUse="1" />
-              <R_CSI10_Callback_ReceiveEnd UserName="R_CSI10_Callback_ReceiveEnd" LibName="R_CSIn_Callback_ReceiveEnd" InUse="1" />
-              <R_CSI10_Callback_Error UserName="R_CSI10_Callback_Error" LibName="R_CSIn_Callback_Error" InUse="1" />
-              <R_CSI10_Callback_SendEnd UserName="R_CSI10_Callback_SendEnd" LibName="R_CSIn_Callback_SendEnd" InUse="1" />
+              <r_csi10_interrupt UserName="r_csi10_interrupt" INTHandle="" LibName="R_CSIn_Interrupt" InUse="1" />
+              <r_csi10_callback_receiveend UserName="r_csi10_callback_receiveend" LibName="R_CSIn_Callback_ReceiveEnd" InUse="1" />
+              <r_csi10_callback_error UserName="r_csi10_callback_error" LibName="R_CSIn_Callback_Error" InUse="1" />
+              <r_csi10_callback_sendend UserName="r_csi10_callback_sendend" LibName="R_CSIn_Callback_SendEnd" InUse="1" />
             </CSI10>
             <CSI11 InUse="">
-              <R_CSI11_Interrupt UserName="R_CSI11_Interrupt" INTHandle="" LibName="R_CSIn_Interrupt" InUse="0" />
-              <R_CSI11_Callback_ReceiveEnd UserName="R_CSI11_Callback_ReceiveEnd" LibName="R_CSIn_Callback_ReceiveEnd" InUse="0" />
-              <R_CSI11_Callback_Error UserName="R_CSI11_Callback_Error" LibName="R_CSIn_Callback_Error" InUse="0" />
-              <R_CSI11_Callback_SendEnd UserName="R_CSI11_Callback_SendEnd" LibName="R_CSIn_Callback_SendEnd" InUse="0" />
+              <r_csi11_interrupt UserName="r_csi11_interrupt" INTHandle="" LibName="R_CSIn_Interrupt" InUse="0" />
+              <r_csi11_callback_receiveend UserName="r_csi11_callback_receiveend" LibName="R_CSIn_Callback_ReceiveEnd" InUse="0" />
+              <r_csi11_callback_error UserName="r_csi11_callback_error" LibName="R_CSIn_Callback_Error" InUse="0" />
+              <r_csi11_callback_sendend UserName="r_csi11_callback_sendend" LibName="R_CSIn_Callback_SendEnd" InUse="0" />
             </CSI11>
             <IIC00 Chip="RL78G13_30pin,RL78G13_32pin,RL78G13_36pin,RL78G13_40pin,RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin" PIOR1="0" InUse="">
-              <R_IIC00_Interrupt UserName="R_IIC00_Interrupt" INTHandle="" LibName="R_IICn_Interrupt" InUse="0" />
-              <R_IIC00_Callback_Master_ReceiveEnd UserName="R_IIC00_Callback_Master_ReceiveEnd" LibName="R_IICn_Callback_Master_ReceiveEnd" InUse="0" />
-              <R_IIC00_Callback_Master_SendEnd UserName="R_IIC00_Callback_Master_SendEnd" LibName="R_IICn_Callback_Master_SendEnd" InUse="0" />
-              <R_IIC00_Callback_Master_Error UserName="R_IIC00_Callback_Master_Error" LibName="R_IICn_Callback_Master_Error" InUse="0" />
+              <r_iic00_interrupt UserName="r_iic00_interrupt" INTHandle="" LibName="R_IICn_Interrupt" InUse="0" />
+              <r_iic00_callback_master_receiveend UserName="r_iic00_callback_master_receiveend" LibName="R_IICn_Callback_Master_ReceiveEnd" InUse="0" />
+              <r_iic00_callback_master_sendend UserName="r_iic00_callback_master_sendend" LibName="R_IICn_Callback_Master_SendEnd" InUse="0" />
+              <r_iic00_callback_master_error UserName="r_iic00_callback_master_error" LibName="R_IICn_Callback_Master_Error" InUse="0" />
             </IIC00>
             <IIC01 Chip="RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin" InUse="">
-              <R_IIC01_Interrupt UserName="R_IIC01_Interrupt" INTHandle="" LibName="R_IICn_Interrupt" InUse="0" />
-              <R_IIC01_Callback_Master_ReceiveEnd UserName="R_IIC01_Callback_Master_ReceiveEnd" LibName="R_IICn_Callback_Master_ReceiveEnd" InUse="0" />
-              <R_IIC01_Callback_Master_SendEnd UserName="R_IIC01_Callback_Master_SendEnd" LibName="R_IICn_Callback_Master_SendEnd" InUse="0" />
-              <R_IIC01_Callback_Master_Error UserName="R_IIC01_Callback_Master_Error" LibName="R_IICn_Callback_Master_Error" InUse="0" />
+              <r_iic01_interrupt UserName="r_iic01_interrupt" INTHandle="" LibName="R_IICn_Interrupt" InUse="0" />
+              <r_iic01_callback_master_receiveend UserName="r_iic01_callback_master_receiveend" LibName="R_IICn_Callback_Master_ReceiveEnd" InUse="0" />
+              <r_iic01_callback_master_sendend UserName="r_iic01_callback_master_sendend" LibName="R_IICn_Callback_Master_SendEnd" InUse="0" />
+              <r_iic01_callback_master_error UserName="r_iic01_callback_master_error" LibName="R_IICn_Callback_Master_Error" InUse="0" />
             </IIC01>
             <IIC10 Chip="RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin" InUse="">
-              <R_IIC10_Interrupt UserName="R_IIC10_Interrupt" INTHandle="" LibName="R_IICn_Interrupt" InUse="0" />
-              <R_IIC10_Callback_Master_ReceiveEnd UserName="R_IIC10_Callback_Master_ReceiveEnd" LibName="R_IICn_Callback_Master_ReceiveEnd" InUse="0" />
-              <R_IIC10_Callback_Master_SendEnd UserName="R_IIC10_Callback_Master_SendEnd" LibName="R_IICn_Callback_Master_SendEnd" InUse="0" />
-              <R_IIC10_Callback_Master_Error UserName="R_IIC10_Callback_Master_Error" LibName="R_IICn_Callback_Master_Error" InUse="0" />
+              <r_iic10_interrupt UserName="r_iic10_interrupt" INTHandle="" LibName="R_IICn_Interrupt" InUse="0" />
+              <r_iic10_callback_master_receiveend UserName="r_iic10_callback_master_receiveend" LibName="R_IICn_Callback_Master_ReceiveEnd" InUse="0" />
+              <r_iic10_callback_master_sendend UserName="r_iic10_callback_master_sendend" LibName="R_IICn_Callback_Master_SendEnd" InUse="0" />
+              <r_iic10_callback_master_error UserName="r_iic10_callback_master_error" LibName="R_IICn_Callback_Master_Error" InUse="0" />
             </IIC10>
             <IIC11 InUse="">
-              <R_IIC11_Interrupt UserName="R_IIC11_Interrupt" INTHandle="" LibName="R_IICn_Interrupt" InUse="0" />
-              <R_IIC11_Callback_Master_ReceiveEnd UserName="R_IIC11_Callback_Master_ReceiveEnd" LibName="R_IICn_Callback_Master_ReceiveEnd" InUse="0" />
-              <R_IIC11_Callback_Master_SendEnd UserName="R_IIC11_Callback_Master_SendEnd" LibName="R_IICn_Callback_Master_SendEnd" InUse="0" />
-              <R_IIC11_Callback_Master_Error UserName="R_IIC11_Callback_Master_Error" LibName="R_IICn_Callback_Master_Error" InUse="0" />
+              <r_iic11_interrupt UserName="r_iic11_interrupt" INTHandle="" LibName="R_IICn_Interrupt" InUse="0" />
+              <r_iic11_callback_master_receiveend UserName="r_iic11_callback_master_receiveend" LibName="R_IICn_Callback_Master_ReceiveEnd" InUse="0" />
+              <r_iic11_callback_master_sendend UserName="r_iic11_callback_master_sendend" LibName="R_IICn_Callback_Master_SendEnd" InUse="0" />
+              <r_iic11_callback_master_error UserName="r_iic11_callback_master_error" LibName="R_IICn_Callback_Master_Error" InUse="0" />
             </IIC11>
           </SAU0>
           <SAU1 Chip="RL78G13_36pin,RL78G13_40pin,RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_36pin,RL78G13_100pin,RL78G13_128pin" InUse="">
             <R_SAU1_Create_UserInit UserName="R_SAU1_Create_UserInit" LibName="R_SAUn_Create_UserInit" InUse="0" />
             <UART2 Chip="RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin" InUse="">
-              <R_UART2_Interrupt_Receive UserName="R_UART2_Interrupt_Receive" INTHandle="" LibName="R_UARTn_Interrupt_Receive" InUse="" />
-              <R_UART2_Interrupt_Error UserName="R_UART2_Interrupt_Error" INTHandle="" LibName="R_UARTn_Interrupt_Error" InUse="" />
-              <R_UART2_Interrupt_Send UserName="R_UART2_Interrupt_Send" INTHandle="" LibName="R_UARTn_Interrupt_Send" InUse="" />
-              <R_UART2_Callback_ReceiveEnd UserName="R_UART2_Callback_ReceiveEnd" LibName="R_UARTn_Callback_ReceiveEnd" InUse="" />
-              <R_UART2_Callback_SendEnd UserName="R_UART2_Callback_SendEnd" LibName="R_UARTn_Callback_SendEnd" InUse="" />
-              <R_UART2_Callback_Error UserName="R_UART2_Callback_Error" LibName="R_UARTn_Callback_Error" InUse="" />
-              <R_UART2_Callback_SoftwareOverRun UserName="R_UART2_Callback_SoftwareOverRun" LibName="R_UARTn_Callback_SoftwareOverRun" InUse="" />
+              <r_uart2_interrupt_receive UserName="r_uart2_interrupt_receive" INTHandle="" LibName="R_UARTn_Interrupt_Receive" InUse="" />
+              <r_uart2_interrupt_error UserName="r_uart2_interrupt_error" INTHandle="" LibName="R_UARTn_Interrupt_Error" InUse="" />
+              <r_uart2_interrupt_send UserName="r_uart2_interrupt_send" INTHandle="" LibName="R_UARTn_Interrupt_Send" InUse="" />
+              <r_uart2_callback_receiveend UserName="r_uart2_callback_receiveend" LibName="R_UARTn_Callback_ReceiveEnd" InUse="" />
+              <r_uart2_callback_sendend UserName="r_uart2_callback_sendend" LibName="R_UARTn_Callback_SendEnd" InUse="" />
+              <r_uart2_callback_error UserName="r_uart2_callback_error" LibName="R_UARTn_Callback_Error" InUse="" />
+              <r_uart2_callback_softwareoverrun UserName="r_uart2_callback_softwareoverrun" LibName="R_UARTn_Callback_SoftwareOverRun" InUse="" />
             </UART2>
             <CSI20 PIOR1="0" InUse="">
-              <R_CSI20_Interrupt UserName="R_CSI20_Interrupt" INTHandle="" LibName="R_CSIn_Interrupt" InUse="" />
-              <R_CSI20_Callback_ReceiveEnd UserName="R_CSI20_Callback_ReceiveEnd" LibName="R_CSIn_Callback_ReceiveEnd" InUse="" />
-              <R_CSI20_Callback_Error UserName="R_CSI20_Callback_Error" LibName="R_CSIn_Callback_Error" InUse="" />
-              <R_CSI20_Callback_SendEnd UserName="R_CSI20_Callback_SendEnd" LibName="R_CSIn_Callback_SendEnd" InUse="" />
+              <r_csi20_interrupt UserName="r_csi20_interrupt" INTHandle="" LibName="R_CSIn_Interrupt" InUse="" />
+              <r_csi20_callback_receiveend UserName="r_csi20_callback_receiveend" LibName="R_CSIn_Callback_ReceiveEnd" InUse="" />
+              <r_csi20_callback_error UserName="r_csi20_callback_error" LibName="R_CSIn_Callback_Error" InUse="" />
+              <r_csi20_callback_sendend UserName="r_csi20_callback_sendend" LibName="R_CSIn_Callback_SendEnd" InUse="" />
             </CSI20>
             <CSI21 InUse="">
-              <R_CSI21_Interrupt UserName="R_CSI21_Interrupt" INTHandle="" LibName="R_CSIn_Interrupt" InUse="" />
-              <R_CSI21_Callback_ReceiveEnd UserName="R_CSI21_Callback_ReceiveEnd" LibName="R_CSIn_Callback_ReceiveEnd" InUse="" />
-              <R_CSI21_Callback_Error UserName="R_CSI21_Callback_Error" LibName="R_CSIn_Callback_Error" InUse="" />
-              <R_CSI21_Callback_SendEnd UserName="R_CSI21_Callback_SendEnd" LibName="R_CSIn_Callback_SendEnd" InUse="" />
+              <r_csi21_interrupt UserName="r_csi21_interrupt" INTHandle="" LibName="R_CSIn_Interrupt" InUse="" />
+              <r_csi21_callback_receiveend UserName="r_csi21_callback_receiveend" LibName="R_CSIn_Callback_ReceiveEnd" InUse="" />
+              <r_csi21_callback_error UserName="r_csi21_callback_error" LibName="R_CSIn_Callback_Error" InUse="" />
+              <r_csi21_callback_sendend UserName="r_csi21_callback_sendend" LibName="R_CSIn_Callback_SendEnd" InUse="" />
             </CSI21>
             <IIC20 PIOR1="0" InUse="">
-              <R_IIC20_Interrupt UserName="R_IIC20_Interrupt" INTHandle="" LibName="R_IICn_Interrupt" InUse="" />
-              <R_IIC20_Callback_Master_ReceiveEnd UserName="R_IIC20_Callback_Master_ReceiveEnd" LibName="R_IICn_Callback_Master_ReceiveEnd" InUse="" />
-              <R_IIC20_Callback_Master_SendEnd UserName="R_IIC20_Callback_Master_SendEnd" LibName="R_IICn_Callback_Master_SendEnd" InUse="" />
-              <R_IIC20_Callback_Master_Error UserName="R_IIC20_Callback_Master_Error" LibName="R_IICn_Callback_Master_Error" InUse="" />
+              <r_iic20_interrupt UserName="r_iic20_interrupt" INTHandle="" LibName="R_IICn_Interrupt" InUse="" />
+              <r_iic20_callback_master_receiveend UserName="r_iic20_callback_master_receiveend" LibName="R_IICn_Callback_Master_ReceiveEnd" InUse="" />
+              <r_iic20_callback_master_sendend UserName="r_iic20_callback_master_sendend" LibName="R_IICn_Callback_Master_SendEnd" InUse="" />
+              <r_iic20_callback_master_error UserName="r_iic20_callback_master_error" LibName="R_IICn_Callback_Master_Error" InUse="" />
             </IIC20>
             <IIC21 InUse="">
-              <R_IIC21_Interrupt UserName="R_IIC21_Interrupt" INTHandle="" LibName="R_IICn_Interrupt" InUse="" />
-              <R_IIC21_Callback_Master_ReceiveEnd UserName="R_IIC21_Callback_Master_ReceiveEnd" LibName="R_IICn_Callback_Master_ReceiveEnd" InUse="" />
-              <R_IIC21_Callback_Master_SendEnd UserName="R_IIC21_Callback_Master_SendEnd" LibName="R_IICn_Callback_Master_SendEnd" InUse="" />
-              <R_IIC21_Callback_Master_Error UserName="R_IIC21_Callback_Master_Error" LibName="R_IICn_Callback_Master_Error" InUse="" />
+              <r_iic21_interrupt UserName="r_iic21_interrupt" INTHandle="" LibName="R_IICn_Interrupt" InUse="" />
+              <r_iic21_callback_master_receiveend UserName="r_iic21_callback_master_receiveend" LibName="R_IICn_Callback_Master_ReceiveEnd" InUse="" />
+              <r_iic21_callback_master_sendend UserName="r_iic21_callback_master_sendend" LibName="R_IICn_Callback_Master_SendEnd" InUse="" />
+              <r_iic21_callback_master_error UserName="r_iic21_callback_master_error" LibName="R_IICn_Callback_Master_Error" InUse="" />
             </IIC21>
           </SAU1>
           <IICA0 Chip="RL78G13_24pin,RL78G13_25pin,RL78G13_30pin,RL78G13_32pin,RL78G13_36pin,RL78G13_40pin,RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin" InUse="">
             <R_IICA0_Create_UserInit UserName="R_IICA0_Create_UserInit" LibName="R_IICAn_Create_UserInit" InUse="0" />
-            <R_IICA0_Interrupt UserName="R_IICA0_Interrupt" INTHandle="" LibName="R_IICAn_Interrupt" InUse="" />
-            <R_IICA0_Callback_Master_SendEnd UserName="R_IICA0_Callback_Master_SendEnd" LibName="R_IICAn_Callback_Master_SendEnd" InUse="" />
-            <R_IICA0_Callback_Master_ReceiveEnd UserName="R_IICA0_Callback_Master_ReceiveEnd" LibName="R_IICAn_Callback_Master_ReceiveEnd" InUse="" />
-            <R_IICA0_Callback_Slave_SendEnd UserName="R_IICA0_Callback_Slave_SendEnd" LibName="R_IICAn_Callback_Slave_SendEnd" InUse="" />
-            <R_IICA0_Callback_Slave_ReceiveEnd UserName="R_IICA0_Callback_Slave_ReceiveEnd" LibName="R_IICAn_Callback_Slave_ReceiveEnd" InUse="" />
-            <R_IICA0_Callback_Master_Error UserName="R_IICA0_Callback_Master_Error" LibName="R_IICAn_Callback_Master_Error" InUse="" />
-            <R_IICA0_Callback_Slave_Error UserName="R_IICA0_Callback_Slave_Error" LibName="R_IICAn_Callback_Slave_Error" InUse="" />
-            <R_IICA0_Callback_GetStopCondition UserName="R_IICA0_Callback_GetStopCondition" LibName="R_IICAn_Callback_GetStopCondition" InUse="" />
+            <r_iica0_interrupt UserName="r_iica0_interrupt" INTHandle="" LibName="r_iican_interrupt" InUse="" />
+            <r_iica0_callback_master_sendend UserName="r_iica0_callback_master_sendend" LibName="r_iican_callback_master_sendend" InUse="" />
+            <r_iica0_callback_master_receiveend UserName="r_iica0_callback_master_receiveend" LibName="r_iican_callback_master_receiveend" InUse="" />
+            <r_iica0_callback_slave_sendend UserName="r_iica0_callback_slave_sendend" LibName="r_iican_callback_slave_sendend" InUse="" />
+            <r_iica0_callback_slave_receiveend UserName="r_iica0_callback_slave_receiveend" LibName="r_iican_callback_slave_receiveend" InUse="" />
+            <r_iica0_callback_master_error UserName="r_iica0_callback_master_error" LibName="r_iican_callback_master_error" InUse="" />
+            <r_iica0_callback_slave_error UserName="r_iica0_callback_slave_error" LibName="r_iican_callback_slave_error" InUse="" />
+            <r_iica0_callback_getstopcondition UserName="r_iica0_callback_getstopcondition" LibName="r_iican_callback_getstopcondition" InUse="" />
           </IICA0>
-        </r_serial_user.c>
+        </r_cg_serial_user.c>
         <r_cg_serial.h UserName="r_cg_serial.h" LibName=".h" InUse="1" />
       </Serial>
       <ADC>
-        <r_adc.c UserName="r_adc.c" LibName=".c" InUse="0">
-          <Type R_ADC_Create="void R_ADC_Create(void)" R_ADC_Start="void R_ADC_Start(void)" R_ADC_Stop="void R_ADC_Stop(void)" R_ADC_Set_OperationOn="void R_ADC_Set_OperationOn(void)" R_ADC_Set_OperationOff="void R_ADC_Set_OperationOff(void)" R_ADC_Get_Result="void R_ADC_Get_Result(uint16_t *buffer)" R_ADC_Get_Result_8bit="void R_ADC_Get_Result_8bit(uint8_t *buffer)" R_ADC_Set_ADChannel="MD_STATUS R_ADC_Set_ADChannel(enum ADChannel channel)" R_ADC_Set_SnoozeOn="void R_ADC_Set_SnoozeOn(void)" R_ADC_Set_SnoozeOff="void R_ADC_Set_SnoozeOff(void)" R_ADC_Set_TestChannel="MD_STATUS R_ADC_Set_TestChannel(enum TestChannel channel)" R_ADC_Set_PowerOff="void R_ADC_Set_PowerOff(void)" />
+        <r_cg_adc.c UserName="r_cg_adc.c" LibName=".c" InUse="">
+          <Type R_ADC_Create="void R_ADC_Create(void)" R_ADC_Start="void R_ADC_Start(void)" R_ADC_Stop="void R_ADC_Stop(void)" R_ADC_Set_OperationOn="void R_ADC_Set_OperationOn(void)" R_ADC_Set_OperationOff="void R_ADC_Set_OperationOff(void)" R_ADC_Get_Result="void R_ADC_Get_Result(uint16_t * const buffer)" R_ADC_Get_Result_8bit="void R_ADC_Get_Result_8bit(uint8_t * const buffer)" R_ADC_Set_ADChannel="MD_STATUS R_ADC_Set_ADChannel(ad_channel_t channel)" R_ADC_Set_SnoozeOn="void R_ADC_Set_SnoozeOn(void)" R_ADC_Set_SnoozeOff="void R_ADC_Set_SnoozeOff(void)" R_ADC_Set_TestChannel="MD_STATUS R_ADC_Set_TestChannel(test_channel_t channel)" R_ADC_Set_PowerOff="void R_ADC_Set_PowerOff(void)" />
           <R_ADC_Create UserName="R_ADC_Create" LibName="R_ADC_Create" InUse="0" Init="1" />
           <R_ADC_Start UserName="R_ADC_Start" LibName="R_ADC_Start" InUse="0" />
           <R_ADC_Stop UserName="R_ADC_Stop" LibName="R_ADC_Stop" InUse="0" />
@@ -953,17 +961,17 @@
           <R_ADC_Set_SnoozeOff UserName="R_ADC_Set_SnoozeOff" LibName="R_ADC_Set_SnoozeOff" InUse="0" />
           <R_ADC_Set_TestChannel UserName="R_ADC_Set_TestChannel" LibName="R_ADC_Set_TestChannel" InUse="0" />
           <R_ADC_Set_PowerOff UserName="R_ADC_Set_PowerOff" LibName="R_ADC_Set_PowerOff" InUse="0" />
-        </r_adc.c>
-        <r_adc_user.c UserName="r_adc_user.c" LibName="_user.c" InUse="0">
-          <Type R_ADC_Create_UserInit="void R_ADC_Create_UserInit(void)" R_ADC_Interrupt="void R_ADC_Interrupt(void)" />
+        </r_cg_adc.c>
+        <r_cg_adc_user.c UserName="r_cg_adc_user.c" LibName="_user.c" InUse="">
+          <Type R_ADC_Create_UserInit="void R_ADC_Create_UserInit(void)" r_adc_interrupt="__interrupt static void r_adc_interrupt(void)" />
           <R_ADC_Create_UserInit UserName="R_ADC_Create_UserInit" LibName="R_ADC_Create_UserInit" InUse="0" />
-          <R_ADC_Interrupt UserName="R_ADC_Interrupt" INTHandle="" LibName="R_ADC_Interrupt" InUse="0" />
-        </r_adc_user.c>
+          <r_adc_interrupt UserName="r_adc_interrupt" INTHandle="" LibName="r_adc_interrupt" InUse="" />
+        </r_cg_adc_user.c>
         <r_cg_adc.h UserName="r_cg_adc.h" LibName=".h" InUse="0" />
       </ADC>
       <TAU>
-        <r_timer.c UserName="r_timer.c" LibName=".c" InUse="1">
-          <Type R_TAU_Create="void R_TAU_Create(void)" R_TAU_Set_PowerOff="void R_TAU_Set_PowerOff(void)" R_TAU_Channeln_Start="void R_TAU_Channeln_Start(void)" R_TAU_Channeln_Higher8bits_Start="void R_TAU_Channeln_Higher8bits_Start(void)" R_TAU_Channeln_Lower8bits_Start="void R_TAU_Channeln_Lower8bits_Start(void)" R_TAU_Channeln_Stop="void R_TAU_Channeln_Stop(void)" R_TAU_Channeln_Higher8bits_Stop="void R_TAU_Channeln_Higher8bits_Stop(void)" R_TAU_Channeln_Lower8bits_Stop="void R_TAU_Channeln_Lower8bits_Stop(void)" R_TAU_Channeln_Get_PulseWidth="void R_TAU_Channeln_Get_PulseWidth(uint32_t *width)" R_TAU_Channeln_Set_SoftwareTriggerOn="void R_TAU_Channeln_Set_SoftwareTriggerOn(void)" />
+        <r_cg_timer.c UserName="r_cg_timer.c" LibName=".c" InUse="1">
+          <Type R_TAU_Create="void R_TAU_Create(void)" R_TAU_Set_PowerOff="void R_TAU_Set_PowerOff(void)" R_TAU_Channeln_Start="void R_TAU_Channeln_Start(void)" R_TAU_Channeln_Higher8bits_Start="void R_TAU_Channeln_Higher8bits_Start(void)" R_TAU_Channeln_Lower8bits_Start="void R_TAU_Channeln_Lower8bits_Start(void)" R_TAU_Channeln_Stop="void R_TAU_Channeln_Stop(void)" R_TAU_Channeln_Higher8bits_Stop="void R_TAU_Channeln_Higher8bits_Stop(void)" R_TAU_Channeln_Lower8bits_Stop="void R_TAU_Channeln_Lower8bits_Stop(void)" R_TAU_Channeln_Get_PulseWidth="void R_TAU_Channeln_Get_PulseWidth(uint32_t * const width)" R_TAU_Channeln_Set_SoftwareTriggerOn="void R_TAU_Channeln_Set_SoftwareTriggerOn(void)" />
           <TAU0>
             <R_TAU0_Create UserName="R_TAU0_Create" LibName="R_TAU_Create" InUse="1" Init="1" />
             <R_TAU0_Set_PowerOff UserName="R_TAU0_Set_PowerOff" LibName="R_TAU_Set_PowerOff" InUse="0" />
@@ -1020,115 +1028,112 @@
               <R_TAU0_Channel7_Get_PulseWidth Chip="RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin" UserName="R_TAU0_Channel7_Get_PulseWidth" LibName="R_TAU_Channeln_Get_PulseWidth" InUse="0" />
             </Channel7>
           </TAU0>
-        </r_timer.c>
-        <r_timer_user.c UserName="r_timer_user.c" LibName="_user.c" InUse="1">
-          <Type R_TAU_Create_UserInit="void R_TAUn_Create_UserInit(void)" R_TAU_Channeln_Interrupt="__interrupt void R_TAU_Channeln_Interrupt(void)" R_TAU_Channeln_Higher8bits_Interrupt="__interrupt void R_TAU_Channeln_Higher8bits_Interrupt(void)" />
+        </r_cg_timer.c>
+        <r_cg_timer_user.c UserName="r_cg_timer_user.c" LibName="_user.c" InUse="1">
+          <Type R_TAU_Create_UserInit="void R_TAUn_Create_UserInit(void)" r_tau_channeln_interrupt="__interrupt static void r_tau_channeln_interrupt(void)" r_tau_channeln_higher8bits_interrupt="__interrupt static void r_tau_channeln_higher8bits_interrupt(void)" />
           <TAU0>
             <R_TAU0_Create_UserInit UserName="R_TAU0_Create_UserInit" LibName="R_TAU_Create_UserInit" InUse="0" />
             <Channel0 InUse="">
-              <R_TAU0_Channel0_Interrupt UserName="R_TAU0_Channel0_Interrupt" INTHandle="" LibName="R_TAU_Channeln_Interrupt" InUse="1" />
+              <r_tau0_channel0_interrupt UserName="r_tau0_channel0_interrupt" INTHandle="" LibName="r_tau_channeln_interrupt" InUse="1" />
             </Channel0>
             <Channel1 InUse="">
-              <R_TAU0_Channel1_Interrupt UserName="R_TAU0_Channel1_Interrupt" INTHandle="" LibName="R_TAU_Channeln_Interrupt" InUse="0" />
-              <R_TAU0_Channel1_Higher8bits_Interrupt UserName="R_TAU0_Channel1_Higher8bits_Interrupt" INTHandle="" LibName="R_TAU_Channeln_Higher8bits_Interrupt" InUse="0" />
+              <r_tau0_channel1_interrupt UserName="r_tau0_channel1_interrupt" INTHandle="" LibName="r_tau_channeln_interrupt" InUse="" />
+              <r_tau0_channel1_higher8bits_interrupt UserName="r_tau0_channel1_higher8bits_interrupt" INTHandle="" LibName="r_tau_channeln_higher8bits_interrupt" InUse="" />
             </Channel1>
             <Channel2 InUse="">
-              <R_TAU0_Channel2_Interrupt UserName="R_TAU0_Channel2_Interrupt" INTHandle="" LibName="R_TAU_Channeln_Interrupt" InUse="0" />
+              <r_tau0_channel2_interrupt UserName="r_tau0_channel2_interrupt" INTHandle="" LibName="r_tau_channeln_interrupt" InUse="" />
             </Channel2>
             <Channel3 InUse="">
-              <R_TAU0_Channel3_Interrupt UserName="R_TAU0_Channel3_Interrupt" INTHandle="" LibName="R_TAU_Channeln_Interrupt" InUse="0" />
-              <R_TAU0_Channel3_Higher8bits_Interrupt UserName="R_TAU0_Channel3_Higher8bits_Interrupt" INTHandle="" LibName="R_TAU_Channeln_Higher8bits_Interrupt" InUse="0" />
+              <r_tau0_channel3_interrupt UserName="r_tau0_channel3_interrupt" INTHandle="" LibName="r_tau_channeln_interrupt" InUse="" />
+              <r_tau0_channel3_higher8bits_interrupt UserName="r_tau0_channel3_higher8bits_interrupt" INTHandle="" LibName="r_tau_channeln_higher8bits_interrupt" InUse="" />
             </Channel3>
             <Channel4 InUse="">
-              <R_TAU0_Channel4_Interrupt UserName="R_TAU0_Channel4_Interrupt" INTHandle="" LibName="R_TAU_Channeln_Interrupt" InUse="0" />
+              <r_tau0_channel4_interrupt UserName="r_tau0_channel4_interrupt" INTHandle="" LibName="r_tau_channeln_interrupt" InUse="" />
             </Channel4>
             <Channel5 InUse="">
-              <R_TAU0_Channel5_Interrupt UserName="R_TAU0_Channel5_Interrupt" INTHandle="" LibName="R_TAU_Channeln_Interrupt" InUse="0" />
+              <r_tau0_channel5_interrupt UserName="r_tau0_channel5_interrupt" INTHandle="" LibName="r_tau_channeln_interrupt" InUse="" />
             </Channel5>
             <Channel6 InUse="">
-              <R_TAU0_Channel6_Interrupt UserName="R_TAU0_Channel6_Interrupt" INTHandle="" LibName="R_TAU_Channeln_Interrupt" InUse="0" />
+              <r_tau0_channel6_interrupt UserName="r_tau0_channel6_interrupt" INTHandle="" LibName="r_tau_channeln_interrupt" InUse="" />
             </Channel6>
             <Channel7 InUse="">
-              <R_TAU0_Channel7_Interrupt UserName="R_TAU0_Channel7_Interrupt" INTHandle="" LibName="R_TAU_Channeln_Interrupt" InUse="0" />
+              <r_tau0_channel7_interrupt UserName="r_tau0_channel7_interrupt" INTHandle="" LibName="r_tau_channeln_interrupt" InUse="" />
             </Channel7>
           </TAU0>
-        </r_timer_user.c>
+        </r_cg_timer_user.c>
         <r_cg_timer.h UserName="r_cg_timer.h" LibName=".h" InUse="1" />
       </TAU>
       <WDT>
-        <r_wdt.c UserName="r_wdt.c" LibName=".c" InUse="1">
+        <r_cg_wdt.c UserName="r_cg_wdt.c" LibName=".c" InUse="1">
           <Type R_WDT_Create="void R_WDT_Create(void)" R_WDT_Restart="void R_WDT_Restart(void)" />
           <R_WDT_Create UserName="R_WDT_Create" LibName="R_WDT_Create" InUse="0" Init="1" />
           <R_WDT_Restart UserName="R_WDT_Restart" LibName="R_WDT_Restart" InUse="0" />
-        </r_wdt.c>
-        <r_wdt_user.c UserName="r_wdt_user.c" LibName="_user.c" InUse="1">
-          <Type R_WDT_Create_UserInit="void R_WDT_Create_UserInit(void)" R_WDT_Interrupt="__interrupt void R_WDT_Interrupt(void)" />
+        </r_cg_wdt.c>
+        <r_cg_wdt_user.c UserName="r_cg_wdt_user.c" LibName="_user.c" InUse="1">
+          <Type R_WDT_Create_UserInit="void R_WDT_Create_UserInit(void)" r_wdt_interrupt="__interrupt static void r_wdt_interrupt(void)" />
           <R_WDT_Create_UserInit UserName="R_WDT_Create_UserInit" LibName="R_WDT_Create_UserInit" InUse="0" />
-          <R_WDT_Interrupt UserName="R_WDT_Interrupt" INTHandle="" LibName="R_WDT_Interrupt" InUse="1" />
-        </r_wdt_user.c>
+          <r_wdt_interrupt UserName="r_wdt_interrupt" INTHandle="" LibName="r_wdt_interrupt" InUse="1" />
+        </r_cg_wdt_user.c>
         <r_cg_wdt.h UserName="r_cg_wdt.h" LibName=".h" InUse="0" />
       </WDT>
       <RTC>
-        <r_rtc.c UserName="r_rtc.c" LibName=".c" InUse="">
-          <Type R_RTC_Create="void R_RTC_Create(void)" R_RTC_Start="void R_RTC_Start(void)" R_RTC_Stop="void R_RTC_Stop(void)" R_RTC_Set_HourSystem="MD_STATUS R_RTC_SetHourSystem(enum RTCHourSystem hoursystem)" R_RTC_Get_CounterValue="MD_STATUS R_RTC_Get_CounterValue(struct RTCCounterValue *counterreadval)" R_RTC_Set_CounterValue="MD_STATUS R_RTC_Set_CounterValue(struct RTCCounterValue counterwriteval)" R_RTC_Set_AlarmOn="void R_RTC_Set_AlarmOn(void)" R_RTC_Set_AlarmOff="void R_RTC_Set_AlarmOff(void)" R_RTC_Set_AlarmValue="void R_RTC_Set_AlarmValue(struct RTCAlarmValue alarmval)" R_RTC_Get_AlarmValue="void R_RTC_Get_AlarmValue(struct RTCAlarmValue *alarmval)" R_RTC_Set_ConstPeriodInterruptOn="MD_STATUS R_RTC_Set_ConstPeriodInterruptOn(enum RTCINTPeriod period)" R_RTC_Set_ConstPeriodInterruptOff="void R_RTC_Set_ConstPeriodInterruptOff(void)" R_RTC_ChangeCorrectionValue="MD_STATUS R_RTC_ChangeCorrectionValue(enum RTCCorectionTiming timing, uint8_t correctval)" R_RTC_Set_RTC1HZOn="void R_RTC_Set_RTC1HZOn(void)" R_RTC_Set_RTC1HZOff="void R_RTC_Set_RTC1HZOff(void)" R_RTC_Set_PowerOff="void R_RTC_Set_PowerOff(void)" />
+        <r_cg_rtc.c UserName="r_cg_rtc.c" LibName=".c" InUse="">
+          <Type R_RTC_Create="void R_RTC_Create(void)" R_RTC_Start="void R_RTC_Start(void)" R_RTC_Stop="void R_RTC_Stop(void)" R_RTC_Set_HourSystem="MD_STATUS R_RTC_SetHourSystem(rtc_hour_system_t hour_system)" R_RTC_Get_CounterValue="MD_STATUS R_RTC_Get_CounterValue(rtc_counter_value_t * const counter_read_val)" R_RTC_Set_CounterValue="MD_STATUS R_RTC_Set_CounterValue(rtc_counter_value_t counter_write_val)" R_RTC_Set_AlarmOn="void R_RTC_Set_AlarmOn(void)" R_RTC_Set_AlarmOff="void R_RTC_Set_AlarmOff(void)" R_RTC_Set_AlarmValue="void R_RTC_Set_AlarmValue(rtc_alarm_value_t alarm_val)" R_RTC_Get_AlarmValue="void R_RTC_Get_AlarmValue(rtc_alarm_value_t * const alarm_val)" R_RTC_Set_ConstPeriodInterruptOn="MD_STATUS R_RTC_Set_ConstPeriodInterruptOn(rtc_int_period_t period)" R_RTC_Set_ConstPeriodInterruptOff="void R_RTC_Set_ConstPeriodInterruptOff(void)" R_RTC_Set_RTC1HZOn="void R_RTC_Set_RTC1HZOn(void)" R_RTC_Set_RTC1HZOff="void R_RTC_Set_RTC1HZOff(void)" R_RTC_Set_PowerOff="void R_RTC_Set_PowerOff(void)" />
           <R_RTC_Create UserName="R_RTC_Create" LibName="R_RTC_Create" InUse="0" Init="1" />
           <R_RTC_Start UserName="R_RTC_Start" LibName="R_RTC_Start" InUse="0" />
           <R_RTC_Stop UserName="R_RTC_Stop" LibName="R_RTC_Stop" InUse="0" />
-          <R_RTC_Set_HourSystem UserName="R_RTC_Set_HourSystem" LibName="R_RTC_Set_HourSystem" InUse="0" />
-          <R_RTC_Get_CounterValue UserName="R_RTC_Get_CounterValue" LibName="R_RTC_Get_CounterValue" InUse="0" />
-          <R_RTC_Set_CounterValue UserName="R_RTC_Set_CounterValue" LibName="R_RTC_Set_CounterValue" InUse="0" />
-          <R_RTC_Set_AlarmOn UserName="R_RTC_Set_AlarmOn" LibName="R_RTC_Set_AlarmOn" InUse="0" />
-          <R_RTC_Set_AlarmOff UserName="R_RTC_Set_AlarmOff" LibName="R_RTC_Set_AlarmOff" InUse="0" />
-          <R_RTC_Set_AlarmValue UserName="R_RTC_Set_AlarmValue" LibName="R_RTC_Set_AlarmValue" InUse="0" />
-          <R_RTC_Get_AlarmValue UserName="R_RTC_Get_AlarmValue" LibName="R_RTC_Get_AlarmValue" InUse="0" />
+          <R_RTC_Set_HourSystem Chip="RL78G13_38pin,RL78G13_40pin,RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin" UserName="R_RTC_Set_HourSystem" LibName="R_RTC_Set_HourSystem" InUse="0" />
+          <R_RTC_Get_CounterValue Chip="RL78G13_38pin,RL78G13_40pin,RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin" UserName="R_RTC_Get_CounterValue" LibName="R_RTC_Get_CounterValue" InUse="0" />
+          <R_RTC_Set_CounterValue Chip="RL78G13_38pin,RL78G13_40pin,RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin" UserName="R_RTC_Set_CounterValue" LibName="R_RTC_Set_CounterValue" InUse="0" />
+          <R_RTC_Set_AlarmOn Chip="RL78G13_38pin,RL78G13_40pin,RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin" UserName="R_RTC_Set_AlarmOn" LibName="R_RTC_Set_AlarmOn" InUse="0" />
+          <R_RTC_Set_AlarmOff Chip="RL78G13_38pin,RL78G13_40pin,RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin" UserName="R_RTC_Set_AlarmOff" LibName="R_RTC_Set_AlarmOff" InUse="0" />
+          <R_RTC_Set_AlarmValue Chip="RL78G13_38pin,RL78G13_40pin,RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin" UserName="R_RTC_Set_AlarmValue" LibName="R_RTC_Set_AlarmValue" InUse="0" />
+          <R_RTC_Get_AlarmValue Chip="RL78G13_38pin,RL78G13_40pin,RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin" UserName="R_RTC_Get_AlarmValue" LibName="R_RTC_Get_AlarmValue" InUse="0" />
           <R_RTC_Set_ConstPeriodInterruptOn UserName="R_RTC_Set_ConstPeriodInterruptOn" LibName="R_RTC_Set_ConstPeriodInterruptOn" InUse="0" />
           <R_RTC_Set_ConstPeriodInterruptOff UserName="R_RTC_Set_ConstPeriodInterruptOff" LibName="R_RTC_Set_ConstPeriodInterruptOff" InUse="0" />
-          <R_RTC_ChangeCorrectionValue Visible="false" UserName="" LibName="R_RTC_ChangeCorrectionValue" InUse="" />
           <R_RTC_Set_RTC1HZOn Chip="RL78G13_38pin,RL78G13_40pin,RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin" UserName="R_RTC_Set_RTC1HZOn" LibName="R_RTC_Set_RTC1HZOn" InUse="0" />
           <R_RTC_Set_RTC1HZOff Chip="RL78G13_38pin,RL78G13_40pin,RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin" UserName="R_RTC_Set_RTC1HZOff" LibName="R_RTC_Set_RTC1HZOff" InUse="0" />
           <R_RTC_Set_PowerOff UserName="R_RTC_Set_PowerOff" LibName="R_RTC_Set_PowerOff" InUse="0" />
-        </r_rtc.c>
-        <r_rtc_user.c UserName="r_rtc_user.c" LibName="_user.c" InUse="">
-          <Type R_RTC_Create_UserInit="void R_RTC_Create_UserInit(void)" R_RTC_Interrupt="__interrupt void R_RTC_Interrupt(void)" R_RTC_Callback_ConstPeriod="void R_RTC_Callback_ConstPeriod(void)" R_RTC_Callback_Alarm="void R_RTC_Callback_Alarm(void)" />
+        </r_cg_rtc.c>
+        <r_cg_rtc_user.c UserName="r_cg_rtc_user.c" LibName="_user.c" InUse="">
+          <Type R_RTC_Create_UserInit="void R_RTC_Create_UserInit(void)" r_rtc_interrupt="__interrupt static void r_rtc_interrupt(void)" r_rtc_callback_constperiod="void r_rtc_callback_constperiod(void)" r_rtc_callback_alarm="void r_rtc_callback_alarm(void)" />
           <R_RTC_Create_UserInit UserName="R_RTC_Create_UserInit" LibName="R_RTC_Create_UserInit" InUse="0" />
-          <R_RTC_Interrupt UserName="R_RTC_Interrupt" INTHandle="" LibName="R_RTC_Interrupt" InUse="" />
-          <R_RTC_Callback_ConstPeriod UserName="R_RTC_Callback_ConstPeriod" LibName="R_RTC_Callback_ConstPeriod" InUse="" />
-          <R_RTC_Callback_Alarm UserName="R_RTC_Callback_Alarm" LibName="R_RTC_Callback_Alarm" InUse="" />
-        </r_rtc_user.c>
+          <r_rtc_interrupt UserName="r_rtc_interrupt" INTHandle="" LibName="r_rtc_interrupt" InUse="" />
+          <r_rtc_callback_constperiod UserName="r_rtc_callback_constperiod" LibName="r_rtc_callback_constperiod" InUse="" />
+          <r_rtc_callback_alarm Chip="RL78G13_38pin,RL78G13_40pin,RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin" UserName="r_rtc_callback_alarm" LibName="r_rtc_callback_alarm" InUse="" />
+        </r_cg_rtc_user.c>
         <r_cg_rtc.h UserName="r_cg_rtc.h" LibName=".h" InUse="0" />
       </RTC>
       <IT>
-        <r_it.c UserName="r_it.c" LibName=".c" InUse="1">
+        <r_cg_it.c UserName="r_cg_it.c" LibName=".c" InUse="1">
           <Type R_IT_Create="void R_IT_Create(void)" R_IT_Start="void R_IT_Start(void)" R_IT_Stop="void R_IT_Stop(void)" R_IT_Set_PowerOff="void R_IT_Set_PowerOff(void)" />
           <R_IT_Create UserName="R_IT_Create" LibName="R_IT_Create" InUse="1" Init="1" />
           <R_IT_Start UserName="R_IT_Start" LibName="R_IT_Start" InUse="1" />
           <R_IT_Stop UserName="R_IT_Stop" LibName="R_IT_Stop" InUse="1" />
           <R_IT_Set_PowerOff UserName="R_IT_Set_PowerOff" LibName="R_IT_Set_PowerOff" InUse="0" />
-        </r_it.c>
-        <r_it_user.c UserName="r_it_user.c" LibName="_user.c" InUse="1">
-          <Type R_IT_Create_UserInit="void R_IT_Create_UserInit(void)" R_IT_Interrupt="__interrupt void R_IT_Interrupt(void)" />
+        </r_cg_it.c>
+        <r_cg_it_user.c UserName="r_cg_it_user.c" LibName="_user.c" InUse="1">
+          <Type R_IT_Create_UserInit="void R_IT_Create_UserInit(void)" r_it_interrupt="__interrupt static void r_it_interrupt(void)" />
           <R_IT_Create_UserInit UserName="R_IT_Create_UserInit" LibName="R_IT_Create_UserInit" InUse="0" />
-          <R_IT_Interrupt UserName="R_IT_Interrupt" INTHandle="" LibName="R_IT_Interrupt" InUse="1" />
-        </r_it_user.c>
+          <r_it_interrupt UserName="r_it_interrupt" INTHandle="" LibName="r_it_interrupt" InUse="1" />
+        </r_cg_it_user.c>
         <r_cg_it.h UserName="r_cg_it.h" LibName=".h" InUse="1" />
       </IT>
       <PCLBUZ Chip="RL78G13_24pin,RL78G13_25pin,RL78G13_30pin,RL78G13_32pin,RL78G13_36pin,RL78G13_38pin,RL78G13_40pin,RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin">
-        <r_pclbuz.c UserName="r_pclbuz.c" LibName=".c" InUse="0">
-          <Type R_PCLBUZn_Create="void R_PCLBUZn_Create(void)	" R_PCLBUZn_Start="void R_PCLBUZn_Start(void)" R_PCLBUZn_Stop="void R_PCLBUZn_Stop(void)" R_PCLBUZn_ChangeFreq="MD_STATUS R_PCLBUZn_ChangeFreq(enum PCLBUZclock clock)" />
+        <r_cg_pclbuz.c UserName="r_cg_pclbuz.c" LibName=".c" InUse="">
+          <Type R_PCLBUZn_Create="void R_PCLBUZn_Create(void)	" R_PCLBUZn_Start="void R_PCLBUZn_Start(void)" R_PCLBUZn_Stop="void R_PCLBUZn_Stop(void)" />
           <PCLBUZ0 InUse="">
             <R_PCLBUZ0_Create UserName="R_PCLBUZ0_Create" LibName="R_PCLBUZn_Create" InUse="0" Init="1" />
             <R_PCLBUZ0_Start UserName="R_PCLBUZ0_Start" LibName="R_PCLBUZn_Start" InUse="0" />
             <R_PCLBUZ0_Stop UserName="R_PCLBUZ0_Stop" LibName="R_PCLBUZn_Stop" InUse="0" />
-            <R_PCLBUZ0_ChangeFreq Visible="false" UserName="" LibName="R_PCLBUZn_ChangeFreq" InUse="0" />
           </PCLBUZ0>
           <PCLBUZ1 Chip="RL78G13_30pin,RL78G13_32pin,RL78G13_36pin,RL78G13_38pin,RL78G13_40pin,RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin" InUse="">
             <R_PCLBUZ1_Create UserName="R_PCLBUZ1_Create" LibName="R_PCLBUZn_Create" InUse="" Init="1" />
             <R_PCLBUZ1_Start UserName="R_PCLBUZ1_Start" LibName="R_PCLBUZn_Start" InUse="" />
             <R_PCLBUZ1_Stop UserName="R_PCLBUZ1_Stop" LibName="R_PCLBUZn_Stop" InUse="" />
-            <R_PCLBUZ1_ChangeFreq Visible="false" UserName="" LibName="R_PCLBUZn_ChangeFreq" InUse="" />
           </PCLBUZ1>
-        </r_pclbuz.c>
-        <r_pclbuz_user.c UserName="r_pclbuz_user.c" LibName="_user.c" InUse="0">
+        </r_cg_pclbuz.c>
+        <r_cg_pclbuz_user.c UserName="r_cg_pclbuz_user.c" LibName="_user.c" InUse="">
           <Type R_PCLBUZn_Create_UserInit="void R_PCLBUZn_Create_UserInit(void)	" />
           <PCLBUZ0 InUse="">
             <R_PCLBUZ0_Create_UserInit UserName="R_PCLBUZ0_Create_UserInit" LibName="R_PCLBUZn_Create_UserInit" InUse="0" Init="1" />
@@ -1136,11 +1141,11 @@
           <PCLBUZ1 Chip="RL78G13_30pin,RL78G13_32pin,RL78G13_36pin,RL78G13_38pin,RL78G13_40pin,RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin" InUse="">
             <R_PCLBUZ1_Create_UserInit UserName="R_PCLBUZ1_Create_UserInit" LibName="R_PCLBUZn_Create_UserInit" InUse="" Init="1" />
           </PCLBUZ1>
-        </r_pclbuz_user.c>
+        </r_cg_pclbuz_user.c>
         <r_cg_pclbuz.h UserName="r_cg_pclbuz.h" LibName=".h" InUse="0" />
       </PCLBUZ>
       <DMAC>
-        <r_dmac.c UserName="r_dmac.c" LibName=".c" InUse="0">
+        <r_cg_dmac.c UserName="r_cg_dmac.c" LibName=".c" InUse="">
           <Type R_DMACn_Create="void R_DMACn_Create(void)" R_DMACn_Start="void R_DMACn_Start(void)" R_DMACn_Stop="void R_DMACn_Stop(void)" R_DMACn_Set_SoftwareTriggerOn="void R_DMACn_Set_SoftwareTriggerOn(void)" />
           <DMA0 InUse="">
             <R_DMAC0_Create UserName="R_DMAC0_Create" LibName="R_DMACn_Create" InUse="0" Init="1" />
@@ -1154,31 +1159,31 @@
             <R_DMAC1_Stop UserName="R_DMAC1_Stop" LibName="R_DMACn_Stop" InUse="" />
             <R_DMAC1_Set_SoftwareTriggerOn UserName="R_DMAC1_Set_SoftwareTriggerOn" LibName="R_DMACn_Set_SoftwareTriggerOn" InUse="" />
           </DMA1>
-        </r_dmac.c>
-        <r_dmac_user.c UserName="r_dmac_user.c" LibName="_user.c" InUse="0">
-          <Type R_DMACn_Create_UserInit="void R_DMACn_Create_UserInit(void)" R_DMACn_Interrupt="void R_DMACn_Interrupt(void)" />
+        </r_cg_dmac.c>
+        <r_cg_dmac_user.c UserName="r_cg_dmac_user.c" LibName="_user.c" InUse="">
+          <Type R_DMACn_Create_UserInit="void R_DMACn_Create_UserInit(void)" r_dmacn_interrupt="__interrupt static void r_dmacn_interrupt(void)" />
           <DMA0>
             <R_DMAC0_Create_UserInit UserName="R_DMAC0_Create_UserInit" LibName="R_DMACn_Create_UserInit" InUse="0" />
-            <R_DMAC0_Interrupt UserName="R_DMAC0_Interrupt" INTHandle="" LibName="R_DMACn_Interrupt" InUse="0" />
+            <r_dmac0_interrupt UserName="r_dmac0_interrupt" INTHandle="" LibName="r_dmacn_interrupt" InUse="" />
           </DMA0>
           <DMA1>
             <R_DMAC1_Create_UserInit UserName="R_DMAC1_Create_UserInit" LibName="R_DMACn_Create_UserInit" InUse="" />
-            <R_DMAC1_Interrupt UserName="R_DMAC1_Interrupt" INTHandle="" LibName="R_DMACn_Interrupt" InUse="" />
+            <r_dmac1_interrupt UserName="r_dmac1_interrupt" INTHandle="" LibName="r_dmacn_interrupt" InUse="" />
           </DMA1>
-        </r_dmac_user.c>
+        </r_cg_dmac_user.c>
         <r_cg_dmac.h UserName="r_cg_dmac.h" LibName=".h" InUse="0" />
       </DMAC>
       <LVD>
-        <r_lvd.c UserName="r_lvd.c" LibName=".c" InUse="0">
+        <r_cg_lvd.c UserName="r_cg_lvd.c" LibName=".c" InUse="">
           <Type R_LVD_Create="void R_LVD_Create(void)" R_LVD_InterruptMode_Start="void R_LVD_InterruptMode_Start(void)" />
           <R_LVD_Create UserName="R_LVD_Create" LibName="R_LVD_Create" InUse="0" Init="1" />
           <R_LVD_InterruptMode_Start UserName="R_LVD_InterruptMode_Start" LibName="R_LVD_InterruptMode_Start" InUse="0" />
-        </r_lvd.c>
-        <r_lvd_user.c UserName="r_lvd_user.c" LibName="_user.c" InUse="0">
-          <Type R_LVD_Creat_UserInit="void R_LVD_Creat_UserInit(void)" R_LVD_Interrupt="__interrupt void R_LVD_Interrupt(void)" />
+        </r_cg_lvd.c>
+        <r_cg_lvd_user.c UserName="r_cg_lvd_user.c" LibName="_user.c" InUse="">
+          <Type R_LVD_Creat_UserInit="void R_LVD_Creat_UserInit(void)" r_lvd_interrupt="__interrupt static void r_lvd_interrupt(void)" />
           <R_LVD_Creat_UserInit UserName="R_LVD_Creat_UserInit" LibName="R_LVD_Creat_UserInit" InUse="0" />
-          <R_LVD_Interrupt UserName="R_LVD_Interrupt" INTHandle="" LibName="R_LVD_Interrupt" InUse="0" />
-        </r_lvd_user.c>
+          <r_lvd_interrupt UserName="r_lvd_interrupt" INTHandle="" LibName="r_lvd_interrupt" InUse="" />
+        </r_cg_lvd_user.c>
         <r_cg_lvd.h UserName="r_cg_lvd.h" LibName=".h" InUse="0" />
       </LVD>
     </FUNC>
@@ -1236,7 +1241,7 @@
     </PORT>
     <INTC SetFlag="False" HelpID="int" NeedRefresh="False">
       <INTP Accelerate="No" MacroName="INTP" SetFlag="False" TabEnable="True" />
-      <KEY Chip="RL78G13_40pin,RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin," Accelerate="No" MacroName="KEY" TabEnable="True" SetFlag="False" />
+      <KEY Chip="RL78G13_40pin,RL78G13_44pin,RL78G13_48pin,RL78G13_52pin,RL78G13_64pin,RL78G13_80pin,RL78G13_100pin,RL78G13_128pin," Accelerate="No" MacroName="KEY" SetFlag="False" TabEnable="True" />
     </INTC>
     <Serial SetFlag="True" HelpID="serial" NeedRefresh="False">
       <SAU0 Accelerate="No" MacroName="SAU" Channel="0" SetFlag="True" TabEnable="True">
@@ -1429,7 +1434,7 @@
           <setting name="Transmit_end_callback_function" value="generated" />
           <setting name="Receive_end_callback_function" value="generated" />
           <setting name="Receive_error_callback_function" value="generated" />
-          <setting name="Interrupt_priority" value="3" />
+          <setting name="Interrupt_priority" value="0" />
         </Both_CSI10>
         <Receive_CSI10>
           <setting name="Transfer_mode" value="single" />
@@ -1627,7 +1632,7 @@
           <setting name="Pull_up" value="unused" />
           <setting name="TTL_buffer" value="unused" />
           <setting name="N-ch_open-drain" value="unused" />
-          <setting name="Output_value" value="0" />
+          <setting name="Output_value" value="1" />
         </P10>
         <P11>
           <setting name="Operation" value="unused" />
@@ -1743,7 +1748,7 @@
           <setting name="Pull_up" value="unused" />
           <setting name="TTL_buffer" value="unused" />
           <setting name="N-ch_open-drain" value="unused" />
-          <setting name="Output_value" value="0" />
+          <setting name="Output_value" value="1" />
         </P30>
         <P31>
           <setting name="Operation" value="unused" />
@@ -2301,7 +2306,7 @@
       </INTP1>
       <INTP2>
         <setting name="Valid_edge" value="falling" />
-        <setting name="Operation" value="used" />
+        <setting name="Operation" value="unused" />
         <setting name="ValidEdge" value="0" />
         <setting name="Interrupt_priority" value="3" />
         <setting name="pinsel" value="-1" />
@@ -2439,7 +2444,7 @@
           <setting name="Pull_up" value="unused" />
           <setting name="TTL_buffer" value="unused" />
           <setting name="N-ch_open-drain" value="unused" />
-          <setting name="Output_value" value="1" />
+          <setting name="Output_value" value="0" />
         </P10>
         <P11>
           <setting name="Operation" value="unused" />
@@ -2555,7 +2560,7 @@
           <setting name="Pull_up" value="unused" />
           <setting name="TTL_buffer" value="unused" />
           <setting name="N-ch_open-drain" value="unused" />
-          <setting name="Output_value" value="1" />
+          <setting name="Output_value" value="0" />
         </P30>
         <P31>
           <setting name="Operation" value="unused" />

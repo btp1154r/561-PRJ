@@ -28,7 +28,7 @@
 * Device(s)    : R5F100LE
 * Tool-Chain   : IAR Systems iccrl78
 * Description  : This file implements device driver for Serial module.
-* Creation Date: 9/22/2012
+* Creation Date: 11-04-2013
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
@@ -52,117 +52,71 @@ uint16_t  g_csi10_tx_count;            /* csi10 send data count */
 /* Start user code for global. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
 
-
-/*
-**-----------------------------------------------------------------------------
-**
-**  Abstract:
-**	This function initializes the SAU0 module.
-**
-**  Parameters:
-**	None
-**
-**  Returns:
-**	None
-**
-**-----------------------------------------------------------------------------
-
-*/
-
+/***********************************************************************************************************************
+* Function Name: R_SAU0_Create
+* Description  : This function initializes the SAU0 module.
+* Arguments    : None
+* Return Value : None
+***********************************************************************************************************************/
 void R_SAU0_Create(void)
 {
-    unsigned short delay;
-    
-    // Setup output pins
-    P1 = (1<<0) | (1<<5);
-    PM1 &= (unsigned char)~(1<<0);  // Set P10 (LCD CS) to output
-    PM1 &= (unsigned char)~(1<<5);  // Set P15 (LCD RS) to output
-    
-    // Reset IO
-    P13 |= (1<<0); // Assert P130 (#RESET-IO)
-    for (delay=0;delay<10000;delay++);
-    P13 &= ~(1<<0);  // Deassert P130 (#RESET-IO)
-    for (delay=0;delay<10000;delay++);
-    
-    // SAU0 Init
-    SAU0EN = 1U;	/* supply SAU0 clock */
+    SAU0EN = 1U;    /* supply SAU0 clock */
     NOP();
     NOP();
     NOP();
     NOP();
     SPS0 = _0000_SAU_CK00_FCLK_0 | _0000_SAU_CK01_FCLK_0;
+    R_CSI10_Create();
 }
-/*
-**-----------------------------------------------------------------------------
-**
-**  Abstract:
-**	This function initializes the CSI10 module.
-**
-**  Parameters:
-**	None
-**
-**  Returns:
-**	None
-**
-**-----------------------------------------------------------------------------
-*/
-void R_CSI10_Create(void)
-{               
-        ST0 |= _0004_SAU_CH2_STOP_TRG_ON;	/* disable CSI10 */
-	CSIMK10 = 1U;	/* disable INTCSI10 interrupt */
-	CSIIF10 = 0U;	/* clear INTCSI10 interrupt flag */
-	/* Set INTCSI10 low priority */
-	CSIPR110 = 1U;
-	CSIPR010 = 1U;
-	SIR02 = _0004_SAU_SIRMN_FECTMN | _0002_SAU_SIRMN_PECTMN | _0001_SAU_SIRMN_OVCTMN;	/* clear error flag */
-	SMR02 = _0020_SAU_SMRMN_INITIALVALUE | _8000_SAU_CLOCK_SELECT_CK01 | _0000_SAU_CLOCK_MODE_CKS | _0000_SAU_TRIGGER_SOFTWARE | _0000_SAU_MODE_CSI | _0000_SAU_TRANSFER_END;
-	SCR02 = _C000_SAU_RECEPTION_TRANSMISSION | _0000_SAU_TIMING_1 | _0000_SAU_MSB | _0007_SAU_LENGTH_8;
-	SDR02 = _6400_CSI10_DIVISOR;
-	SO0 |= _0400_SAU_CH2_CLOCK_OUTPUT_1;	/* CSI10 clock initial level */
-	SO0 &= ~_0004_SAU_CH2_DATA_OUTPUT_1;	/* CSI10 SO initial level */
-	SOE0 |= _0004_SAU_CH2_OUTPUT_ENABLE;	/* enable CSI10 output */
-	
-        /* Set SI10 pin */
-	PMC0 &= 0xF7U;
-	PM0 |= 0x08U;
-        
-	/* Set SO10 pin */
-	P0 |= 0x04U;
-	PMC0 &= 0xFBU;
-	PM0 &= 0xFBU;
-        
-	/* Set SCK10 pin */
-	P0 |= 0x10U;
-	PM0 &= 0xEFU;
 
-	PM3 &= (unsigned char)~1;  /* P30 output */    
-	P3 &= ~(unsigned char)1;  /* P30 SD-CS low. */
-	P3 |= (unsigned char)1;  /* P30 SD-CS high. */
-        
-        
+/***********************************************************************************************************************
+* Function Name: R_CSI10_Create
+* Description  : This function initializes the CSI10 module.
+* Arguments    : None
+* Return Value : None
+***********************************************************************************************************************/
+void R_CSI10_Create(void)
+{
+    ST0 |= _0004_SAU_CH2_STOP_TRG_ON;    /* disable CSI10 */
+    CSIMK10 = 1U;    /* disable INTCSI10 interrupt */
+    CSIIF10 = 0U;    /* clear INTCSI10 interrupt flag */
+    /* Set INTCSI10 high priority */
+    CSIPR110 = 0U;
+    CSIPR010 = 0U;
+    SIR02 = _0004_SAU_SIRMN_FECTMN | _0002_SAU_SIRMN_PECTMN | _0001_SAU_SIRMN_OVCTMN;    /* clear error flag */
+    SMR02 = _0020_SAU_SMRMN_INITIALVALUE | _0000_SAU_CLOCK_SELECT_CK00 | _0000_SAU_CLOCK_MODE_CKS |
+            _0000_SAU_TRIGGER_SOFTWARE | _0000_SAU_MODE_CSI | _0000_SAU_TRANSFER_END;
+    SCR02 = _C000_SAU_RECEPTION_TRANSMISSION | _0000_SAU_TIMING_1 | _0000_SAU_MSB | _0007_SAU_LENGTH_8;
+    SDR02 = _6400_CSI10_DIVISOR;
+    SO0 |= _0400_SAU_CH2_CLOCK_OUTPUT_1;    /* CSI10 clock initial level */
+    SO0 &= ~_0004_SAU_CH2_DATA_OUTPUT_1;    /* CSI10 SO initial level */
+    SOE0 |= _0004_SAU_CH2_OUTPUT_ENABLE;    /* enable CSI10 output */
+    /* Set SI10 pin */
+    PMC0 &= 0xF7U;
+    PM0 |= 0x08U;
+    /* Set SO10 pin */
+    PMC0 &= 0xFBU;
+    P0 |= 0x04U;
+    PM0 &= 0xFBU;
+    /* Set SCK10 pin */
+    P0 |= 0x10U;
+    PM0 &= 0xEFU;
 }
-/*
-**-----------------------------------------------------------------------------
-**
-**  Abstract:
-**	This function starts the CSI10 module operation.
-**
-**  Parameters:
-**	None
-**
-**  Returns:
-**	None
-**
-**-----------------------------------------------------------------------------
-*/
+
+/***********************************************************************************************************************
+* Function Name: R_CSI10_Start
+* Description  : This function starts the CSI10 module operation.
+* Arguments    : None
+* Return Value : None
+***********************************************************************************************************************/
 void R_CSI10_Start(void)
 {
-	CSIIF10 = 0U;	/* clear INTCSI10 interrupt flag */
-	CSIMK10 = 0U;	/* enable INTCSI10 */
-	SO0 |= _0400_SAU_CH2_CLOCK_OUTPUT_1;	/* CSI10 clock initial level */
-	SO0 &= ~_0004_SAU_CH2_DATA_OUTPUT_1;	/* CSI10 SO initial level */
-	SOE0 |= _0004_SAU_CH2_OUTPUT_ENABLE;	/* enable CSI10 output */
-	SS0 |= _0004_SAU_CH2_START_TRG_ON;	/* enable CSI10 */
+    CSIIF10 = 0U;    /* clear INTCSI10 interrupt flag */
+    CSIMK10 = 0U;    /* enable INTCSI10 */
+    SO0 |= _0400_SAU_CH2_CLOCK_OUTPUT_1;    /* CSI10 clock initial level */
+    SO0 &= ~_0004_SAU_CH2_DATA_OUTPUT_1;           /* CSI10 SO initial level */
+    SOE0 |= _0004_SAU_CH2_OUTPUT_ENABLE;           /* enable CSI10 output */
+    SS0 |= _0004_SAU_CH2_START_TRG_ON;             /* enable CSI10 */
 }
 
 /***********************************************************************************************************************
@@ -191,7 +145,7 @@ void R_CSI10_Stop(void)
 * Return Value : status -
 *                    MD_OK or MD_ARGERROR
 ***********************************************************************************************************************/
-MD_STATUS R_CSI10_Send_Receive(uint8_t * const tx_buf, uint16_t tx_num, uint8_t * const rx_buf)
+MD_STATUS R_CSI10_Send_Receive(uint8_t * const tx_buf, uint16_t tx_num, uint8_t * const rx_buf,uint16_t rx_num)
 {
     MD_STATUS status = MD_OK;
 
@@ -202,7 +156,10 @@ MD_STATUS R_CSI10_Send_Receive(uint8_t * const tx_buf, uint16_t tx_num, uint8_t 
     else
     {
         g_csi10_tx_count = tx_num;        /* send data count */
+        g_csi10_rx_count = 0;
         gp_csi10_tx_address = tx_buf;     /* send buffer pointer */
+        
+        g_csi10_rx_length = rx_num;
         gp_csi10_rx_address = rx_buf;     /* receive buffer pointer */
         CSIMK10 = 1U;                     /* disable INTCSI10 interrupt */
         SIO10 = *gp_csi10_tx_address;    /* started by writing data to SDR[7:0] */
