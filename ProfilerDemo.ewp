@@ -207,7 +207,7 @@
         </option>
         <option>
           <name>IccOptLevel</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>IccOptStrategy</name>
@@ -216,7 +216,7 @@
         </option>
         <option>
           <name>IccOptLevelSlave</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>IccOptAllowList</name>
@@ -2036,6 +2036,66 @@
     </file>
     <file>
       <name>$PROJ_DIR$\applilet3_src\typedefine.h</name>
+    </file>
+  </group>
+  <group>
+    <name>GLYPH</name>
+    <file>
+      <name>$PROJ_DIR$\Glyph\Fonts\bitmap_font.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Glyph\Fonts\font_8x16.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Glyph\Fonts\font_8x8.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Glyph\Fonts\font_helvr10.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Glyph\Fonts\font_logos.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Glyph\Fonts\font_winfreesystem14x16.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Glyph\Fonts\font_x5x7.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Glyph\Fonts\font_x6x13.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Glyph\glyph.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Glyph\glyph_api.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Glyph\glyph_cfg.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Glyph\glyph_register.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Glyph\glyph_types.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\user_src\lcd.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\user_include\lcd.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Glyph\Drivers\ST7579_LCD.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Glyph\Drivers\ST7579_LCD.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Glyph\Drivers\YRDKRL78_LCD.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Glyph\Drivers\YRDKRL78_LCD.h</name>
     </file>
   </group>
   <group>

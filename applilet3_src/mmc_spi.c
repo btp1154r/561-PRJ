@@ -181,7 +181,7 @@ int wait_ready (	/* 1:Ready, 0:Timeout */
                 }
 		// if (xchg_spi(0xFF) == 0xFF) return 1;	/* Card goes ready */
 		/* This loop takes a time. Insert rot_rdq() here for multitask envilonment. */
-                delay_ms(1);
+                //delay_ms(1);  //bhanu: not sure if required.. removed to allow faster operation can insert pend if using RTOS
 	} while ((Timer2--) > 0);	/* Wait until card goes ready or timeout */
 
 	return 0;	/* Timeout occured */

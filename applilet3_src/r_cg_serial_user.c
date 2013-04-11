@@ -71,7 +71,7 @@ volatile UCHAR err_type;
 __interrupt static void r_csi10_interrupt(void)
 {
     uint8_t err_type;
-  delay_ms(1);
+  //delay_ms(1);
   dummy = SSR02;
   err_type = (UCHAR)(SSR02 & _0001_SAU_OVERRUN_ERROR);
   SIR02 = (USHORT)err_type;

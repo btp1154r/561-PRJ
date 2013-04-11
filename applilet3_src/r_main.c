@@ -86,14 +86,14 @@ void  main(void)
 
   INIT_LEDS;
 	
-  //R_IT_Start(); 						/* Start interval timer (for RTC_Scheduler) */
+  R_IT_Start(); 						/* Start interval timer (for RTC_Scheduler) */
   R_CSI10_Start();          /* LCD SPI initialization */
- // LCDInit();              	/* LCD controller initialization*/
+  LCDInit();              	/* LCD controller initialization*/
   
-  //SPI_Init();
-	FileReadTask();
- //LCDPrintf(1,0,"hello");
-#if 0
+ 
+	
+ LCDPrintf(1,0,"hello");
+#if 1
   Init_RTC_Scheduler();
 
   Add_Task(Task1, RTC_FREQ_TO_TICKS(11), 2);  /* Flash LED at 5.5 Hz */
