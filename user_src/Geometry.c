@@ -49,8 +49,8 @@ void Find_Nearest_Waypoint(float cur_pos_lat, float cur_pos_lon, float * distanc
 		d = Calc_Distance(&ref, &(waypoints[i]) );
 		b = Calc_Bearing(&ref, &(waypoints[i]) );
 
-#if 1		
-		LCDPrintf(1, 0, "                ");
+#if 0
+                LCDPrintf(1, 0, "                ");
 		LCDPrintf(1, 0, "%1.16s", waypoints[i].Name);
 		LCDPrintf(2, 0, "D:%5f", d);
 #endif
@@ -59,7 +59,7 @@ void Find_Nearest_Waypoint(float cur_pos_lat, float cur_pos_lon, float * distanc
 		if (d<closest_d) {
 			closest_d = d;
 			closest_i = i;
-#if 1
+#if 0
 			LCDPrintf(3, 0, "                ");
 			LCDPrintf(3, 0, "%1.16s", waypoints[i].Name);
 			LCDPrintf(4, 0, "D:%5f", d);

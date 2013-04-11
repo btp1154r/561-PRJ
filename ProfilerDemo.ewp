@@ -2048,51 +2048,6 @@
     </file>
   </group>
   <group>
-    <name>Glyph</name>
-    <group>
-      <name>Drivers</name>
-      <file>
-        <name>$PROJ_DIR$\Glyph\Drivers\ST7579_LCD.c</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$\Glyph\Drivers\YRDKRL78_LCD.c</name>
-      </file>
-    </group>
-    <group>
-      <name>Fonts</name>
-      <file>
-        <name>$PROJ_DIR$\Glyph\Fonts\bitmap_font.c</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$\Glyph\Fonts\font_8x16.c</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$\Glyph\Fonts\font_8x8.c</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$\Glyph\Fonts\font_helvr10.c</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$\Glyph\Fonts\font_logos.c</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$\Glyph\Fonts\font_winfreesystem14x16.c</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$\Glyph\Fonts\font_x5x7.c</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$\Glyph\Fonts\font_x6x13.c</name>
-      </file>
-    </group>
-    <file>
-      <name>$PROJ_DIR$\Glyph\glyph.c</name>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\Glyph\glyph_register.c</name>
-    </file>
-  </group>
-  <group>
     <name>RTC</name>
     <file>
       <name>$PROJ_DIR$\RTC\rtc_sched.c</name>
@@ -2110,13 +2065,10 @@
       <name>$PROJ_DIR$\user_include\Geometry.h</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\user_include\ior5f100le.h</name>
+      <name>$PROJ_DIR$\user_include\ior5f100LE.h</name>
     </file>
     <file>
       <name>$PROJ_DIR$\user_include\ior5f100LE_ext.h</name>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\user_include\lcd.h</name>
     </file>
     <file>
       <name>$PROJ_DIR$\user_include\profile.h</name>
@@ -2141,9 +2093,6 @@
     </file>
     <file>
       <name>$PROJ_DIR$\user_src\Geometry.c</name>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\user_src\lcd.c</name>
     </file>
     <file>
       <name>$PROJ_DIR$\user_src\profile.c</name>

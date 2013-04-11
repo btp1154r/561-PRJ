@@ -34,7 +34,7 @@ void Clear_Lower_Screen(void) {
 	unsigned line = 2;
 	
 	while (line <9) {
-		LCDPrintf(line, 0, "                 ");
+		//LCDPrintf(line, 0, "                 ");
 		line++;
 	}
 }
@@ -42,14 +42,14 @@ void Clear_Lower_Screen(void) {
 void Print_Results(void) {
 	unsigned n, line=1;
 	
-	LCDPrintf(1,line, "%ld total ticks", profile_ticks);
+	//LCDPrintf(1,line, "%ld total ticks", profile_ticks);
 	Clear_Lower_Screen();			
 	
 	line++; // don't overwrite total number of ticks
 	for (n=0; n<NumProfileRegions; n++) {
 		if (RegionCount[n] > 0) {
-			LCDPrintf(line, 0, "                 ");
-			LCDPrintf(line++, 0, "%d %s", RegionCount[n], RegionTable[n].Name);
+			//LCDPrintf(line, 0, "                 ");
+			//LCDPrintf(line++, 0, "%d %s", RegionCount[n], RegionTable[n].Name);
 		}
 		if (line == 9) {
 			line = 2;

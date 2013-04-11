@@ -131,7 +131,7 @@ void Task3(void) {
 		m++;
 		s = 0;
 	}
-	LCDPrintf(0,0, "%02u:%02u", m, s);
+	//LCDPrintf(0,0, "%02u:%02u", m, s);
 
 }
 
@@ -141,17 +141,17 @@ void Task4(void) {
 	cur_pos_lat = TEST1_LAT;
 	cur_pos_lon = TEST1_LON;
 
-	LCDClear();
-	LCDInvert();
+	//LCDClear();
+	//LCDInvert();
 	// measure time to find closest waypoint 
 	Enable_Profiling();
 	Find_Nearest_Waypoint(cur_pos_lat, cur_pos_lon, &dist, &bearing, &name);
 	Disable_Profiling();
 
-	LCDPrintf(3, 0, "                ");
-	LCDPrintf(3, 0, "%1.16s", name);
-	LCDPrintf(4, 0, "D:%5f", dist);
-	LCDPrintf(5, 0, "B:%5f", bearing);
+	//LCDPrintf(3, 0, "                ");
+	//LCDPrintf(3, 0, "%1.16s", name);
+	//LCDPrintf(4, 0, "D:%5f", dist);
+	//LCDPrintf(5, 0, "B:%5f", bearing);
 
 	Print_Results();	
 	
