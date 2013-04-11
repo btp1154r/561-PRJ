@@ -2116,10 +2116,10 @@
       <name>$PROJ_DIR$\user_include\Geometry.h</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\user_include\ior5f100le.h</name>
+      <name>$PROJ_DIR$\user_include\ior5f100LE.h</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\user_include\ior5f100le_ext.h</name>
+      <name>$PROJ_DIR$\user_include\ior5f100LE_ext.h</name>
     </file>
     <file>
       <name>$PROJ_DIR$\user_include\profile.h</name>
@@ -2139,9 +2139,6 @@
   </group>
   <group>
     <name>user_src</name>
-    <file>
-      <name>$PROJ_DIR$\user_src\CMAN_coords.c</name>
-    </file>
     <file>
       <name>$PROJ_DIR$\user_src\Geometry.c</name>
     </file>

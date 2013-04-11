@@ -50,7 +50,7 @@ Includes
 #include<integer.h>
 #include "ff.h"
 
-
+#define WAYPOINT_CACHE_SIZE 10
 /* End user code. Do not edit comment generated here */
 #include "r_cg_userdefine.h"
 
@@ -93,13 +93,15 @@ void  main(void)
  
 	
  LCDPrintf(1,0,"hello");
+ //PT_T *waypoints;
+ //waypoints = (PT_T *)malloc(WAYPOINT_CACHE_SIZE*sizeof(PT_T));
 #if 1
   Init_RTC_Scheduler();
 
   Add_Task(Task1, RTC_FREQ_TO_TICKS(11), 2);  /* Flash LED at 5.5 Hz */
-  Add_Task(Task4, RTC_FREQ_TO_TICKS(1), 3);   /* Calculate distances */
-  Add_Task(Task3, RTC_FREQ_TO_TICKS(1), 4);   /* Update LCD at 1 Hz task frequency */
-  Add_Task(FileReadTask, RTC_FREQ_TO_TICKS(10), 1);
+  Add_Task(Task4, RTC_FREQ_TO_TICKS(1), 1);   /* Calculate distances */
+  Add_Task(Task3, RTC_FREQ_TO_TICKS(1), 3);   /* Update LCD at 1 Hz task frequency */
+//  Add_Task(FileReadTask, RTC_FREQ_TO_TICKS(10), 1);
 //  Add_Task(Task3, RTC_FREQ_TO_TICKS(100), 3);   /* Update LCD at 100 Hz task frequency */
 
 	Init_Profiling();	

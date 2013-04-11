@@ -5,6 +5,8 @@
 #include "profile.h"
 #include "Geometry.h"
 
+#if 0
+
 #include<integer.h>
 #include "ff.h"
 #include<string.h>
@@ -101,7 +103,7 @@ void FileReadTask(void) {
 		
   
 }
-
+#endif
 void Task1(void) {
 	static char led_state=0;
 	
@@ -137,9 +139,11 @@ void Task3(void) {
 
 void Task4(void) {
 	float dist, bearing, cur_pos_lat, cur_pos_lon;
-	char * name;
+	char *name;
 	cur_pos_lat = TEST1_LAT;
 	cur_pos_lon = TEST1_LON;
+        
+        name = (char *)malloc(24*sizeof(char));
 
 	//LCDClear();
 	//LCDInvert();
@@ -148,12 +152,14 @@ void Task4(void) {
 	Find_Nearest_Waypoint(cur_pos_lat, cur_pos_lon, &dist, &bearing, &name);
 	Disable_Profiling();
 
-	//LCDPrintf(3, 0, "                ");
-	//LCDPrintf(3, 0, "%1.16s", name);
-	//LCDPrintf(4, 0, "D:%5f", dist);
-	//LCDPrintf(5, 0, "B:%5f", bearing);
+	LCDPrintf(3, 0, "                ");
+	LCDPrintf(3, 0, "%1.16s", name);
+	LCDPrintf(4, 0, "D:%5f", dist);
+	LCDPrintf(5, 0, "B:%5f", bearing);
 
-	Print_Results();	
+	//Print_Results();	
+        
+        free(name);
 	
 #if 0
 	BNSPrintf(LCD, "\t%1.8s", name);
@@ -176,5 +182,6 @@ void Task4(void) {
 
 	BNSPrintf(LCD, "\t  Done  \nt=%6d", profile_ticks);
 #endif
+        
 	
 }
