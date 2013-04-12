@@ -1,6 +1,7 @@
 #include <stdint.h>
 #include <math.h>
 #include <string.h>
+#include <stdlib.h>
 
 #include "config.h"
 #include "Geometry.h"
@@ -57,19 +58,19 @@ void Find_Nearest_Waypoint(float cur_pos_lat, float cur_pos_lon, float * distanc
 	// distance is in kilometers
 	// bearing is in degrees
 		
-	int i=0, closest_i;
+	int i=0;
 	PT_T ref;
 	float d, b, closest_d=1E10;
-	char buf[10];
+	
         PT_T twaypoint;
         
         FRESULT fresult;
-        DIR dir;				/* Directory object */
-        FILINFO fno;			/* File information object */
+        
+        
         UINT br, tbr = 0;
-        char * lat_ptr, * lon_ptr;
-        
-        
+        char * lat_ptr, * lon_ptr,*end_ptr;
+        char temp_str[20];
+       
         
         //set ref
         *distance = *bearing = NULL;
@@ -107,9 +108,10 @@ void Find_Nearest_Waypoint(float cur_pos_lat, float cur_pos_lon, float * distanc
                 {
 			tbr += br;
 
+			
 			strncpy(name, (char const *) buffer, NAME_SIZE);
 			name[NAME_SIZE] = (char) 0;
-			
+
 			lat_ptr = strchr((char const *) buffer, ',');
 			lat_ptr++;
 			lat = atof(lat_ptr);						
@@ -117,7 +119,7 @@ void Find_Nearest_Waypoint(float cur_pos_lat, float cur_pos_lon, float * distanc
 			lon_ptr = strchr(lat_ptr, ',');
 			lon_ptr++;
 			lon = atof(lon_ptr);
-                        
+          
                         twaypoint.Lat = lat;
                         twaypoint.Lon = lon;
                         //twaypoint.Name = name;

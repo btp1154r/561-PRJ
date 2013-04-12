@@ -4,6 +4,7 @@
 #include "lcd.h"
 #include "profile.h"
 #include "Geometry.h"
+#include <stdlib.h>
 
 #if 0
 
