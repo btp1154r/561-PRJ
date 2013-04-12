@@ -90,7 +90,7 @@ void  main(void)
   R_CSI10_Start();          /* LCD SPI initialization */
  // LCDInit();              	/* LCD controller initialization*/
   
- wp_cache = (waypoint *)malloc(SEARCH_WINDOW*2*sizeof(waypoint));
+ //wp_cache = (waypoint *)malloc(SEARCH_WINDOW*2*sizeof(waypoint));
 	
 // LCDPrintf(1,0,"hello");
  //PT_T *waypoints;

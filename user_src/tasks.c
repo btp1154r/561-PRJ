@@ -141,8 +141,8 @@ void Task3(void) {
 void Task4(void) {
 	float dist, bearing, cur_pos_lat, cur_pos_lon;
 	char *name;
-	cur_pos_lat = TEST1_LAT;
-	cur_pos_lon = TEST1_LON;
+	cur_pos_lat = TEST2_LAT;
+	cur_pos_lon = TEST2_LON;
         
         name = (char *)malloc(24*sizeof(char));
 

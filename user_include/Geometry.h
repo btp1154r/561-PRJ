@@ -30,7 +30,6 @@ typedef struct {
 typedef struct {
 	float Lat;
 	float Lon;
-	char Name[24];
 }waypoint;
 
 

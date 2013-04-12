@@ -18,9 +18,12 @@
 #define NAME_SIZE (22)
 #define HEADER_SIZE (47)
 
-waypoint *wp_cache;
-waypoint *wp_head;
-waypoint *wp_tail;
+waypoint wp_cache[10];
+int wp_head_index=0;
+int wp_tail_index=0;
+int gf_start=0;
+int gf_end=0;
+char first_sample=1;
 
 
 FATFS fs[1];         /* Work area (file system object) for logical drive */
@@ -73,7 +76,9 @@ void Find_Nearest_Waypoint(float cur_pos_lat, float cur_pos_lon, float * distanc
         unsigned int search_win=SEARCH_WINDOW;
         int rl_count=0;   //number of lines read from file
         unsigned long file_offset=0 ;
-        
+        int f_start=0;
+        int f_end=0;
+        int write_index;
         FRESULT fresult;
         
         
@@ -108,7 +113,25 @@ void Find_Nearest_Waypoint(float cur_pos_lat, float cur_pos_lon, float * distanc
         else 
           fseek_float = 1836.4*x*x*x*x - 38821*x*x*x + 305136*x*x - (10^6)*x + 1000000;
         
+        if(fseek_float<0)
+          fseek_float=0;
+        if(fseek_float>41950)
+          fseek_float = 41950;
+        
         fseek_line = (unsigned int)(fseek_float);
+        
+        
+        
+        //reading from file must be cyclic
+       
+          f_start = fseek_line-SEARCH_WINDOW;
+       if(f_start<0)
+          f_start =0;
+        
+
+          f_end = fseek_line+SEARCH_WINDOW;
+        if(f_end>41962)
+          f_end = 41962;
 
         /* Mount drive 0 */
         fresult = f_mount(0, &fs[0]);
@@ -119,107 +142,98 @@ void Find_Nearest_Waypoint(float cur_pos_lat, float cur_pos_lon, float * distanc
         {
   	  while (1) ;
         }
-                           
-
-	
-        /* Read from file */
-
         
-	//read header line and discard
-	//fresult = f_read(&fsrc, buffer, HEADER_SIZE, &br);
+        //update cache
+        if(abs(f_start-gf_start)>2*SEARCH_WINDOW)
+        {
+           gf_start=f_end;
+           gf_end = f_start+1;
+        }
         
-        file_offset = (unsigned long)(HEADER_SIZE+(READ_SIZE+2)*(unsigned long)(fseek_line-search_win));
-//          file_offset = (unsigned long)(HEADER_SIZE+(READ_SIZE+2)*(unsigned long)28145);
-       fresult = f_lseek(&fsrc,file_offset);
        
-
-       
-	
-	do {
-                
-		fresult = f_read(&fsrc, buffer, READ_SIZE+2, &br);
-                rl_count++;
-		if (br > 0) 
-                {
-			tbr += br;
-
-			
-			strncpy(name, (char const *) buffer, NAME_SIZE);
-			name[NAME_SIZE] = (char) 0;
-
-			lat_ptr = strchr((char const *) buffer, ',');
-			lat_ptr++;
-			lat = atof(lat_ptr);						
-			
-			lon_ptr = strchr(lat_ptr, ',');
-			lon_ptr++;
-			lon = atof(lon_ptr);
+        wp_head_index = (wp_head_index+f_start-gf_start)%(2*SEARCH_WINDOW);
+        wp_tail_index = (wp_tail_index+f_end-gf_end)%(2*SEARCH_WINDOW);
+         
+         if(f_start>gf_start)
+         {
+          file_offset = (unsigned long)(HEADER_SIZE+(READ_SIZE+2)*(unsigned long)gf_end);
+          rl_count = f_end-gf_end;
+          write_index = wp_tail_index;
+         }
+         else
+         {
+           file_offset = (unsigned long)(HEADER_SIZE+(READ_SIZE+2)*(unsigned long)f_start);
+           rl_count = gf_start-f_start;
+           write_index = wp_head_index;
+         }
+          fresult = f_lseek(&fsrc,file_offset);
           
-                        twaypoint.Lat = lat;
-                        twaypoint.Lon = lon;
-                        //twaypoint.Name = name;
-                        
-                        d = Calc_Distance(&ref, &twaypoint );
-          		b = Calc_Bearing(&ref, &twaypoint );
-                        
-                        if (d<closest_d) 
-                        {
-			  closest_d = d;
-			  *distance = d;
-                          *bearing = b;
-                          strncpy(*wp_name,name,NAME_SIZE+1);
-                        }
+          for(i=rl_count;i>0;i--)
+          {
+              fresult = f_read(&fsrc, buffer, READ_SIZE+2, &br);
+              if (br > 0) 
+              {
+                      tbr += br;
+
+                      //strncpy(name, (char const *) buffer, NAME_SIZE);
+                      //name[NAME_SIZE] = (char) 0;
+
+                      lat_ptr = strchr((char const *) buffer, ',');
+                      lat_ptr++;
+                      lat = atof(lat_ptr);						
+                      
+                      lon_ptr = strchr(lat_ptr, ',');
+                      lon_ptr++;
+                      lon = atof(lon_ptr);
+        
+                      wp_cache[write_index].Lat = lat;
+                      wp_cache[write_index].Lon = lon;
+                      //twaypoint.Name = name;
+                      write_index = (write_index+1)%(2*SEARCH_WINDOW);
+                      
+                      
+                      
+                    
+      
+              }	
+          }
+          
+          gf_start=f_start;
+           gf_end = f_end;
 	
-		}			
-	} while (rl_count!=SEARCH_WINDOW*2);
-	
-	
-  /* Close open file */
+        /* Close open file */
   f_close(&fsrc);
 
     
   /* Unmount drive 0 */
   f_mount(0, 0);
-  
- 
-		
+       
+       
 
-#if 0
-
-	while (strcmp(waypoints[i].Name, "END")) 
+       
+	
+	for(i=wp_head_index;i!=wp_tail_index;i=(i+1)%(2*SEARCH_WINDOW))
         {
-		d = Calc_Distance(&ref, &(waypoints[i]) );
-		b = Calc_Bearing(&ref, &(waypoints[i]) );
-
-#if 0
-                LCDPrintf(1, 0, "                ");
-		LCDPrintf(1, 0, "%1.16s", waypoints[i].Name);
-		LCDPrintf(2, 0, "D:%5f", d);
-#endif
-		
-		// if we found a closer waypoint, remember it and display it
-		if (d<closest_d) {
-			closest_d = d;
-			closest_i = i;
-#if 0
-			LCDPrintf(3, 0, "                ");
-			LCDPrintf(3, 0, "%1.16s", waypoints[i].Name);
-			LCDPrintf(4, 0, "D:%5f", d);
-#endif		
-		}
-		
-		i++;
+          
+              twaypoint.Lat = wp_cache[i].Lat;
+              twaypoint.Lon = wp_cache[i].Lon;
+              //twaypoint.Name = name;
+              
+              d = Calc_Distance(&ref, &twaypoint );
+              b = Calc_Bearing(&ref, &twaypoint );
+              
+              if (d<closest_d) 
+              {
+                closest_d = d;
+                *distance = d;
+                *bearing = b;
+               // strncpy(*wp_name,name,NAME_SIZE+1);
+              }
+	
+				
 	}
-
-	d = Calc_Distance(&ref, &(waypoints[closest_i]) );
-	b = Calc_Bearing(&ref, &(waypoints[closest_i]) );
-
-	// return information to calling function about closest waypoint 
-	*distance = d;
-	*bearing = b;
-	*name = (char *)(waypoints[closest_i].Name);
-        
-#endif
+	
+	
         
         return ;
 }
