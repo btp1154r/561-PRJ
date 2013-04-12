@@ -7,6 +7,11 @@
 #define RALEIGH_LAT 35.81888889
 #define RALEIGH_LON	78.64472222
 
+#define NCSU_LAT  35.78709590
+#define NCSU_LON -78.67250400
+
+#define SEARCH_WINDOW 500
+
 #define SFO_LAT 37.618889
 #define SFO_LON 122.375
 
@@ -21,6 +26,14 @@ typedef struct {
 	float Lon;
 	char Name[24];
 } PT_T;
+
+typedef struct {
+	float Lat;
+	float Lon;
+	char Name[24];
+}waypoint;
+
+
 
 extern void Find_Nearest_Waypoint(float cur_pos_lat, float cur_pos_lon, float * distance, float * bearing, 
 	char * * name);

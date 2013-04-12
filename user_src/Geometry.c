@@ -18,6 +18,9 @@
 #define NAME_SIZE (22)
 #define HEADER_SIZE (47)
 
+waypoint *wp_cache;
+waypoint *wp_head;
+waypoint *wp_tail;
 
 
 FATFS fs[1];         /* Work area (file system object) for logical drive */
@@ -63,6 +66,13 @@ void Find_Nearest_Waypoint(float cur_pos_lat, float cur_pos_lon, float * distanc
 	float d, b, closest_d=1E10;
 	
         PT_T twaypoint;
+        PT_T NCSU;
+        unsigned int fseek_line;
+        float x;
+        float fseek_float;
+        unsigned int search_win=SEARCH_WINDOW;
+        int rl_count=0;   //number of lines read from file
+        unsigned long file_offset=0 ;
         
         FRESULT fresult;
         
@@ -78,7 +88,27 @@ void Find_Nearest_Waypoint(float cur_pos_lat, float cur_pos_lon, float * distanc
 
 	ref.Lat = cur_pos_lat;
 	ref.Lon = cur_pos_lon;
-	strcpy(ref.Name, "Reference");
+        strcpy(ref.Name, "Reference");
+        
+        NCSU.Lat = NCSU_LAT;
+        NCSU.Lon = NCSU_LON;
+        strcpy(NCSU.Name, "NCSU");
+        
+        //bearing_at_ncsu
+         x = atan2(
+		sin(NCSU_LON*PI/180 - cur_pos_lon*PI/180)*cos(cur_pos_lat*PI/180),
+		cos(NCSU_LAT*PI/180)*sin(cur_pos_lat*PI/180) - 
+		sin(NCSU_LAT*PI/180)*cos(cur_pos_lat*PI/180)*cos(NCSU_LON*PI/180 - cur_pos_lon*PI/180))+PI;
+	if(x<1.394764025)
+          fseek_float = (6175.6*x*x*x*x - 11559*x*x*x + 4867.4*x*x + 3809.9*x + 2.6179);
+        else if(x<2.030296278)
+          fseek_float = (-22093*x*x*x*x + 248010*x*x*x - 937985*x*x + (10^6)*x - 846782);
+        else if(x<4.157029752)
+          fseek_float = (-442.41*x*x*x*x + 6079.6*x*x*x - 30816*x*x + 69186*x - 29742);
+        else 
+          fseek_float = 1836.4*x*x*x*x - 38821*x*x*x + 305136*x*x - (10^6)*x + 1000000;
+        
+        fseek_line = (unsigned int)(fseek_float);
 
         /* Mount drive 0 */
         fresult = f_mount(0, &fs[0]);
@@ -94,16 +124,21 @@ void Find_Nearest_Waypoint(float cur_pos_lat, float cur_pos_lon, float * distanc
 	
         /* Read from file */
 
+        
 	//read header line and discard
-	fresult = f_read(&fsrc, buffer, HEADER_SIZE, &br);
+	//fresult = f_read(&fsrc, buffer, HEADER_SIZE, &br);
         
-        
-        
+        file_offset = (unsigned long)(HEADER_SIZE+(READ_SIZE+2)*(unsigned long)(fseek_line-search_win));
+//          file_offset = (unsigned long)(HEADER_SIZE+(READ_SIZE+2)*(unsigned long)28145);
+       fresult = f_lseek(&fsrc,file_offset);
+       
 
+       
 	
 	do {
-
-		fresult = f_read(&fsrc, buffer, READ_SIZE, &br);
+                
+		fresult = f_read(&fsrc, buffer, READ_SIZE+2, &br);
+                rl_count++;
 		if (br > 0) 
                 {
 			tbr += br;
@@ -136,7 +171,7 @@ void Find_Nearest_Waypoint(float cur_pos_lat, float cur_pos_lon, float * distanc
                         }
 	
 		}			
-	} while (br > 0);
+	} while (rl_count!=SEARCH_WINDOW*2);
 	
 	
   /* Close open file */

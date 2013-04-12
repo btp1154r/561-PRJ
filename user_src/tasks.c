@@ -152,12 +152,12 @@ void Task4(void) {
 	Enable_Profiling();
 	Find_Nearest_Waypoint(cur_pos_lat, cur_pos_lon, &dist, &bearing, &name);
 	Disable_Profiling();
-
+#if 0
 	LCDPrintf(3, 0, "                ");
 	LCDPrintf(3, 0, "%1.16s", name);
 	LCDPrintf(4, 0, "D:%5f", dist);
 	LCDPrintf(5, 0, "B:%5f", bearing);
-
+#endif
 	//Print_Results();	
         
         free(name);

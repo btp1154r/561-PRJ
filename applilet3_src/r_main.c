@@ -46,11 +46,11 @@ Includes
 #include "tasks.h"
 #include "profile.h"
 #include "region.h"
+#include "Geometry.h"
 
 #include<integer.h>
 #include "ff.h"
-
-#define WAYPOINT_CACHE_SIZE 10
+extern waypoint *wp_cache;
 /* End user code. Do not edit comment generated here */
 #include "r_cg_userdefine.h"
 
@@ -88,11 +88,11 @@ void  main(void)
 	
   R_IT_Start(); 						/* Start interval timer (for RTC_Scheduler) */
   R_CSI10_Start();          /* LCD SPI initialization */
-  LCDInit();              	/* LCD controller initialization*/
+ // LCDInit();              	/* LCD controller initialization*/
   
- 
+ wp_cache = (waypoint *)malloc(SEARCH_WINDOW*2*sizeof(waypoint));
 	
- LCDPrintf(1,0,"hello");
+// LCDPrintf(1,0,"hello");
  //PT_T *waypoints;
  //waypoints = (PT_T *)malloc(WAYPOINT_CACHE_SIZE*sizeof(PT_T));
 #if 1

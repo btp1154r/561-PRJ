@@ -2,7 +2,7 @@
 
 <project>
   <fileVersion>2</fileVersion>
-  <fileChecksum>2038574455</fileChecksum>
+  <fileChecksum>4148196280</fileChecksum>
   <configuration>
     <name>Debug</name>
     <outputs>
@@ -206,7 +206,7 @@
       <inputs>
         <tool>
           <name>BILINK</name>
-          <file> 46 146 113 155 54 123 27 10 142 134 16 159 84 121 158 77 66 78 67 49 23 129 48 148 61 144 3 153 59 111 21 57 43</file>
+          <file> 46 146 123 66 78 67 49 23 129 48 148 61 144 3 153 59 111 21 57 43</file>
         </tool>
       </inputs>
     </file>
@@ -520,7 +520,7 @@
       <inputs>
         <tool>
           <name>XLINK</name>
-          <file> 140 26 17 93 63 147 8 156 100 127 36 15 58 13 80 116 83 150 64 40 34 71 31 56 45 5 20 98 81 65 1 70 79 22 19</file>
+          <file> 140 26 17 8 150 64 40 34 71 31 56 45 5 20 98 81 65 1 70 79 22 19</file>
         </tool>
       </inputs>
     </file>
@@ -631,11 +631,11 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 68 120 44 122 42 160 115 112 51 92 7 161 117 74 132 130 30 107</file>
+          <file> 68 120 44 122 42 160 115 112 51 92 7 161 117 74 101 114 132 130 30 107</file>
         </tool>
         <tool>
           <name>ICCRL78</name>
-          <file> 68 120 44 122 42 160 115 112 51 92 7 161 117 74 132 130 30 107</file>
+          <file> 68 120 44 122 42 160 115 112 51 92 7 161 117 74 101 114 132 130 30 107</file>
         </tool>
       </inputs>
     </file>
@@ -1030,6 +1030,58 @@
         </tool>
       </inputs>
     </file>
+    <forcedrebuild>
+      <name>$PROJ_DIR$\Glyph\glyph_register.c</name>
+      <tool>ICCRL78</tool>
+    </forcedrebuild>
+    <forcedrebuild>
+      <name>$PROJ_DIR$\Glyph\Fonts\font_8x8.c</name>
+      <tool>ICCRL78</tool>
+    </forcedrebuild>
+    <forcedrebuild>
+      <name>$PROJ_DIR$\Glyph\Fonts\font_helvr10.c</name>
+      <tool>ICCRL78</tool>
+    </forcedrebuild>
+    <forcedrebuild>
+      <name>$PROJ_DIR$\Glyph\Fonts\bitmap_font.c</name>
+      <tool>ICCRL78</tool>
+    </forcedrebuild>
+    <forcedrebuild>
+      <name>$PROJ_DIR$\Glyph\Fonts\font_winfreesystem14x16.c</name>
+      <tool>ICCRL78</tool>
+    </forcedrebuild>
+    <forcedrebuild>
+      <name>$PROJ_DIR$\Glyph\Fonts\font_x6x13.c</name>
+      <tool>ICCRL78</tool>
+    </forcedrebuild>
+    <forcedrebuild>
+      <name>$PROJ_DIR$\Glyph\Drivers\ST7579_LCD.c</name>
+      <tool>ICCRL78</tool>
+    </forcedrebuild>
+    <forcedrebuild>
+      <name>$PROJ_DIR$\Glyph\Drivers\YRDKRL78_LCD.c</name>
+      <tool>ICCRL78</tool>
+    </forcedrebuild>
+    <forcedrebuild>
+      <name>$PROJ_DIR$\user_src\lcd.c</name>
+      <tool>ICCRL78</tool>
+    </forcedrebuild>
+    <forcedrebuild>
+      <name>$PROJ_DIR$\Glyph\glyph.c</name>
+      <tool>ICCRL78</tool>
+    </forcedrebuild>
+    <forcedrebuild>
+      <name>$PROJ_DIR$\Glyph\Fonts\font_x5x7.c</name>
+      <tool>ICCRL78</tool>
+    </forcedrebuild>
+    <forcedrebuild>
+      <name>$PROJ_DIR$\Glyph\Fonts\font_logos.c</name>
+      <tool>ICCRL78</tool>
+    </forcedrebuild>
+    <forcedrebuild>
+      <name>$PROJ_DIR$\Glyph\Fonts\font_8x16.c</name>
+      <tool>ICCRL78</tool>
+    </forcedrebuild>
   </configuration>
   <configuration>
     <name>Release</name>
