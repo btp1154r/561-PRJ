@@ -90,6 +90,8 @@ void  main(void)
   R_CSI10_Start();          /* LCD SPI initialization */
  // LCDInit();              	/* LCD controller initialization*/
   
+  openFeatFile();
+  
  //wp_cache = (waypoint *)malloc(SEARCH_WINDOW*2*sizeof(waypoint));
 	
 // LCDPrintf(1,0,"hello");

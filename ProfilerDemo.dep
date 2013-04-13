@@ -123,7 +123,7 @@
       <file>$PROJ_DIR$\Debug\Obj\font_8x8.r87</file>
       <file>$PROJ_DIR$\user_include\profile.h</file>
       <file>$TOOLKIT_DIR$\inc\DLib_Product.h</file>
-      <file>$PROJ_DIR$\user_include\ior5f100LE_ext.h</file>
+      <file>$PROJ_DIR$\user_include\ior5f100le_ext.h</file>
       <file>$PROJ_DIR$\user_include\proto.h</file>
       <file>$PROJ_DIR$\Debug\Obj\r_cg_cgc.pbi</file>
       <file>$PROJ_DIR$\Debug\Obj\r_cg_timer_user.r87</file>

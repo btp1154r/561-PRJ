@@ -18,7 +18,9 @@
 #define NAME_SIZE (22)
 #define HEADER_SIZE (47)
 
-waypoint wp_cache[10];
+#define MIN_LINE 0
+#define MAX_LINE 288
+waypoint wp_cache[2*SEARCH_WINDOW];
 int wp_head_index=0;
 int wp_tail_index=0;
 int gf_start=0;
@@ -58,6 +60,34 @@ float Calc_Bearing(PT_T * p1, const PT_T *  p2){
 	return angle;
 }
 
+void openFeatFile()
+{
+  /* Mount drive 0 */
+  FRESULT fresult;
+        fresult = f_mount(0, &fs[0]);
+  
+        /* Open source file on the drive 0 */
+        fresult = f_open(&fsrc, "0:NC_Feat.csv", FA_READ); 
+        if (fresult != FR_OK) 
+        {
+  	  while (1) ;
+        }
+        return;
+}
+
+void closeFeatFile()
+{
+  
+        /* Close open file */
+  f_close(&fsrc);
+
+    
+  /* Unmount drive 0 */
+  f_mount(0, 0);
+  return;
+       
+}
+
 void Find_Nearest_Waypoint(float cur_pos_lat, float cur_pos_lon, float * distance, float * bearing, 
 	char * * wp_name) {
 	// cur_pos_lat and cur_pos_lon are in degrees
@@ -73,7 +103,7 @@ void Find_Nearest_Waypoint(float cur_pos_lat, float cur_pos_lon, float * distanc
         unsigned int fseek_line;
         float x;
         float fseek_float;
-        unsigned int search_win=SEARCH_WINDOW;
+        
         int rl_count=0;   //number of lines read from file
         unsigned long file_offset=0 ;
         int f_start=0;
@@ -104,19 +134,14 @@ void Find_Nearest_Waypoint(float cur_pos_lat, float cur_pos_lon, float * distanc
 		sin(NCSU_LON*PI/180 - cur_pos_lon*PI/180)*cos(cur_pos_lat*PI/180),
 		cos(NCSU_LAT*PI/180)*sin(cur_pos_lat*PI/180) - 
 		sin(NCSU_LAT*PI/180)*cos(cur_pos_lat*PI/180)*cos(NCSU_LON*PI/180 - cur_pos_lon*PI/180))+PI;
-	if(x<1.394764025)
-          fseek_float = (6175.6*x*x*x*x - 11559*x*x*x + 4867.4*x*x + 3809.9*x + 2.6179);
-        else if(x<2.030296278)
-          fseek_float = (-22093*x*x*x*x + 248010*x*x*x - 937985*x*x + (10^6)*x - 846782);
-        else if(x<4.157029752)
-          fseek_float = (-442.41*x*x*x*x + 6079.6*x*x*x - 30816*x*x + 69186*x - 29742);
-        else 
-          fseek_float = 1836.4*x*x*x*x - 38821*x*x*x + 305136*x*x - (10^6)*x + 1000000;
+         
+	fseek_float = 0.2759*x*x*x*x*x*x - 5.0821*x*x*x*x*x + 34.728*x*x*x*x - 108.5*x*x*x + 157.58*x*x - 54.246*x + 8.8365;        
+        
         
         if(fseek_float<0)
-          fseek_float=0;
-        if(fseek_float>41950)
-          fseek_float = 41950;
+          fseek_float=MIN_LINE;
+        if(fseek_float>MAX_LINE)
+          fseek_float = MAX_LINE;
         
         fseek_line = (unsigned int)(fseek_float);
         
@@ -125,29 +150,22 @@ void Find_Nearest_Waypoint(float cur_pos_lat, float cur_pos_lon, float * distanc
         //reading from file must be cyclic
        
           f_start = fseek_line-SEARCH_WINDOW;
-       if(f_start<0)
-          f_start =0;
+       if(f_start<MIN_LINE)
+          f_start =MIN_LINE;
         
 
           f_end = fseek_line+SEARCH_WINDOW;
-        if(f_end>41962)
-          f_end = 41962;
+        if(f_end>MAX_LINE)
+          f_end = MAX_LINE;
 
-        /* Mount drive 0 */
-        fresult = f_mount(0, &fs[0]);
-  
-        /* Open source file on the drive 0 */
-        fresult = f_open(&fsrc, "0:NC_Feat.csv", FA_READ); 
-        if (fresult != FR_OK) 
-        {
-  	  while (1) ;
-        }
         
         //update cache
         if(abs(f_start-gf_start)>2*SEARCH_WINDOW)
         {
            gf_start=f_end;
            gf_end = f_start+1;
+           wp_head_index=0;
+           wp_tail_index=0;
         }
         
        
@@ -201,17 +219,10 @@ void Find_Nearest_Waypoint(float cur_pos_lat, float cur_pos_lon, float * distanc
           gf_start=f_start;
            gf_end = f_end;
 	
-        /* Close open file */
-  f_close(&fsrc);
-
-    
-  /* Unmount drive 0 */
-  f_mount(0, 0);
-       
        
 
        
-	
+	//search cache for closest point
 	for(i=wp_head_index;i!=wp_tail_index;i=(i+1)%(2*SEARCH_WINDOW))
         {
           

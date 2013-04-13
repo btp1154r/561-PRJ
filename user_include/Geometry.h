@@ -10,16 +10,20 @@
 #define NCSU_LAT  35.78709590
 #define NCSU_LON -78.67250400
 
-#define SEARCH_WINDOW 500
+#define SEARCH_WINDOW 20
 
 #define SFO_LAT 37.618889
 #define SFO_LON 122.375
 
-#define TEST1_LAT 30.0
-#define TEST1_LON 80.0
+#define TEST1_LAT 35.73515280
 
-#define TEST2_LAT 50.0
-#define TEST2_LON 130.0
+#define TEST1_LON -78.70639400
+
+
+#define TEST2_LAT 35.74737470
+
+#define TEST2_LON -78.72611610
+
 
 typedef struct {
 	float Lat;
@@ -36,5 +40,7 @@ typedef struct {
 
 extern void Find_Nearest_Waypoint(float cur_pos_lat, float cur_pos_lon, float * distance, float * bearing, 
 	char * * name);
+void openFeatFile(void);
+void closeFeatFile(void);
 
 #endif
