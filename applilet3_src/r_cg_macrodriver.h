@@ -28,7 +28,7 @@
 * Device(s)    : R5F100LE
 * Tool-Chain   : IAR Systems iccrl78
 * Description  : This file implements general head file.
-* Creation Date: 11-04-2013
+* Creation Date: 12-04-2013
 ***********************************************************************************************************************/
 
 #ifndef STATUS_H

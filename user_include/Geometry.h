@@ -10,7 +10,6 @@
 #define NCSU_LAT  35.78709590
 #define NCSU_LON -78.67250400
 
-#define SEARCH_WINDOW 20
 
 #define SFO_LAT 37.618889
 #define SFO_LON 122.375

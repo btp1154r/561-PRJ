@@ -28,7 +28,7 @@
 * Device(s)    : R5F100LE
 * Tool-Chain   : IAR Systems iccrl78
 * Description  : This file implements main function.
-* Creation Date: 11-04-2013
+* Creation Date: 12-04-2013
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
@@ -88,8 +88,9 @@ void  main(void)
 	
   R_IT_Start(); 						/* Start interval timer (for RTC_Scheduler) */
   R_CSI10_Start();          /* LCD SPI initialization */
- // LCDInit();              	/* LCD controller initialization*/
-  
+ 
+   LCDInit();              	/* LCD controller initialization*/
+   R_UART0_Start();
   openFeatFile();
   
  //wp_cache = (waypoint *)malloc(SEARCH_WINDOW*2*sizeof(waypoint));
@@ -103,10 +104,9 @@ void  main(void)
   Add_Task(Task1, RTC_FREQ_TO_TICKS(11), 2);  /* Flash LED at 5.5 Hz */
   Add_Task(Task4, RTC_FREQ_TO_TICKS(1), 1);   /* Calculate distances */
   Add_Task(Task3, RTC_FREQ_TO_TICKS(1), 3);   /* Update LCD at 1 Hz task frequency */
-//  Add_Task(FileReadTask, RTC_FREQ_TO_TICKS(10), 1);
-//  Add_Task(Task3, RTC_FREQ_TO_TICKS(100), 3);   /* Update LCD at 100 Hz task frequency */
 
-	Init_Profiling();	
+
+  Init_Profiling();	
   Disable_Profiling();
   Run_RTC_Scheduler();
 #else

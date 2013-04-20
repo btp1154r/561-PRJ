@@ -28,12 +28,12 @@
 * Device(s)    : R5F100LE
 * Tool-Chain   : IAR Systems iccrl78
 * Description  : This file implements device driver for Serial module.
-* Creation Date: 11-04-2013
+* Creation Date: 12-04-2013
 ***********************************************************************************************************************/
 
 #ifndef SERIAL_H
 #define SERIAL_H
-
+#include "r_cg_macrodriver.h"
 /***********************************************************************************************************************
 Macro definitions (Register bit)
 ***********************************************************************************************************************/
@@ -378,7 +378,9 @@ Macro definitions (Register bit)
 /***********************************************************************************************************************
 Macro definitions
 ***********************************************************************************************************************/
-#define _6400_CSI10_DIVISOR              (0x6400U)
+#define _CE00_UART0_RECEIVE_DIVISOR      (0xCE00U)
+#define _CE00_UART0_TRANSMIT_DIVISOR     (0xCE00U)
+#define _0200_CSI10_DIVISOR              (0x0200U)
 
 /***********************************************************************************************************************
 Typedef definitions
@@ -388,14 +390,40 @@ Typedef definitions
 Global functions
 ***********************************************************************************************************************/
 void R_SAU0_Create(void);
+void R_UART0_Create(void);
+void R_UART0_Start(void);
+void R_UART0_Stop(void);
+unsigned short R_UART0_Send(uint8_t * const tx_buf, uint16_t tx_num);
+unsigned short R_UART0_Receive(uint8_t * const rx_buf, uint16_t rx_num);
+static void r_uart0_callback_error(uint8_t err_type);
+static void r_uart0_callback_receiveend(void);
+static void r_uart0_callback_sendend(void);
 void R_CSI10_Create(void);
 void R_CSI10_Start(void);
 void R_CSI10_Stop(void);
-MD_STATUS R_CSI10_Send_Receive(uint8_t * const tx_buf, uint16_t tx_num, uint8_t * const rx_buf,uint16_t rx_num);
+unsigned short R_CSI10_Send_Receive(uint8_t * const tx_buf, uint16_t tx_num, uint8_t * const rx_buf,uint16_t rx_num);
 static void r_csi10_callback_error(uint8_t err_type);
 static void r_csi10_callback_receiveend(void);
 static void r_csi10_callback_sendend(void);
 
 /* Start user code for function. Do not edit comment generated here */
+typedef struct 
+{
+ 
+ unsigned char hour;
+ unsigned char min;
+ unsigned char  sec;
+ unsigned char day;
+ unsigned char month;
+ unsigned char year;
+  int lat_deg;
+  int long_deg;
+  float lat_min;
+  float long_min;
+  float speed;
+  float angle;
+  float var;
+  char valid;
+}CurGPSInfo;
 /* End user code. Do not edit comment generated here */
 #endif

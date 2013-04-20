@@ -15,7 +15,7 @@
 * APIlib:	Applilet3 for RL78/G13 V1.01.00 [31 May 2011]
 * Device:	R5F100LE
 * Compiler:	IAR Systems iccrl78
-* Creation date:	11-04-2013
+* Creation date:	12-04-2013
 *******************************************************************************
 */
 

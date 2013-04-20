@@ -28,7 +28,7 @@
 * Device(s)    : R5F100LE
 * Tool-Chain   : IAR Systems iccrl78
 * Description  : This file implements device driver for Serial module.
-* Creation Date: 11-04-2013
+* Creation Date: 12-04-2013
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
@@ -38,12 +38,20 @@ Includes
 #include "r_cg_serial.h"
 /* Start user code for include. Do not edit comment generated here */
 #include "integer.h"
+#include<string.h>
+#include<stdio.h>
+#include<stdlib.h>
 /* End user code. Do not edit comment generated here */
 #include "r_cg_userdefine.h"
 
 /***********************************************************************************************************************
 Global variables and functions
 ***********************************************************************************************************************/
+extern uint8_t * gp_uart0_tx_address;         /* uart0 send buffer address */
+extern uint16_t  g_uart0_tx_count;            /* uart0 send data number */
+extern uint8_t * gp_uart0_rx_address;         /* uart0 receive buffer address */
+extern uint16_t  g_uart0_rx_count;            /* uart0 receive data number */
+extern uint16_t  g_uart0_rx_length;           /* uart0 receive data length */
 extern uint8_t * gp_csi10_rx_address;         /* csi10 receive buffer address */
 extern uint16_t  g_csi10_rx_length;           /* csi10 receive data length */
 extern uint16_t  g_csi10_rx_count;            /* csi10 receive data count */
@@ -59,7 +67,238 @@ volatile UCHAR G_IIC_SendingData = 0;
 volatile UCHAR G_IIC_ReceivingData = 0;
 volatile UCHAR dummy;
 volatile UCHAR err_type;
+
+
+uint8_t sbuffer[128];
+
+
+
+CurGPSInfo info;
+
+
+    uint8_t rx_data ;
+    
+    uint16_t checksum=0;
+    uint16_t c=0;
+    uint8_t sum[3];
+    int x;
+    uint8_t readCount=0;
+    uint8_t str[20];
+    int n;
+    int msg_count=0;
+    char start=0;
+    char substr[10];
+    char i; //small loops
 /* End user code. Do not edit comment generated here */
+
+/***********************************************************************************************************************
+* Function Name: r_uart0_interrupt_receive
+* Description  : This function is INTSR0 interrupt service routine.
+* Arguments    : None
+* Return Value : None
+***********************************************************************************************************************/
+#pragma vector = INTSR0_vect
+__interrupt static void r_uart0_interrupt_receive(void)
+{
+  
+    
+    
+    rx_data = RXD0;
+        
+    if (g_uart0_rx_length > g_uart0_rx_count)
+    {
+        *gp_uart0_rx_address = rx_data;
+        gp_uart0_rx_address++;
+        g_uart0_rx_count++;
+
+        if (g_uart0_rx_length == g_uart0_rx_count)
+        {
+            r_uart0_callback_receiveend();
+        }
+    }
+          
+          if(rx_data == '\r')  
+          {
+            
+            if(sbuffer[3]=='R')    //change GPRMC lines check
+            {
+                checksum=0;
+                c=0;
+                //checksum generation for sbuffer
+                x=1;
+                while(sbuffer[x]!='*')
+                {
+                    c ^= sbuffer[x];
+                    x++;
+                    if(x==128) break;
+                }
+                
+                
+                
+                //checksum extraction from sbuffer
+                x=0;
+                while(sbuffer[x]!='\n')
+                {
+                    if(sbuffer[x]=='*')
+                    {
+                       sum[0] = sbuffer[x+1];
+                       sum[1] = sbuffer[x+2];
+                       sum[2] = '\0';
+                       checksum= (short)strtol(sum,NULL,16);
+                     }
+                      x++;
+                      if(x==128) break;
+                }
+                
+                //check for proper transmission
+              //  if(checksum==c )
+                {
+                 
+                  
+                  
+#if 0
+                   info.hour = 10*(sbuffer[7]-'0') + (sbuffer[8]-'0');  
+                   info.min = 10*(sbuffer[9]-'0') + (sbuffer[10]-'0');  
+                   info.sec = 10*(sbuffer[11]-'0') + (sbuffer[12]-'0');  
+#endif
+                   info.lat_deg = 10*(sbuffer[16]-'0') + (sbuffer[17]-'0');
+                   
+                   for(x=18,i=0;sbuffer[x]!=',';x++,i++)
+                   {
+                     substr[i]=sbuffer[x];
+                   }
+                   substr[i] = 0; 
+                   info.lat_min =  strtof(substr,NULL);
+                   
+                   x=x+3;                     
+                   info.long_deg = 100*(sbuffer[x]-'0')+10*(sbuffer[x+1]-'0') + (sbuffer[x+2]-'0');
+                   
+                   
+                   for(x=x+3,i=0;sbuffer[x]!=',';x++,i++)
+                   {
+                     substr[i]=sbuffer[x];
+                   }
+                   substr[i] = 0;
+                   info.long_min = strtof(substr,NULL);
+#if 0
+                   
+                   for(x=x+3,i=0;sbuffer[x]!=',';x++,i++)
+                   {
+                     substr[i]=sbuffer[x];
+                   }
+                   substr[i] = 0;
+                   info.speed = strtof(substr,NULL);
+                   
+                   for(x=x+1,i=0;sbuffer[x]!=',';x++,i++)
+                   {
+                     substr[i]=sbuffer[x];
+                   }
+                   substr[i] = 0;
+                   info.angle = strtof(substr,NULL);
+                   
+                   x=x+1;
+                   info.day = 10*(sbuffer[x]-'0') + (sbuffer[x+1]-'0');  
+                   info.month = 10*(sbuffer[x+2]-'0') + (sbuffer[x+3]-'0');  
+                   info.year = 10*(sbuffer[x+4]-'0') + (sbuffer[x+5]-'0'); 
+                   
+                   for(x=x+7,i=0;sbuffer[x]!=',';x++,i++)
+                   {
+                     substr[i]=sbuffer[x];
+                   }
+                   substr[i] = 0;
+                   info.var = strtof(substr,NULL);
+#endif
+                   
+                   info.valid=1;
+                }
+                   
+               
+            }
+                
+                readCount =0;
+            
+         }
+          
+                 
+          sbuffer[readCount] = rx_data;
+          readCount++;
+          if(readCount==128)
+            readCount =0;
+        
+}
+
+/***********************************************************************************************************************
+* Function Name: r_uart0_interrupt_error
+* Description  : This function is INTSRE0 interrupt service routine.
+* Arguments    : None
+* Return Value : None
+***********************************************************************************************************************/
+#pragma vector = INTSRE0_vect
+__interrupt static void r_uart0_interrupt_error(void)
+{
+    uint8_t err_type;
+
+    *gp_uart0_rx_address = RXD0;
+    r_uart0_callback_error(err_type);
+}
+
+/***********************************************************************************************************************
+* Function Name: r_uart0_interrupt_send
+* Description  : This function is INTST0 interrupt service routine.
+* Arguments    : None
+* Return Value : None
+***********************************************************************************************************************/
+#pragma vector = INTST0_vect
+__interrupt static void r_uart0_interrupt_send(void)
+{
+    if (g_uart0_tx_count > 0U)
+    {
+        TXD0 = *gp_uart0_tx_address;
+        gp_uart0_tx_address++;
+        g_uart0_tx_count--;
+    }
+    else
+    {
+        r_uart0_callback_sendend();
+    }
+}
+
+/***********************************************************************************************************************
+* Function Name: r_uart0_callback_receiveend
+* Description  : This function is a callback function when UART0 finishes reception.
+* Arguments    : None
+* Return Value : None
+***********************************************************************************************************************/
+static void r_uart0_callback_receiveend(void)
+{
+    /* Start user code. Do not edit comment generated here */
+    /* End user code. Do not edit comment generated here */
+}
+
+/***********************************************************************************************************************
+* Function Name: r_uart0_callback_sendend
+* Description  : This function is a callback function when UART0 finishes transmission.
+* Arguments    : None
+* Return Value : None
+***********************************************************************************************************************/
+static void r_uart0_callback_sendend(void)
+{
+    /* Start user code. Do not edit comment generated here */
+    /* End user code. Do not edit comment generated here */
+}
+
+/***********************************************************************************************************************
+* Function Name: r_uart0_callback_error
+* Description  : This function is a callback function when UART0 reception error occurs.
+* Arguments    : err_type -
+*                    error type value
+* Return Value : None
+***********************************************************************************************************************/
+static void r_uart0_callback_error(uint8_t err_type)
+{
+    /* Start user code. Do not edit comment generated here */
+    /* End user code. Do not edit comment generated here */
+}
 
 /***********************************************************************************************************************
 * Function Name: r_csi10_interrupt

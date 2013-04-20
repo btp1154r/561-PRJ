@@ -28,7 +28,7 @@
 * Device(s)    : R5F100LE
 * Tool-Chain   : IAR Systems iccrl78
 * Description  : This file includes user definition.
-* Creation Date: 11-04-2013
+* Creation Date: 12-04-2013
 ***********************************************************************************************************************/
 
 #ifndef _USER_DEF_H

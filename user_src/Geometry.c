@@ -5,10 +5,12 @@
 
 #include "config.h"
 #include "Geometry.h"
+
 #include "lcd.h"
 #define PI 3.14159265
 
 
+#define SEARCH_WINDOW 15
 /****FS vars***/
 
 #include<integer.h>
@@ -20,7 +22,7 @@
 
 #define MIN_LINE 0
 #define MAX_LINE 288
-waypoint wp_cache[2*SEARCH_WINDOW];
+PT_T wp_cache[2*SEARCH_WINDOW];
 int wp_head_index=0;
 int wp_tail_index=0;
 int gf_start=0;
@@ -58,6 +60,52 @@ float Calc_Bearing(PT_T * p1, const PT_T *  p2){
 	if (angle < 0.0)
 		angle += 360;
 	return angle;
+}
+
+void Find_Waypoint(float cur_pos_lat, float cur_pos_lon, float true_course, float speed) {
+		
+	int i=0, closest_i;
+	PT_T ref;
+	float d, b; //closest_d=1E10;
+        float least_dist = 1E10;
+	char buf[10];
+        float cross_track_dist, along_track_dist, time; 
+	ref.Lat = cur_pos_lat;
+	ref.Lon = cur_pos_lon;
+	strcpy(ref.Name, "Reference");
+
+	for(i=wp_head_index;i!=wp_tail_index;i=(i+1)%(2*SEARCH_WINDOW)) { 
+                
+	        d = Calc_Distance2(&ref, &(wp_cache[i]) );
+		b = Calc_Bearing(&ref, &(wp_cache[i]) );
+                //cross_track_dist = fabs(asin(sin(d/6371)*sin((b*PI/180)-(true_course*PI/180))));
+                //cross_track_dist = fabs(asin(sin(d/6371)*sin((b*PI/180)-(true_course*PI/180))));
+                Enable_Profiling();
+                cross_track_dist = fabs(asin(sin(d)*sin((b*PI/180)-(true_course*PI/180))));
+                Disable_Profiling();
+                
+#if 0	
+		LCDPrintf(1, 0, "                ");
+		LCDPrintf(1, 0, "%1.16s", wp_cache[i].Name);
+		LCDPrintf(2, 0, "D:%5f", d);
+                LCDPrintf(3, 0, "C:%5f", cross_track_dist);
+#endif	
+		// if we found a closer waypoint, remember it and display it
+		if (cross_track_dist<.00007849) {
+			least_dist = cross_track_dist;
+                        along_track_dist = acos(cos(d/6371)/cos(cross_track_dist/6371))*6371;
+                        time = (along_track_dist/(speed*1.85));
+			closest_i = i;
+#if 1
+			LCDPrintf(5, 0, "                ");
+			LCDPrintf(5, 0, "%1.16s", wp_cache[i].Name);
+			LCDPrintf(6, 0, "D:%5f", d);
+                        LCDPrintf(7, 0, "C:%5f", cross_track_dist);
+                        LCDPrintf(8, 0, "T:%5f",time);
+#endif		
+		}
+		i++;
+	}	
 }
 
 void openFeatFile()
@@ -193,8 +241,8 @@ void Find_Nearest_Waypoint(float cur_pos_lat, float cur_pos_lon, float * distanc
               {
                       tbr += br;
 
-                      //strncpy(name, (char const *) buffer, NAME_SIZE);
-                      //name[NAME_SIZE] = (char) 0;
+                      strncpy(name, (char const *) buffer, NAME_SIZE);
+                      name[NAME_SIZE] = (char) 0;
 
                       lat_ptr = strchr((char const *) buffer, ',');
                       lat_ptr++;
@@ -206,7 +254,7 @@ void Find_Nearest_Waypoint(float cur_pos_lat, float cur_pos_lon, float * distanc
         
                       wp_cache[write_index].Lat = lat;
                       wp_cache[write_index].Lon = lon;
-                      //twaypoint.Name = name;
+                      strncpy(wp_cache[write_index].Name,name,NAME_SIZE+1);
                       write_index = (write_index+1)%(2*SEARCH_WINDOW);
                       
                       
@@ -226,19 +274,17 @@ void Find_Nearest_Waypoint(float cur_pos_lat, float cur_pos_lon, float * distanc
 	for(i=wp_head_index;i!=wp_tail_index;i=(i+1)%(2*SEARCH_WINDOW))
         {
           
-              twaypoint.Lat = wp_cache[i].Lat;
-              twaypoint.Lon = wp_cache[i].Lon;
-              //twaypoint.Name = name;
               
-              d = Calc_Distance(&ref, &twaypoint );
-              b = Calc_Bearing(&ref, &twaypoint );
+              
+              d = Calc_Distance(&ref, &wp_cache[i] );
+              b = Calc_Bearing(&ref, &wp_cache[i] );
               
               if (d<closest_d) 
               {
                 closest_d = d;
                 *distance = d;
                 *bearing = b;
-               // strncpy(*wp_name,name,NAME_SIZE+1);
+               strncpy(*wp_name,wp_cache[i].Name,NAME_SIZE+1);
               }
 	
 				
